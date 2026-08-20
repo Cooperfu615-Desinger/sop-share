@@ -123,12 +123,11 @@
         <button type="button" class="menu-link" data-doc="s2">2. 品質把關機制</button>
         <button type="button" class="menu-link" data-doc="s3">3. 需求分流</button>
         <button type="button" class="menu-link" data-doc="s4">4. 流程階段與門檻</button>
-        <button type="button" class="menu-link" data-doc="s5">5. 各階段注意事項</button>
-        <button type="button" class="menu-link" data-doc="s6">6. 角色與管理規則</button>
-        <button type="button" class="menu-link" data-doc="s12">7. Figma 狀態標記</button>
-        <button type="button" class="menu-link" data-doc="s13">8. 決策紀律</button>
-        <button type="button" class="menu-link" data-doc="s14">9. 開放問題清單</button>
-        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">10. 擴充文件<span class="chevron">▸</span></button>
+        <button type="button" class="menu-link" data-doc="s6">5. 角色與管理規則</button>
+        <button type="button" class="menu-link" data-doc="s12">6. Figma 狀態標記</button>
+        <button type="button" class="menu-link" data-doc="s13">7. 決策紀律</button>
+        <button type="button" class="menu-link" data-doc="s14">8. 開放問題清單</button>
+        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">9. 擴充文件<span class="chevron">▸</span></button>
         <div class="submenu" id="submenu-s15">
           <button type="button" class="menu-link sub" data-doc="rule-qa">↳ QA測試規範</button>
           <button type="button" class="menu-link sub" data-doc="rule-cs">↳ 客服回應規範</button>
@@ -155,7 +154,7 @@
           <tr><td>docs/game/examples/</td><td>遊戲類專案的差異範例：Plane結構與填寫範例、規格書與素材清單範例</td></tr>
           <tr><td>未來新專案類型</td><td>比照上述模式，建立 docs/&lt;類型&gt;/examples/</td></tr>
         </tbody></table>
-        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第10節。</p>
+        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第9節。</p>
       </section>
 
       <section id="s2" class="doc">
@@ -223,10 +222,8 @@
           <tr><td>驗收條件、設計與技術資訊足以開發</td><td>發版紀錄、回滾、上線觀察已完成</td></tr>
           <tr><td>相依與風險已揭露，QA知道測試範圍</td><td>已知風險已有後續任務與責任人</td></tr>
         </tbody></table>
-      </section>
 
-      <section id="s5" class="doc">
-        <h3>5. 各階段注意事項</h3>
+        <h4>各階段注意事項</h4>
         <div class="grid">
           <div class="card"><h4>接需求</h4><p>不要先答應時程或解法。先記錄提出人的原話與證據；PM 的分析請另寫，避免混淆事實與推測。</p></div>
           <div class="card"><h4>寫規格</h4><p>每個流程要寫成功、失敗、無資料、載入、權限不足與重複操作的結果，不要只寫「系統應正常運作」。</p></div>
@@ -238,7 +235,7 @@
       </section>
 
       <section id="s6" class="doc">
-        <h3>6. 角色與管理規則</h3>
+        <h3>5. 角色與管理規則</h3>
         <p class="lead">依階段查閱各角色參與程度，並提供 RACI、風險登錄與需求變更等管理工具的範例。</p>
         <h4>角色參與矩陣</h4>
         <table><thead><tr><th>階段</th><th>PM</th><th>設計</th><th>前端</th><th>後端</th><th>QA</th><th>SRE</th></tr></thead><tbody>
@@ -425,7 +422,7 @@
       </section>
 
       <section id="s12" class="doc">
-        <h3>7. Figma 狀態標記<span class="eyebrow" style="display:inline-block;margin-left:8px;">既有實際做法</span></h3>
+        <h3>6. Figma 狀態標記<span class="eyebrow" style="display:inline-block;margin-left:8px;">既有實際做法</span></h3>
         <p class="lead">每個有異動的 Figma 畫面應在標題前加上狀態標記，標示畫面交接狀態（非 Plane 任務狀態），讓設計與前端判斷是否需要動工。</p>
         <div class="ui-status">
           <div class="ui-status-item"><div class="ui-pill ui-done"><b>首頁</b>－開發完成</div><p><strong>意思：</strong>前端實作已與設計稿相符，設計與前端都完成。若沒有新異動，兩方都不需再處理。</p></div>
@@ -438,16 +435,16 @@
       </section>
 
       <section id="s13" class="doc">
-        <h3>8. 決策紀律</h3>
+        <h3>7. 決策紀律</h3>
         <ul>
           <li><strong>決策紀錄：</strong>每個層級（核心/平台/遊戲/未來新類型）各自維護自己的 decisions/ 資料夾，記錄該層級做出的重大決策與放棄的方案。核心層級的決策放 docs/core/decisions/。</li>
           <li><strong>not_stated 紀律：</strong>缺料寫 not_stated，不腦補。查得到的先查，查不到才標，並列進各文件的開放問題清單。</li>
-          <li><strong>機率、賠付、金額驗證要求（全域不可妥協）：</strong>凡涉及機率、賠付、金額的任何結論（規格可行、測試通過、可以上線等），必須附驗證方式（模擬、測試或實跑），純人工推導不算驗證。具體落地方式依專案性質不同（例如遊戲的機率/RTP模擬驗證要求），參考各領域範例文件，見第10節。</li>
+          <li><strong>機率、賠付、金額驗證要求（全域不可妥協）：</strong>凡涉及機率、賠付、金額的任何結論（規格可行、測試通過、可以上線等），必須附驗證方式（模擬、測試或實跑），純人工推導不算驗證。具體落地方式依專案性質不同（例如遊戲的機率/RTP模擬驗證要求），參考各領域範例文件，見第9節。</li>
         </ul>
       </section>
 
       <section id="s14" class="doc">
-        <h3>9. 開放問題清單（待討論）</h3>
+        <h3>8. 開放問題清單（待討論）</h3>
         <ol>
           <li>RACI表「發布決策」的最終核准人尚未指定</li>
           <li>決策時限規則（需求/設計/技術/主管驗收各自的回覆時限）未定</li>
@@ -461,7 +458,7 @@
       </section>
 
       <section id="s15" class="doc">
-        <h3>10. 擴充文件</h3>
+        <h3>9. 擴充文件</h3>
         <p class="lead">Plane 開立、QA 測試、客服回應的通用規則，加上各領域的實際 Plane 結構、填寫範例、規格書範例——規則不分平台/遊戲皆適用，範例則依領域各自獨立成文件；分享版裡已一併包在同一個檔案內，點擊即可切換查看。</p>
 
         <h4>規則</h4>
