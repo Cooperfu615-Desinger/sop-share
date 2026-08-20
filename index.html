@@ -124,13 +124,13 @@
         <button type="button" class="menu-link" data-doc="s3">3. 需求分流</button>
         <button type="button" class="menu-link" data-doc="s4">4. 流程階段與門檻</button>
         <button type="button" class="menu-link" data-doc="s6">5. 角色與管理規則</button>
-        <button type="button" class="menu-link" data-doc="s12">6. Figma 狀態標記</button>
-        <button type="button" class="menu-link" data-doc="s14">7. 開放問題清單</button>
-        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">8. 擴充文件<span class="chevron">▸</span></button>
+        <button type="button" class="menu-link" data-doc="s14">6. 開放問題清單</button>
+        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">7. 擴充文件<span class="chevron">▸</span></button>
         <div class="submenu" id="submenu-s15">
           <button type="button" class="menu-link sub" data-doc="rule-qa">↳ QA測試規範</button>
           <button type="button" class="menu-link sub" data-doc="rule-cs">↳ 客服回應規範</button>
           <button type="button" class="menu-link sub" data-doc="rule-plane">↳ Plane 開立規則</button>
+          <button type="button" class="menu-link sub" data-doc="rule-figma">↳ Figma 狀態標記</button>
           <button type="button" class="menu-link sub" data-doc="ex-qa">↳ QA 工作單範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 工作單範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 工作單範例</button>
@@ -153,7 +153,7 @@
           <tr><td>docs/game/examples/</td><td>遊戲類專案的差異範例：Plane結構與填寫範例、規格書與素材清單範例</td></tr>
           <tr><td>未來新專案類型</td><td>比照上述模式，建立 docs/&lt;類型&gt;/examples/</td></tr>
         </tbody></table>
-        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第8節。</p>
+        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第7節。</p>
       </section>
 
       <section id="s2" class="doc">
@@ -422,8 +422,8 @@
         </ul>
       </section>
 
-      <section id="s12" class="doc">
-        <h3>6. Figma 狀態標記<span class="eyebrow" style="display:inline-block;margin-left:8px;">既有實際做法</span></h3>
+      <section id="rule-figma" class="doc">
+        <h3>Figma 狀態標記<span class="eyebrow" style="display:inline-block;margin-left:8px;">既有實際做法</span></h3>
         <p class="lead">每個有異動的 Figma 畫面應在標題前加上狀態標記，標示畫面交接狀態（非 Plane 任務狀態），讓設計與前端判斷是否需要動工。</p>
         <div class="ui-status">
           <div class="ui-status-item"><div class="ui-pill ui-done"><b>首頁</b>－開發完成</div><p><strong>意思：</strong>前端實作已與設計稿相符，設計與前端都完成。若沒有新異動，兩方都不需再處理。</p></div>
@@ -436,7 +436,7 @@
       </section>
 
       <section id="s14" class="doc">
-        <h3>7. 開放問題清單（待討論）</h3>
+        <h3>6. 開放問題清單（待討論）</h3>
         <ol>
           <li>RACI表「發布決策」的最終核准人尚未指定</li>
           <li>決策時限規則（需求/設計/技術/主管驗收各自的回覆時限）未定</li>
@@ -445,19 +445,20 @@
           <li>客服對外回覆時限（首次回覆/進度更新/P0事故通知）未定，重大事故溝通模板尚待建立</li>
           <li>客服相關個資保存權限與期限規則，需資安/法務確認</li>
           <li>QA 裝置矩陣（支援瀏覽器/OS/裝置）、自動化測試候選案例清單未定</li>
-          <li>本文件第2-11節皆為新建立規範，尚未正式導入運作，團隊實際使用後可能需要滾動調整，調整時請更新本文件並補上決策紀錄</li>
+          <li>本文件各節多為新建立規範，尚未正式導入運作，團隊實際使用後可能需要滾動調整，調整時請更新本文件並補上決策紀錄</li>
         </ol>
       </section>
 
       <section id="s15" class="doc">
-        <h3>8. 擴充文件</h3>
-        <p class="lead">Plane 開立、QA 測試、客服回應的通用規則，加上各領域的實際 Plane 結構、填寫範例、規格書範例——規則不分平台/遊戲皆適用，範例則依領域各自獨立成文件；分享版裡已一併包在同一個檔案內，點擊即可切換查看。</p>
+        <h3>7. 擴充文件</h3>
+        <p class="lead">Plane 開立、QA 測試、客服回應、Figma 狀態標記的通用規則，加上各領域的實際 Plane 結構、填寫範例、規格書範例——規則不分平台/遊戲皆適用，範例則依領域各自獨立成文件；分享版裡已一併包在同一個檔案內，點擊即可切換查看。</p>
 
         <h4>規則</h4>
         <div class="grid">
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-qa')">QA 測試規範</button></h4><p>測試案例欄位、開發自檢清單、BUG卡格式、發布判定標準、Bug/Hotfix分級處理原則</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-cs')">客服回應規範</button></h4><p>客服回報必填欄位、升級時效、營運閉環</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-plane')">Plane 開立規則</button></h4><p>欄位定位、卡片填寫規範、Priority定義</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-figma')">Figma 狀態標記</button></h4><p>畫面交接狀態標記規則（開發完成/修改中/待討論/待RD處理/本次異動畫面）</p></div>
         </div>
 
         <h4>範例</h4>
@@ -1348,7 +1349,7 @@
   </div>
   <script>
     var submenuParentOf = {
-      'rule-qa': 's15', 'rule-cs': 's15', 'rule-plane': 's15',
+      'rule-qa': 's15', 'rule-cs': 's15', 'rule-plane': 's15', 'rule-figma': 's15',
       'ex-qa': 's15', 'ex-platform-plane': 's15', 'ex-game-plane': 's15', 'ex-game-spec': 's15'
     };
     function showDoc(id) {
