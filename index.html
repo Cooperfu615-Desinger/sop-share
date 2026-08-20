@@ -125,9 +125,8 @@
         <button type="button" class="menu-link" data-doc="s4">4. 流程階段與門檻</button>
         <button type="button" class="menu-link" data-doc="s6">5. 角色與管理規則</button>
         <button type="button" class="menu-link" data-doc="s12">6. Figma 狀態標記</button>
-        <button type="button" class="menu-link" data-doc="s13">7. 決策紀律</button>
-        <button type="button" class="menu-link" data-doc="s14">8. 開放問題清單</button>
-        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">9. 擴充文件<span class="chevron">▸</span></button>
+        <button type="button" class="menu-link" data-doc="s14">7. 開放問題清單</button>
+        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">8. 擴充文件<span class="chevron">▸</span></button>
         <div class="submenu" id="submenu-s15">
           <button type="button" class="menu-link sub" data-doc="rule-qa">↳ QA測試規範</button>
           <button type="button" class="menu-link sub" data-doc="rule-cs">↳ 客服回應規範</button>
@@ -147,14 +146,14 @@
 
       <section id="s1" class="doc active">
         <h3>1. 適用範圍</h3>
-        <p>本文件涵蓋所有專案類型共用的部分：需求分流、流程階段與關卡、角色分工、Plane 欄位與卡片規則、規格書規範、QA 與客服表單規則、決策紀律。</p>
+        <p>本文件涵蓋所有專案類型共用的部分：需求分流、流程階段與關卡、角色分工、Plane 欄位與卡片規則、規格書規範、QA 與客服表單規則。</p>
         <table><thead><tr><th>文件</th><th>負責範圍</th></tr></thead><tbody>
           <tr><td>docs/core/SOP.md（本文件）</td><td>所有專案類型共用的流程、角色原則、Plane欄位規則、規格書規範、QA/客服規則</td></tr>
           <tr><td>docs/platform/examples/</td><td>平台功能類專案的差異範例：Plane結構與填寫範例、規格書範例</td></tr>
           <tr><td>docs/game/examples/</td><td>遊戲類專案的差異範例：Plane結構與填寫範例、規格書與素材清單範例</td></tr>
           <tr><td>未來新專案類型</td><td>比照上述模式，建立 docs/&lt;類型&gt;/examples/</td></tr>
         </tbody></table>
-        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第9節。</p>
+        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第8節。</p>
       </section>
 
       <section id="s2" class="doc">
@@ -434,17 +433,8 @@
         <div class="warning"><strong>使用規則：</strong>狀態一變，設計師需同步更新 Figma 畫面標題與 Plane 卡片連結；PM 需確認「待討論」有決策人與期限；只有標示「待RD處理」的畫面可以交給前端開發。若前端已開始後設計再改動，必須改回「修改中」並在 Plane 記錄影響與是否需重新估時。</div>
       </section>
 
-      <section id="s13" class="doc">
-        <h3>7. 決策紀律</h3>
-        <ul>
-          <li><strong>決策紀錄：</strong>每個層級（核心/平台/遊戲/未來新類型）各自維護自己的 decisions/ 資料夾，記錄該層級做出的重大決策與放棄的方案。核心層級的決策放 docs/core/decisions/。</li>
-          <li><strong>not_stated 紀律：</strong>缺料寫 not_stated，不腦補。查得到的先查，查不到才標，並列進各文件的開放問題清單。</li>
-          <li><strong>機率、賠付、金額驗證要求（全域不可妥協）：</strong>凡涉及機率、賠付、金額的任何結論（規格可行、測試通過、可以上線等），必須附驗證方式（模擬、測試或實跑），純人工推導不算驗證。具體落地方式依專案性質不同（例如遊戲的機率/RTP模擬驗證要求），參考各領域範例文件，見第9節。</li>
-        </ul>
-      </section>
-
       <section id="s14" class="doc">
-        <h3>8. 開放問題清單（待討論）</h3>
+        <h3>7. 開放問題清單（待討論）</h3>
         <ol>
           <li>RACI表「發布決策」的最終核准人尚未指定</li>
           <li>決策時限規則（需求/設計/技術/主管驗收各自的回覆時限）未定</li>
@@ -458,7 +448,7 @@
       </section>
 
       <section id="s15" class="doc">
-        <h3>9. 擴充文件</h3>
+        <h3>8. 擴充文件</h3>
         <p class="lead">Plane 開立、QA 測試、客服回應的通用規則，加上各領域的實際 Plane 結構、填寫範例、規格書範例——規則不分平台/遊戲皆適用，範例則依領域各自獨立成文件；分享版裡已一併包在同一個檔案內，點擊即可切換查看。</p>
 
         <h4>規則</h4>
