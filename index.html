@@ -26,6 +26,12 @@
     nav .menu-link.sub { padding-left:26px; font-size:12.5px; color:#a9bbd7; margin:0 0 2px; }
     nav button.menu-link.sub:hover { color:#fff; }
     nav .menu-link.pending { opacity:.45; cursor:default; }
+    nav button.menu-link.has-sub { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    nav .chevron { flex:none; font-size:10px; color:#9db1d1; transition:transform .2s ease; }
+    nav button.menu-link.has-sub.active .chevron { color:#fff; }
+    nav button.menu-link.has-sub[aria-expanded="true"] .chevron { transform:rotate(90deg); }
+    .submenu { max-height:0; overflow:hidden; transition:max-height .25s ease; }
+    .submenu.open { max-height:400px; }
     .group-label { color:#7e93b8; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; margin:18px 10px 6px; }
     .doc { display:none; }
     .doc.active { display:block; }
@@ -118,21 +124,21 @@
         <button type="button" class="menu-link" data-doc="s3">3. 需求分流</button>
         <button type="button" class="menu-link" data-doc="s4">4. 流程階段與門檻</button>
         <button type="button" class="menu-link" data-doc="s5">5. 各階段注意事項</button>
-        <button type="button" class="menu-link" data-doc="s6">6. 角色參與速查</button>
-        <button type="button" class="menu-link" data-doc="s7">7. Plane 開立規則</button>
-        <button type="button" class="menu-link" data-doc="s8">8. 規格書規範</button>
-        <button type="button" class="menu-link" data-doc="s9">9. QA 測試規範</button>
-        <button type="button" class="menu-link" data-doc="s10">10. 客服回應規範</button>
-        <button type="button" class="menu-link" data-doc="s11">11. 管理工具</button>
-        <button type="button" class="menu-link" data-doc="s12">12. Figma 狀態標記</button>
-        <button type="button" class="menu-link" data-doc="s13">13. 決策紀律</button>
-        <button type="button" class="menu-link" data-doc="s14">14. 開放問題清單</button>
-        <button type="button" class="menu-link" data-doc="s15">15. 擴充文件</button>
-        <button type="button" class="menu-link sub" data-doc="ex-qa">↳ QA 工作單範例</button>
-        <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 Plane 使用範例</button>
-        <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 Plane 使用範例</button>
-        <span class="menu-link sub pending">↳ 平台規格書範例（待補）</span>
-        <button type="button" class="menu-link sub" data-doc="ex-game-spec">↳ 遊戲規格書範例</button>
+        <button type="button" class="menu-link" data-doc="s6">6. 角色與管理規則</button>
+        <button type="button" class="menu-link" data-doc="s12">7. Figma 狀態標記</button>
+        <button type="button" class="menu-link" data-doc="s13">8. 決策紀律</button>
+        <button type="button" class="menu-link" data-doc="s14">9. 開放問題清單</button>
+        <button type="button" class="menu-link has-sub" data-doc="s15" aria-expanded="false" aria-controls="submenu-s15">10. 擴充文件<span class="chevron">▸</span></button>
+        <div class="submenu" id="submenu-s15">
+          <button type="button" class="menu-link sub" data-doc="rule-qa">↳ QA測試規範</button>
+          <button type="button" class="menu-link sub" data-doc="rule-cs">↳ 客服回應規範</button>
+          <button type="button" class="menu-link sub" data-doc="rule-plane">↳ Plane 開立規則</button>
+          <button type="button" class="menu-link sub" data-doc="ex-qa">↳ QA 工作單範例</button>
+          <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 工作單範例</button>
+          <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 工作單範例</button>
+          <span class="menu-link sub pending">↳ 平台規格書範例（待補）</span>
+          <button type="button" class="menu-link sub" data-doc="ex-game-spec">↳ 遊戲規格書範例</button>
+        </div>
       </nav>
       <div class="aside-note">分享版：核心規範+擴充範例合併為單一檔案，方便傳閱。工作/維護版請見 docs/core/SOP.md 等個別檔案。</div>
     </aside>
@@ -149,7 +155,7 @@
           <tr><td>docs/game/examples/</td><td>遊戲類專案的差異範例：Plane結構與填寫範例、規格書與素材清單範例</td></tr>
           <tr><td>未來新專案類型</td><td>比照上述模式，建立 docs/&lt;類型&gt;/examples/</td></tr>
         </tbody></table>
-        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第15節。</p>
+        <p>各領域不再另外維護一份敘述性 SOP 文件，差異直接以範例文件呈現，詳見第10節。</p>
       </section>
 
       <section id="s2" class="doc">
@@ -232,8 +238,9 @@
       </section>
 
       <section id="s6" class="doc">
-        <h3>6. 角色參與速查</h3>
-        <p class="lead">依階段查閱各角色參與程度。</p>
+        <h3>6. 角色與管理規則</h3>
+        <p class="lead">依階段查閱各角色參與程度，並提供 RACI、風險登錄與需求變更等管理工具的範例。</p>
+        <h4>角色參與矩陣</h4>
         <table><thead><tr><th>階段</th><th>PM</th><th>設計</th><th>前端</th><th>後端</th><th>QA</th><th>SRE</th></tr></thead><tbody>
           <tr><td>需求探索</td><td>主導</td><td>視需要</td><td>視需要</td><td>視需要</td><td>提前挑戰</td><td>通常不需</td></tr>
           <tr><td>產品規劃/規格</td><td>主導</td><td>參與</td><td>參與</td><td>參與</td><td>提前檢查</td><td>視風險</td></tr>
@@ -245,10 +252,29 @@
           <tr><td>發布/上線</td><td>產品確認</td><td>視需要</td><td>技術支援</td><td>技術支援</td><td>品質確認</td><td>主導部署/監控</td></tr>
           <tr><td>上線後</td><td>數據/需求</td><td>視需要</td><td>問題支援</td><td>問題支援</td><td>Bug/回歸</td><td>監控/事故</td></tr>
         </tbody></table>
+
+        <div class="example"><strong>RACI 角色表範例</strong><table><thead><tr><th>工作</th><th>負責執行 R</th><th>最終核准 A</th><th>需諮詢 C</th><th>需通知 I</th></tr></thead><tbody>
+          <tr><td>需求定義</td><td>PM</td><td>需求方</td><td>設計、技術組長、QA組長</td><td>相關開發成員、客服</td></tr>
+          <tr><td>技術方案與估時</td><td>技術組長</td><td>技術組長</td><td>PM、SRE、QA</td><td>需求方</td></tr>
+          <tr><td>發布決策</td><td>PM/SRE</td><td>指定發布核准人【待公司定案】</td><td>QA、技術組長</td><td>客服、營運、需求方</td></tr>
+        </tbody></table></div>
+
+        <div class="example"><strong>風險登錄表範例</strong><table><thead><tr><th>風險</th><th>發生機率</th><th>影響</th><th>應對方式</th><th>責任人/期限</th></tr></thead><tbody>
+          <tr><td>第三方服務不穩</td><td>中</td><td>核心功能無法使用</td><td>預備錯誤提示、監控告警與替代方案</td><td>對應組長/上線前確認</td></tr>
+        </tbody></table></div>
+
+        <h4>需求變更規則</h4>
+        <table><thead><tr><th>變更類型</th><th>判斷方式</th><th>建議處理方式</th></tr></thead><tbody>
+          <tr><td>輕微變更</td><td>不影響既有流程、資料、API與時程</td><td>PM 記錄後納入原任務，必要時請設計/QA確認</td></tr>
+          <tr><td>重大變更</td><td>影響UI、流程、API、資料、權限、工時或時程</td><td>重新做影響分析，更新規格與時程；是否繼續由PM與提案人共同確認，影響範圍夠大或牽動時程承諾時，呈報管理層裁決</td></tr>
+          <tr><td>範圍變更</td><td>已改變產品目的、核心流程或原訂產品邊界</td><td>回到需求探索階段重新確認，重新估算成本與時程</td></tr>
+          <tr><td>緊急插單</td><td>正式環境重大事故或管理層明確指定的緊急項目</td><td>指定負責人，明確說明被擠出的原工作、成本與時程影響</td></tr>
+        </tbody></table>
+        <p>新增功能一律另開工作卡，不直接塞進進行中的任務。</p>
       </section>
 
-      <section id="s7" class="doc">
-        <h3>7. Plane 開立規則</h3>
+      <section id="rule-plane" class="doc">
+        <h3>Plane 開立規則<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
         <h4>欄位定位</h4>
         <table><thead><tr><th>欄位</th><th>用途</th><th>例子</th></tr></thead><tbody>
           <tr><td>Type</td><td>任務本質，只選一個</td><td>開發、功能、優化、問題、技術債、維護...etc.</td></tr>
@@ -257,14 +283,7 @@
           <tr><td>Priority</td><td>處理先後順序</td><td>P0～P3</td></tr>
           <tr><td>Module</td><td>所屬產品功能域</td><td>會員、訂單、金流、後台</td></tr>
         </tbody></table>
-
-        <h4>建議層級（參考用，實際拓撲由各領域擴充文件決定）</h4>
-        <pre>Cycle（週期）
-└─ Project（產品目標／版本）
-   └─ Module（功能域）
-      └─ 父 Issue（交付目標）
-         └─ Sub-issue（設計、前端、後端、QA、SRE）</pre>
-        <p>平台、遊戲的實際 Plane 結構與填寫範例，見 <a href="#" onclick="showDoc('ex-platform-plane');return false;">平台 Plane 使用範例</a>、<a href="#" onclick="showDoc('ex-game-plane');return false;">遊戲 Plane 使用範例</a>。</p>
+        <p>平台、遊戲的實際 Plane 結構與填寫範例，見 <a href="#" onclick="showDoc('ex-platform-plane');return false;">平台 工作單範例</a>、<a href="#" onclick="showDoc('ex-game-plane');return false;">遊戲 工作單範例</a>。</p>
         <div class="callout"><strong>Cycle（週期）的彈性使用原則：</strong>大方向一定要有週期概念，用法依專案性質調整——遊戲開發一款遊戲對應一個完整週期，從規格到上線期間不中途變動；平台小型變更（例如後台新增一個篩選功能）不需要走完整週期，走第3節的快速/標準流程即可。</div>
 
         <h4>卡片填寫規範</h4>
@@ -304,31 +323,8 @@
         </ul></div>
       </section>
 
-      <section id="s8" class="doc">
-        <h3>8. 規格書規範</h3>
-        <div class="callout"><strong>撰寫原則：</strong>先寫問題，再寫解法；「做什麼」與「不做什麼」必須同時存在；每條驗收條件都要可實作、可測試、可追溯。規格書是企劃、PM、設計、技術組長與 QA 的共同依據，定義使用者與商業規則；API、資料庫、部署、監控與回滾由技術文件定義。</div>
-
-        <div class="stage-list">
-          <article class="stage-item"><div class="stage-no">1</div><div class="stage-owner">版本歷程</div><div class="stage-work"><b>內容</b>版本、日期、修改內容、修改人；重大決策連結 Plane 或決策紀錄</div><div class="stage-gate"><b>要求</b>團隊只能依最新「已拍板」版本開發</div></article>
-          <article class="stage-item"><div class="stage-no">2</div><div class="stage-owner">需求背景與目的</div><div class="stage-work"><b>內容</b>需求來源、目標使用者、痛點、商業目標與成功指標</div><div class="stage-gate"><b>要求</b>能說明為何做，不只是描述想做的畫面</div></article>
-          <article class="stage-item"><div class="stage-no">3</div><div class="stage-owner">範圍邊界</div><div class="stage-work"><b>內容</b>本次功能、明確排除事項、相依功能與後續版本規劃</div><div class="stage-gate"><b>要求</b>不做事項不能用「視情況」或「之後再說」描述</div></article>
-          <article class="stage-item"><div class="stage-no">4</div><div class="stage-owner">流程與 UI</div><div class="stage-work"><b>內容</b>流程圖、原型稿、畫面與狀態（正常/載入/無資料/錯誤/無權限/停用/重複提交）</div><div class="stage-gate"><b>要求</b>設計完成前不可標示「待 RD 處理」（見第12節）</div></article>
-          <article class="stage-item"><div class="stage-no">5</div><div class="stage-owner">業務欄位與規則</div><div class="stage-work"><b>內容</b>欄位名稱、使用者可見規則、必填、格式、權限、通知、例外與防呆</div><div class="stage-gate"><b>要求</b>資料表、API、錯誤碼、Migration 交由技術文件定義</div></article>
-          <article class="stage-item"><div class="stage-no">6</div><div class="stage-owner">影響與驗收</div><div class="stage-work"><b>內容</b>金額/派彩/餘額、權限、個資、外部服務、埋點、客服與報表影響；可勾選驗收條件</div><div class="stage-gate"><b>要求</b>每條驗收條件能對應至少一個 QA 測試案例；凡涉及金額/機率/賠付結論，依全域規則須附驗證方式（見第13節）</div></article>
-          <article class="stage-item"><div class="stage-no">7</div><div class="stage-owner">需求會議與決策</div><div class="stage-work"><b>內容</b>會議日期、參與者、組長確認的工作細項、未決問題、決策人與期限、會後調整</div><div class="stage-gate"><b>要求</b>阻塞問題未定案時不可排入開發週期</div></article>
-        </div>
-        <p>空白範本與範例請參考 <a href="#" onclick="showDoc('s15');return false;">15. 擴充文件</a>。</p>
-
-        <h4>規格完整性審查（QA，九個面向）</h4>
-        <div class="example">
-          <p>QA 在規格拍板前，依以下九個面向逐一檢查規格是否有遺漏：</p>
-          <p><strong>正常流程、失敗流程、邊界條件、狀態變化、權限規則、重複操作、中斷情況、後續結果、資料紀錄</strong></p>
-          <p>某個面向規格沒寫清楚，或某條驗收條件無法被具體驗證時，QA 應要求 PM/企劃修改成可驗證的描述，而不是自己假設答案。</p>
-        </div>
-      </section>
-
-      <section id="s9" class="doc">
-        <h3>9. QA 測試規範</h3>
+      <section id="rule-qa" class="doc">
+        <h3>QA 測試規範<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
         <p class="lead">測試須追溯需求、版本、資料、環境與缺陷，測試結果要能作為發布決策依據。實際填寫範例見 <a href="#" onclick="showDoc('ex-qa');return false;">QA 工作單範例</a>。</p>
 
         <h4>測試案例欄位</h4>
@@ -395,8 +391,8 @@
         </ol>
       </section>
 
-      <section id="s10" class="doc">
-        <h3>10. 客服回應規範</h3>
+      <section id="rule-cs" class="doc">
+        <h3>客服回應規範<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
         <p class="lead">客服保留客戶原話與證據；PM 負責分類、優先級與回覆進度；工程與 QA 負責重現、修復及驗證。所有對外承諾必須與內部 Plane 紀錄一致。</p>
 
         <h4>客服回報必填欄位</h4>
@@ -428,30 +424,8 @@
         </ul>
       </section>
 
-      <section id="s11" class="doc">
-        <h3>11. 管理工具</h3>
-        <div class="example"><strong>RACI 角色表範例</strong><table><thead><tr><th>工作</th><th>負責執行 R</th><th>最終核准 A</th><th>需諮詢 C</th><th>需通知 I</th></tr></thead><tbody>
-          <tr><td>需求定義</td><td>PM</td><td>需求方</td><td>設計、技術組長、QA組長</td><td>相關開發成員、客服</td></tr>
-          <tr><td>技術方案與估時</td><td>技術組長</td><td>技術組長</td><td>PM、SRE、QA</td><td>需求方</td></tr>
-          <tr><td>發布決策</td><td>PM/SRE</td><td>指定發布核准人【待公司定案】</td><td>QA、技術組長</td><td>客服、營運、需求方</td></tr>
-        </tbody></table></div>
-
-        <div class="example"><strong>風險登錄表範例</strong><table><thead><tr><th>風險</th><th>發生機率</th><th>影響</th><th>應對方式</th><th>責任人/期限</th></tr></thead><tbody>
-          <tr><td>第三方服務不穩</td><td>中</td><td>核心功能無法使用</td><td>預備錯誤提示、監控告警與替代方案</td><td>對應組長/上線前確認</td></tr>
-        </tbody></table></div>
-
-        <h4>需求變更規則</h4>
-        <table><thead><tr><th>變更類型</th><th>判斷方式</th><th>建議處理方式</th></tr></thead><tbody>
-          <tr><td>輕微變更</td><td>不影響既有流程、資料、API與時程</td><td>PM 記錄後納入原任務，必要時請設計/QA確認</td></tr>
-          <tr><td>重大變更</td><td>影響UI、流程、API、資料、權限、工時或時程</td><td>重新做影響分析，更新規格與時程；是否繼續由PM與提案人共同確認，影響範圍夠大或牽動時程承諾時，呈報管理層裁決</td></tr>
-          <tr><td>範圍變更</td><td>已改變產品目的、核心流程或原訂產品邊界</td><td>回到需求探索階段重新確認，重新估算成本與時程</td></tr>
-          <tr><td>緊急插單</td><td>正式環境重大事故或管理層明確指定的緊急項目</td><td>指定負責人，明確說明被擠出的原工作、成本與時程影響</td></tr>
-        </tbody></table>
-        <p>新增功能一律另開工作卡，不直接塞進進行中的任務。</p>
-      </section>
-
       <section id="s12" class="doc">
-        <h3>12. Figma 狀態標記<span class="eyebrow" style="display:inline-block;margin-left:8px;">既有實際做法</span></h3>
+        <h3>7. Figma 狀態標記<span class="eyebrow" style="display:inline-block;margin-left:8px;">既有實際做法</span></h3>
         <p class="lead">每個有異動的 Figma 畫面應在標題前加上狀態標記，標示畫面交接狀態（非 Plane 任務狀態），讓設計與前端判斷是否需要動工。</p>
         <div class="ui-status">
           <div class="ui-status-item"><div class="ui-pill ui-done"><b>首頁</b>－開發完成</div><p><strong>意思：</strong>前端實作已與設計稿相符，設計與前端都完成。若沒有新異動，兩方都不需再處理。</p></div>
@@ -464,16 +438,16 @@
       </section>
 
       <section id="s13" class="doc">
-        <h3>13. 決策紀律</h3>
+        <h3>8. 決策紀律</h3>
         <ul>
           <li><strong>決策紀錄：</strong>每個層級（核心/平台/遊戲/未來新類型）各自維護自己的 decisions/ 資料夾，記錄該層級做出的重大決策與放棄的方案。核心層級的決策放 docs/core/decisions/。</li>
           <li><strong>not_stated 紀律：</strong>缺料寫 not_stated，不腦補。查得到的先查，查不到才標，並列進各文件的開放問題清單。</li>
-          <li><strong>機率、賠付、金額驗證要求（全域不可妥協）：</strong>凡涉及機率、賠付、金額的任何結論（規格可行、測試通過、可以上線等），必須附驗證方式（模擬、測試或實跑），純人工推導不算驗證。具體落地方式依專案性質不同（例如遊戲的機率/RTP模擬驗證要求），參考各領域範例文件，見第15節。</li>
+          <li><strong>機率、賠付、金額驗證要求（全域不可妥協）：</strong>凡涉及機率、賠付、金額的任何結論（規格可行、測試通過、可以上線等），必須附驗證方式（模擬、測試或實跑），純人工推導不算驗證。具體落地方式依專案性質不同（例如遊戲的機率/RTP模擬驗證要求），參考各領域範例文件，見第10節。</li>
         </ul>
       </section>
 
       <section id="s14" class="doc">
-        <h3>14. 開放問題清單（待討論）</h3>
+        <h3>9. 開放問題清單（待討論）</h3>
         <ol>
           <li>RACI表「發布決策」的最終核准人尚未指定</li>
           <li>決策時限規則（需求/設計/技術/主管驗收各自的回覆時限）未定</li>
@@ -487,12 +461,21 @@
       </section>
 
       <section id="s15" class="doc">
-        <h3>15. 擴充文件</h3>
-        <p class="lead">各領域的實際 Plane 結構、填寫範例、規格書範例，不重複寫進核心規範，獨立成文件——分享版裡已一併包在同一個檔案內，點擊即可切換查看。</p>
+        <h3>10. 擴充文件</h3>
+        <p class="lead">Plane 開立、QA 測試、客服回應的通用規則，加上各領域的實際 Plane 結構、填寫範例、規格書範例——規則不分平台/遊戲皆適用，範例則依領域各自獨立成文件；分享版裡已一併包在同一個檔案內，點擊即可切換查看。</p>
+
+        <h4>規則</h4>
+        <div class="grid">
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-qa')">QA 測試規範</button></h4><p>測試案例欄位、開發自檢清單、BUG卡格式、發布判定標準、Bug/Hotfix分級處理原則</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-cs')">客服回應規範</button></h4><p>客服回報必填欄位、升級時效、營運閉環</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('rule-plane')">Plane 開立規則</button></h4><p>欄位定位、卡片填寫規範、Priority定義</p></div>
+        </div>
+
+        <h4>範例</h4>
         <div class="grid">
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-qa')">QA 工作單範例</button></h4><p>測試案例、BUG卡、發布判定、Bug/Hotfix分級的實際填寫範例（通用，不分平台/遊戲）</p></div>
-          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-plane')">平台 Plane 使用範例</button></h4><p>單一工作單+子工作項結構、狀態對應表、實際工作單填寫範例</p></div>
-          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-plane')">遊戲 Plane 使用範例</button></h4><p>七個固定跨遊戲專案結構、依賴關係、實際工作單填寫範例（含雙重驗收relation示範）</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-plane')">平台 工作單範例</button></h4><p>單一工作單+子工作項結構、狀態對應表、實際工作單填寫範例</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-plane')">遊戲 工作單範例</button></h4><p>七個固定跨遊戲專案結構、依賴關係、實際工作單填寫範例（含雙重驗收relation示範）</p></div>
           <div class="card"><h4>平台規格書範例</h4><p style="color:var(--muted)">待補——docs/platform/examples/spec-example.md</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-spec')">遊戲規格書範例</button></h4><p>真實遊戲規格書完整範例（宙斯與黑帝斯 250），含符號賠付表、核心邏輯、QA測試清單等13個章節；素材清單（xlsx）範例待補</p></div>
         </div>
@@ -500,7 +483,7 @@
 
       <section id="ex-qa" class="doc">
         <h3>QA 工作單範例<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範核心規範第9節 QA 測試規範的實際填寫方式。QA 規則不分平台/遊戲，通用適用；遊戲類專案額外的機率/RTP模擬驗證要求，見「遊戲 Plane 使用範例」。範例情境延續平台的「新增手機驗證功能」需求。</p>
+        <p class="lead">示範「QA 測試規範」的實際填寫方式。QA 規則不分平台/遊戲，通用適用；遊戲類專案額外的機率/RTP模擬驗證要求，見「遊戲 工作單範例」。範例情境延續平台的「新增手機驗證功能」需求。</p>
 
         <h4>測試案例範例</h4>
         <table><thead><tr><th>Case ID</th><th>追溯關係</th><th>情境</th><th>執行內容</th><th>結果</th></tr></thead><tbody>
@@ -562,7 +545,7 @@
 
       <section id="ex-platform-plane" class="doc">
         <h3>平台 Plane 使用範例<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範平台功能類專案的 Plane.io 結構與實際填寫方式，對應核心規範第7節的通用欄位/卡片規則。平台的拓撲是單一需求工作單（父工作項）+ 5個子工作項，跟遊戲的七個固定跨遊戲專案不同。</p>
+        <p class="lead">示範平台功能類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。平台的拓撲是單一需求工作單（父工作項）+ 5個子工作項，跟遊戲的七個固定跨遊戲專案不同。</p>
 
         <h4>結構</h4>
         <pre>需求工作單（父工作項，PM 開立）
@@ -594,7 +577,7 @@
         </tbody></table>
 
         <h4>實際填寫範例：新增手機驗證功能</h4>
-        <p>以下示範一個真實需求「會員新增手機驗證」從父工作單到5個子工作項的實際填寫內容，對應核心規範第7節「卡片填寫規範」的欄位。</p>
+        <p>以下示範一個真實需求「會員新增手機驗證」從父工作單到5個子工作項的實際填寫內容，對應「Plane 開立規則」「卡片填寫規範」的欄位。</p>
 
         <div class="example"><strong>父工作單</strong><table><tbody>
           <tr><th>標題</th><td>[Feature][會員] 新增手機驗證功能</td></tr>
@@ -641,7 +624,7 @@
 
       <section id="ex-game-plane" class="doc">
         <h3>遊戲 Plane 使用範例<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範遊戲類專案的 Plane.io 結構與實際填寫方式，對應核心規範第7節的通用欄位/卡片規則。遊戲的拓撲是七個固定跨遊戲 Plane 專案，不是單一父工作單+子工作項——同一專案裡混著不同遊戲的項目，用標籤/週期區分屬於哪一款遊戲。</p>
+        <p class="lead">示範遊戲類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。遊戲的拓撲是七個固定跨遊戲 Plane 專案，不是單一父工作單+子工作項——同一專案裡混著不同遊戲的項目，用標籤/週期區分屬於哪一款遊戲。</p>
 
         <h4>七個固定專案總覽</h4>
         <table><thead><tr><th>Plane 專案</th><th>每款遊戲的顆粒度</th><th>完成狀態追蹤方式</th></tr></thead><tbody>
@@ -726,7 +709,7 @@
 
       <section id="ex-game-spec" class="doc">
         <h3>遊戲規格書範例：宙斯與黑帝斯 250<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範核心規範第8節規格書規範的實際填寫方式，取材自真實遊戲規格書「[GOW_ZEUS_HADES_250] 遊戲規格書：宙斯與黑帝斯 250（Zeus vs Hades - Gods of War 250）」（版本 2.3.0，SlotForge，2026-08-11 更新）。以下完整保留原文件的章節結構與數值內容，供規格書撰寫格式參考。</p>
+        <p class="lead">取材自真實遊戲規格書「[GOW_ZEUS_HADES_250] 遊戲規格書：宙斯與黑帝斯 250（Zeus vs Hades - Gods of War 250）」（版本 2.3.0，SlotForge，2026-08-11 更新）。以下完整保留原文件的章節結構與數值內容，供規格書撰寫格式參考。</p>
 
         <div class="callout">
           <strong>撰寫規範說明：</strong>
@@ -1375,13 +1358,36 @@
     </main>
   </div>
   <script>
+    var submenuParentOf = {
+      'rule-qa': 's15', 'rule-cs': 's15', 'rule-plane': 's15',
+      'ex-qa': 's15', 'ex-platform-plane': 's15', 'ex-game-plane': 's15', 'ex-game-spec': 's15'
+    };
     function showDoc(id) {
       document.querySelectorAll('nav button[data-doc]').forEach(b => b.classList.toggle('active', b.dataset.doc === id));
       document.querySelectorAll('.doc').forEach(d => d.classList.toggle('active', d.id === id));
       window.scrollTo({ top: 0, behavior: 'smooth' });
       closeNav();
+      var parent = submenuParentOf[id];
+      if (parent) {
+        var submenu = document.getElementById('submenu-' + parent);
+        if (submenu) submenu.classList.add('open');
+        var parentBtn = document.querySelector('nav button[data-doc="' + parent + '"]');
+        if (parentBtn) parentBtn.setAttribute('aria-expanded', 'true');
+      }
     }
-    document.querySelectorAll('nav button[data-doc]').forEach(btn => btn.addEventListener('click', () => showDoc(btn.dataset.doc)));
+    document.querySelectorAll('nav button[data-doc]').forEach(function (btn) {
+      if (btn.classList.contains('has-sub')) return;
+      btn.addEventListener('click', () => showDoc(btn.dataset.doc));
+    });
+    document.querySelectorAll('nav button.has-sub').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        showDoc(btn.dataset.doc);
+        var submenu = document.getElementById('submenu-' + btn.dataset.doc);
+        var open = !submenu.classList.contains('open');
+        submenu.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
 
     var hamburgerBtn = document.getElementById('hamburgerBtn');
     var navBackdrop = document.getElementById('navBackdrop');
