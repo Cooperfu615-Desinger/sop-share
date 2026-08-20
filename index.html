@@ -189,15 +189,17 @@
 
       <section id="s4" class="doc">
         <h3>4. 流程階段與門檻</h3>
-        <div class="flow"><span class="step">0 需求登錄/證據</span><span class="arrow">→</span><span class="step">1 初步分級</span><span class="arrow">→</span><span class="step">2 問題分析</span><span class="arrow">→</span><span class="step">3 規格/設計</span><span class="arrow">→</span><span class="step">4 技術評審</span><span class="arrow">→</span><span class="step">5 拆分/排程</span><span class="arrow">→</span><span class="step">6 開發</span><span class="arrow">→</span><span class="step">7 組內審查/自檢</span><span class="arrow">→</span><span class="step">8 測試站/QA</span><span class="arrow">→</span><span class="step">9 驗收/發布準備</span><span class="arrow">→</span><span class="step">10 正式發布/監控</span><span class="arrow">→</span><span class="step">11 回顧/結案/迭代</span></div>
+        <div class="flow"><span class="step">0 需求登錄/證據</span><span class="arrow">→</span><span class="step">1 初步分級</span><span class="arrow">→</span><span class="step">2 問題分析</span><span class="arrow">→</span><span class="step">3 規格/設計</span><span class="arrow">→</span><span class="step">4 需求確認</span><span class="arrow">→</span><span class="step">5 技術評審</span><span class="arrow">→</span><span class="step">6 拆分/排程</span><span class="arrow">→</span><span class="step">7 開發</span><span class="arrow">→</span><span class="step">8 組內審查/自檢</span><span class="arrow">→</span><span class="step">9 PM驗證</span><span class="arrow">→</span><span class="step">10 測試站/QA</span><span class="arrow">→</span><span class="step">11 驗收/發布準備</span><span class="arrow">→</span><span class="step">12 正式發布/監控</span><span class="arrow">→</span><span class="step">13 回顧/結案/迭代</span></div>
 
         <div class="stage-list">
           <article class="stage-item"><div class="stage-no">0</div><div class="stage-owner">PM</div><div class="stage-work"><b>要做什麼/產出什麼</b>保留需求原話、提出人、時間、來源、截圖/錄影/紀錄檔/數據</div><div class="stage-gate"><b>可往下走的條件</b>第三人可理解誰在何情境提出何事，且證據可追溯</div></article>
           <article class="stage-item"><div class="stage-no">1-2</div><div class="stage-owner">PM</div><div class="stage-work"><b>要做什麼/產出什麼</b>分開記錄任務類型、影響嚴重度與處理優先級；定義使用者、痛點、範圍、成功指標。優化要有基準值，BUG要有重現與替代方案</div><div class="stage-gate"><b>可往下走的條件</b>能說清楚問題與成功條件，不只是重述提出者的解法</div></article>
-          <article class="stage-item"><div class="stage-no">3-4</div><div class="stage-owner">PM+設計/組長/QA</div><div class="stage-work"><b>要做什麼/產出什麼</b>完成規格書、原型稿、技術文件與驗收條件；記錄方案、風險、估時、相依、未決事項、決策人與期限</div><div class="stage-gate"><b>可往下走的條件</b>所有阻塞開發的問題已決定；文件版本一致</div></article>
-          <article class="stage-item"><div class="stage-no">5</div><div class="stage-owner">PM+技術組長</div><div class="stage-work"><b>要做什麼/產出什麼</b>組長拆分子任務並回報開始與預計送測日；PM 設定開發週期、主要負責人、審核人、期限與相依關係</div><div class="stage-gate"><b>可往下走的條件</b>符合開發準備完成條件（DoR）</div></article>
-          <article class="stage-item"><div class="stage-no">6-8</div><div class="stage-owner">技術/組長/QA</div><div class="stage-work"><b>要做什麼/產出什麼</b>實作、程式碼審查、組長審查、自檢、部署測試站、QA測試、缺陷修復與回歸</div><div class="stage-gate"><b>可往下走的條件</b>P0/P1缺陷為零；必測案例完成；測試結論明確</div></article>
-          <article class="stage-item"><div class="stage-no">9-11</div><div class="stage-owner">PM/組長/SRE/客服</div><div class="stage-work"><b>要做什麼/產出什麼</b>UAT、發布核准、回滾方案、正式發布、監控、客服通知、KPI/事故回顧與後續任務</div><div class="stage-gate"><b>可往下走的條件</b>符合完成條件（DoD），觀察結論與後續責任人已記錄</div></article>
+          <article class="stage-item"><div class="stage-no">3-5</div><div class="stage-owner">PM+設計/組長/QA</div><div class="stage-work"><b>要做什麼/產出什麼</b>完成規格書、原型稿、技術文件與驗收條件；記錄方案、風險、估時、相依、未決事項、決策人與期限；規格書完成後，PM 需以規格書與需求方確認方向與內容是否正確</div><div class="stage-gate"><b>可往下走的條件</b>所有阻塞開發的問題已決定；文件版本一致；需求方已確認規格內容無誤</div></article>
+          <article class="stage-item"><div class="stage-no">6</div><div class="stage-owner">PM+技術組長</div><div class="stage-work"><b>要做什麼/產出什麼</b>組長拆分子任務並回報開始與預計送測日；PM 設定開發週期、主要負責人、審核人、期限與相依關係</div><div class="stage-gate"><b>可往下走的條件</b>符合開發準備完成條件（DoR）</div></article>
+          <article class="stage-item"><div class="stage-no">7-8</div><div class="stage-owner">技術/組長/QA</div><div class="stage-work"><b>要做什麼/產出什麼</b>實作、程式碼審查、組長審查、自檢</div><div class="stage-gate"><b>可往下走的條件</b>自檢完成、缺陷已修復，可交付 PM 確認</div></article>
+          <article class="stage-item"><div class="stage-no">9</div><div class="stage-owner">PM</div><div class="stage-work"><b>要做什麼/產出什麼</b>PM 確認開發自測結果與規格相符，同意交付 QA 測試</div><div class="stage-gate"><b>可往下走的條件</b>PM 核准後才可進入測試站/QA</div></article>
+          <article class="stage-item"><div class="stage-no">10</div><div class="stage-owner">QA</div><div class="stage-work"><b>要做什麼/產出什麼</b>部署測試站、QA測試、缺陷修復與回歸</div><div class="stage-gate"><b>可往下走的條件</b>P0/P1缺陷為零；必測案例完成；測試結論明確</div></article>
+          <article class="stage-item"><div class="stage-no">11-13</div><div class="stage-owner">PM/組長/SRE/客服</div><div class="stage-work"><b>要做什麼/產出什麼</b>UAT、發布核准、回滾方案、正式發布、監控、客服通知、KPI/事故回顧與後續任務</div><div class="stage-gate"><b>可往下走的條件</b>符合完成條件（DoD），觀察結論與後續責任人已記錄</div></article>
         </div>
 
         <h4>需求探索技法（步驟0-2）</h4>
@@ -207,7 +209,7 @@
           <div class="card"><h4>決策留痕</h4><p>範圍「做」與「不做」確認後整理成書面，作為後續規格與設計依據</p></div>
         </div>
 
-        <h4>技術規劃的分工（步驟3-4）</h4>
+        <h4>技術規劃的分工（步驟3-5）</h4>
         <div class="grid">
           <div class="card"><h4>前端（技術組長主導）</h4><p>前端架構規劃、效能與相容性評估、技術風險提報</p></div>
           <div class="card"><h4>後端（技術組長主導）</h4><p>資料模型與API設計、商業邏輯與權限規劃、效能與擴充性評估</p></div>
