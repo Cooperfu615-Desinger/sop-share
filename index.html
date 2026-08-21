@@ -154,7 +154,7 @@
       <section id="s2" class="doc">
         <h3>2. 角色職責</h3>
         <p class="lead">依「1. 開發流程圖」的階段對齊各角色的職責說明。</p>
-        <table><thead><tr><th>角色</th><th>職責</th></tr></thead><tbody>
+        <table><colgroup><col style="width:22%"><col style="width:78%"></colgroup><thead><tr><th>角色</th><th>職責</th></tr></thead><tbody>
           <tr><td>PM（含企劃）</td><td>PM初步分類：決定問題、優先級、商業範圍與跨單位協調。<br>規格與技術評審：負責需求探索與規格書撰寫；確認範圍與驗收條件，未定案事項指定決策人與期限；不單方面指定技術實作。<br>排程與任務拆分：確認任務符合本次範圍、週期與交付日期。<br>組內審查/開發自檢：協助排除跨組阻塞，不代替組長做技術品質判定。<br>UAT/發布準備：參與驗收；預期延遲時與需求方協調時程、範圍或優先順序，並更新決策。</td></tr>
           <tr><td>技術組長（依專業：美術/前端/後端/QA/SRE）</td><td>規格與技術評審：參與技術訪談，確認方案、拆分工作、指派成員、回報開始與預計送測日。<br>組內審查/開發自檢：審核組內產出品質；預期延遲時主動告知 PM，說明原因、影響與替代方案。</td></tr>
           <tr><td>工程/實作</td><td>設計/開發：依組長分派執行；規格不清時必須回問，不可自行猜測商業邏輯。</td></tr>
@@ -245,7 +245,7 @@
         </tbody></table></div>
 
         <h4>需求變更規則</h4>
-        <table><thead><tr><th>變更類型</th><th>判斷方式</th><th>建議處理方式</th></tr></thead><tbody>
+        <table><colgroup><col style="width:14%"><col style="width:30%"><col style="width:56%"></colgroup><thead><tr><th>變更類型</th><th>判斷方式</th><th>建議處理方式</th></tr></thead><tbody>
           <tr><td>輕微變更</td><td>不影響既有流程、資料、API與時程</td><td>PM 記錄後納入原任務，必要時請設計/QA確認</td></tr>
           <tr><td>重大變更</td><td>影響UI、流程、API、資料、權限、工時或時程</td><td>重新做影響分析，更新規格與時程；是否繼續由PM與提案人共同確認，影響範圍夠大或牽動時程承諾時，呈報管理層裁決</td></tr>
           <tr><td>範圍變更</td><td>已改變產品目的、核心流程或原訂產品邊界</td><td>回到需求探索階段重新確認，重新估算成本與時程</td></tr>
