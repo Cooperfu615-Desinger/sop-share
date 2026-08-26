@@ -72,6 +72,7 @@
     .flow-svg-wrap svg { display:block; max-width:100%; height:auto; }
     .example { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px; margin:16px 0; }
     .example > strong { display:block; margin-bottom:8px; color:#1d4ed8; }
+    .example table th { width:20%; }
     .stage-list { display:grid; gap:12px; margin:16px 0 26px; }
     .stage-item { display:grid; grid-template-columns:58px 150px minmax(0,1fr) minmax(180px,.6fr); gap:15px; align-items:start; background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:15px; }
     .stage-no { display:grid; place-items:center; width:42px; height:42px; color:#fff; background:var(--blue); border-radius:50%; font-weight:800; font-size:15px; }
@@ -196,7 +197,7 @@
         </div>
 
         <h4>開始與完成條件（DoR / DoD）</h4>
-        <table><thead><tr><th>開發準備完成（DoR）</th><th>完成並可結案（DoD）</th></tr></thead><tbody>
+        <table><colgroup><col style="width:42%"><col style="width:58%"></colgroup><thead><tr><th>開發準備完成（DoR）</th><th>完成並可結案（DoD）</th></tr></thead><tbody>
           <tr><td>問題、目標、範圍/非範圍已定義</td><td>Code Review、自檢、QA、必要UAT通過</td></tr>
           <tr><td>主要負責人、優先級、開發週期、期限已設定</td><td>驗收條件、文件、埋點、Log、監控已更新</td></tr>
           <tr><td>驗收條件、設計與技術資訊足以開發</td><td>發版紀錄、回滾、上線觀察已完成</td></tr>
@@ -218,7 +219,7 @@
         <h3>3. 管理規範</h3>
         <p class="lead">依階段查閱各角色參與程度，並提供 RACI、風險登錄與需求變更等管理工具的範例。</p>
         <h4>角色參與矩陣</h4>
-        <table><thead><tr><th>階段</th><th>PM</th><th>設計</th><th>前端</th><th>後端</th><th>QA</th><th>SRE</th></tr></thead><tbody>
+        <table><colgroup><col style="width:12%"><col style="width:15%"><col style="width:15%"><col style="width:15%"><col style="width:15%"><col style="width:14%"><col style="width:14%"></colgroup><thead><tr><th>階段</th><th>PM</th><th>設計</th><th>前端</th><th>後端</th><th>QA</th><th>SRE</th></tr></thead><tbody>
           <tr><td>需求探索</td><td>主導</td><td>視需要</td><td>視需要</td><td>視需要</td><td>提前挑戰</td><td>通常不需</td></tr>
           <tr><td>產品規劃/規格</td><td>主導</td><td>參與</td><td>參與</td><td>參與</td><td>提前檢查</td><td>視風險</td></tr>
           <tr><td>設計</td><td>協調/確認</td><td>主導</td><td>可行性確認</td><td>可行性確認</td><td>驗收情境</td><td>視需要</td></tr>
@@ -230,13 +231,13 @@
           <tr><td>上線後</td><td>數據/需求</td><td>視需要</td><td>問題支援</td><td>問題支援</td><td>Bug/回歸</td><td>監控/事故</td></tr>
         </tbody></table>
 
-        <div class="example"><strong>RACI 角色表範例</strong><table><thead><tr><th>工作</th><th>負責執行 R</th><th>最終核准 A</th><th>需諮詢 C</th><th>需通知 I</th></tr></thead><tbody>
+        <div class="example"><strong>RACI 角色表範例</strong><table><colgroup><col style="width:18%"><col style="width:16%"><col style="width:22%"><col style="width:24%"><col style="width:20%"></colgroup><thead><tr><th>工作</th><th>負責執行 R</th><th>最終核准 A</th><th>需諮詢 C</th><th>需通知 I</th></tr></thead><tbody>
           <tr><td>需求定義</td><td>PM</td><td>需求方</td><td>設計、技術組長、QA組長</td><td>相關開發成員、客服</td></tr>
           <tr><td>技術方案與估時</td><td>技術組長</td><td>技術組長</td><td>PM、SRE、QA</td><td>需求方</td></tr>
           <tr><td>發布決策</td><td>PM/SRE</td><td>指定發布核准人【待公司定案】</td><td>QA、技術組長</td><td>客服、營運、需求方</td></tr>
         </tbody></table></div>
 
-        <div class="example"><strong>風險登錄表範例</strong><table><thead><tr><th>風險</th><th>發生機率</th><th>影響</th><th>應對方式</th><th>責任人/期限</th></tr></thead><tbody>
+        <div class="example"><strong>風險登錄表範例</strong><table><colgroup><col style="width:15%"><col style="width:10%"><col style="width:18%"><col style="width:32%"><col style="width:25%"></colgroup><thead><tr><th>風險</th><th>發生機率</th><th>影響</th><th>應對方式</th><th>責任人/期限</th></tr></thead><tbody>
           <tr><td>第三方服務不穩</td><td>中</td><td>核心功能無法使用</td><td>預備錯誤提示、監控告警與替代方案</td><td>對應組長/上線前確認</td></tr>
         </tbody></table></div>
 
@@ -279,7 +280,7 @@
         <div class="callout"><strong>組長的 Plane 流程：</strong>待開始 → 進行中 → 審查中（In Review）→ 完成。若審核不通過，組長應退回「進行中」並留下具體修改原因，不可用聊天訊息取代審核紀錄。</div>
 
         <h4>Priority 定義</h4>
-        <table><thead><tr><th>等級</th><th>定義</th><th>處理原則</th></tr></thead><tbody>
+        <table><colgroup><col style="width:16%"><col style="width:38%"><col style="width:46%"></colgroup><thead><tr><th>等級</th><th>定義</th><th>處理原則</th></tr></thead><tbody>
           <tr><td><span class="badge p0">P0 Blocker</span></td><td>服務中斷、資安、資料遺失、金流異常</td><td>立即處理、事後根因分析</td></tr>
           <tr><td><span class="badge p1">P1 Critical</span></td><td>核心流程無法完成</td><td>優先排入當前週期</td></tr>
           <tr><td><span class="badge p2">P2 Major</span></td><td>一般功能、重要優化、有替代方案的BUG</td><td>依規劃排程</td></tr>
@@ -309,7 +310,7 @@
         <p class="lead">測試須追溯需求、版本、資料、環境與缺陷，測試結果要能作為發布決策依據。實際填寫範例見 <a href="#" onclick="showDoc('ex-qa');return false;">QA 工作單範例</a>。</p>
 
         <h4>測試案例欄位</h4>
-        <table><thead><tr><th>欄位</th><th>規則</th></tr></thead><tbody>
+        <table><colgroup><col style="width:18%"><col style="width:82%"></colgroup><thead><tr><th>欄位</th><th>規則</th></tr></thead><tbody>
           <tr><td>Case ID</td><td>唯一編號，例如 <code>TC-ORDER-001</code></td></tr>
           <tr><td>追溯關係</td><td>對應 Plane Issue、規格書條目與功能模組</td></tr>
           <tr><td>情境</td><td>測試類型、優先級、前置條件、測試資料、環境與版本</td></tr>
@@ -337,7 +338,7 @@
 修復驗證：原問題不再重現＋相關回歸通過</pre>
 
         <h4>發布判定</h4>
-        <table><thead><tr><th>結論</th><th>條件</th><th>下一步</th></tr></thead><tbody>
+        <table><colgroup><col style="width:16%"><col style="width:42%"><col style="width:42%"></colgroup><thead><tr><th>結論</th><th>條件</th><th>下一步</th></tr></thead><tbody>
           <tr><td>通過</td><td>必測案例完成，P0/P1為零</td><td>進入驗收/待發布</td></tr>
           <tr><td>有條件通過</td><td>僅餘已知低風險P2/P3，且風險被接受</td><td>PM/主管記錄決策並開後續卡</td></tr>
           <tr><td>退回開發</td><td>有P0/P1、阻塞案例或未達規格</td><td>修復後重測與回歸</td></tr>
@@ -345,7 +346,7 @@
         </tbody></table>
 
         <h4>測試環境與缺陷分級規則（open，細節待定案）</h4>
-        <table><thead><tr><th>項目</th><th>規則</th></tr></thead><tbody>
+        <table><colgroup><col style="width:16%"><col style="width:84%"></colgroup><thead><tr><th>項目</th><th>規則</th></tr></thead><tbody>
           <tr><td>測試資料</td><td>使用指定測試帳號與去識別資料；不得複製或展示未授權的正式個資</td></tr>
           <tr><td>環境版本</td><td>每次測試紀錄必須寫測試站網址、發布版本/Commit、Feature Flag狀態、第三方沙盒狀態與測試日期</td></tr>
           <tr><td>缺陷嚴重度</td><td>Severity 代表技術/使用者影響（崩潰、資料錯誤、功能失效、介面瑕疵）；Priority 代表商業修復順序，由 PM 與組長確認，兩者不能混為一談</td></tr>
@@ -354,7 +355,7 @@
         </tbody></table>
 
         <h4>Bug/Hotfix 分級處理</h4>
-        <table><thead><tr><th>等級</th><th>典型情況</th><th>建議處理方式</th></tr></thead><tbody>
+        <table><colgroup><col style="width:14%"><col style="width:38%"><col style="width:48%"></colgroup><thead><tr><th>等級</th><th>典型情況</th><th>建議處理方式</th></tr></thead><tbody>
           <tr><td><span class="badge p0">P0 致命</span></td><td>服務中斷、大量資料遺失、重大資安漏洞、核心流程完全不可用</td><td>以恢復服務為優先，可縮短正常流程，但仍保留基本修復確認、工程Review、核心驗證與上線後監控</td></tr>
           <tr><td><span class="badge p1">P1 高</span></td><td>核心功能異常，但仍有替代方案或影響範圍較有限</td><td>優先處理，完成修復與QA驗證後盡快發布</td></tr>
           <tr><td><span class="badge p2">P2 中</span></td><td>次要功能異常、局部體驗問題</td><td>排入近期正常開發流程</td></tr>
@@ -377,7 +378,7 @@
         <p class="lead">客服保留客戶原話與證據；PM 負責分類、優先級與回覆進度；工程與 QA 負責重現、修復及驗證。所有對外承諾必須與內部 Plane 紀錄一致。</p>
 
         <h4>客服回報必填欄位</h4>
-        <table><thead><tr><th>類別</th><th>欄位</th></tr></thead><tbody>
+        <table><colgroup><col style="width:20%"><col style="width:80%"></colgroup><thead><tr><th>類別</th><th>欄位</th></tr></thead><tbody>
           <tr><td>客戶與來源</td><td>客服案件ID、客戶ID/公司、回報時間、原始需求/問題原話</td></tr>
           <tr><td>影響判定</td><td>問題類別、受影響功能、發生頻率、發生時間、影響程度</td></tr>
           <tr><td>重現資訊</td><td>操作步驟、預期/實際結果、裝置、OS、瀏覽器/App版本、網路</td></tr>
@@ -385,7 +386,7 @@
         </tbody></table>
 
         <h4>升級時效</h4>
-        <table><thead><tr><th>等級</th><th>客服動作</th><th>內部升級目標</th></tr></thead><tbody>
+        <table><colgroup><col style="width:14%"><col style="width:52%"><col style="width:34%"></colgroup><thead><tr><th>等級</th><th>客服動作</th><th>內部升級目標</th></tr></thead><tbody>
           <tr><td><span class="badge p0">P0</span></td><td>立即通知值班/主管，蒐集必要證據，不承諾修復時間</td><td>立即</td></tr>
           <tr><td><span class="badge p1">P1</span></td><td>立即建立回報並通知 PM</td><td>當日</td></tr>
           <tr><td><span class="badge p2">P2</span></td><td>完整記錄，送入需求池</td><td>1個工作日</td></tr>
@@ -445,7 +446,7 @@
         <p class="lead">示範「QA 測試規範」的實際填寫方式。QA 規則不分平台/遊戲，通用適用；遊戲類專案額外的機率/RTP模擬驗證要求，見「遊戲 Plane 使用範例」。範例情境延續平台的「新增手機驗證功能」需求。</p>
 
         <h4>測試案例範例</h4>
-        <table><thead><tr><th>Case ID</th><th>追溯關係</th><th>情境</th><th>執行內容</th><th>結果</th></tr></thead><tbody>
+        <table><colgroup><col style="width:13%"><col style="width:17%"><col style="width:20%"><col style="width:38%"><col style="width:12%"></colgroup><thead><tr><th>Case ID</th><th>追溯關係</th><th>情境</th><th>執行內容</th><th>結果</th></tr></thead><tbody>
           <tr><td>TC-MEMBER-001</td><td>規格書§5、Plane測試子工作項</td><td>正常流程，手機格式正確</td><td>輸入合法手機號碼→點擊發送→預期：收到驗證碼，顯示60秒倒數</td><td>Pass</td></tr>
           <tr><td>TC-MEMBER-002</td><td>規格書§5</td><td>邊界：60秒內重複發送</td><td>發送後立即再次點擊發送鈕→預期：按鈕disabled，不重複發送簡訊</td><td>Pass</td></tr>
           <tr><td>TC-MEMBER-003</td><td>規格書§5</td><td>正常流程，驗證成功</td><td>輸入正確驗證碼→預期：驗證成功，重新登入後狀態仍保留</td><td>Pass</td></tr>
@@ -480,7 +481,7 @@
 修復驗證：原問題不再重現（連續錯誤5次後正確暫停10分鐘）＋TC-MEMBER-001~006 相關回歸通過</pre>
 
         <h4>發布判定範例</h4>
-        <table><thead><tr><th>結論</th><th>本次判定</th></tr></thead><tbody>
+        <table><colgroup><col style="width:20%"><col style="width:80%"></colgroup><thead><tr><th>結論</th><th>本次判定</th></tr></thead><tbody>
           <tr><td>通過</td><td>否——TC-MEMBER-005 未過（P1）</td></tr>
           <tr><td>有條件通過</td><td>否——防暴力破解機制屬於安全性問題，不接受帶著已知P1上線</td></tr>
           <tr><td><strong>退回開發</strong></td><td><strong>是</strong>——修復後重測 TC-MEMBER-005 與相關回歸案例，再送下一輪 QA</td></tr>
@@ -517,7 +518,7 @@
 
         <h4>模組與史詩用法</h4>
         <p>模組對應功能版塊（長期存在），史詩對應版塊裡一個有始有終的具體功能，比照「Plane 開立規則」的 Module／Epic 使用原則。以下用內部功能規劃表的實際分類示範：</p>
-        <table><thead><tr><th>層級</th><th>用途</th><th>例子</th></tr></thead><tbody>
+        <table><colgroup><col style="width:18%"><col style="width:32%"><col style="width:50%"></colgroup><thead><tr><th>層級</th><th>用途</th><th>例子</th></tr></thead><tbody>
           <tr><td>Module（模組）</td><td>功能版塊，長期存在、不會結束</td><td>權限與管理員、會員管理、金流、首頁與總覽...</td></tr>
           <tr><td>Epic（史詩）</td><td>版塊裡一個有始有終的具體功能，對應內部功能規劃表的「功能群」欄位</td><td>登入與帳號安全、管理員與群組、會員列表、會員詳情...</td></tr>
           <tr><td>需求工作單（父工作項）</td><td>史詩底下的具體功能項目，對應規劃表的「功能名稱」欄位</td><td>後台登入、管理員列表、管理員群組與權限...</td></tr>
@@ -530,7 +531,7 @@
         <p>兩張工作單都用 Parent 掛在「管理員與群組」史詩底下，史詩本身也掛上「權限與管理員」模組；子工作單是否需要各自重複掛模組，待實際測試確認。</p></div>
 
         <h4>各子工作項對應負責人與產出</h4>
-        <table><thead><tr><th>子工作項</th><th>負責人</th><th>產出物</th><th>交給下一階段的內容</th></tr></thead><tbody>
+        <table><colgroup><col style="width:14%"><col style="width:16%"><col style="width:32%"><col style="width:38%"></colgroup><thead><tr><th>子工作項</th><th>負責人</th><th>產出物</th><th>交給下一階段的內容</th></tr></thead><tbody>
           <tr><td>（父）需求工作單</td><td>PM</td><td>需求描述、來源、粗估時程區間（非正式承諾）</td><td>開立規格文件子工作項</td></tr>
           <tr><td>規格文件</td><td>企劃</td><td>規格書（流程圖/欄位定義/驗收標準/決策紀錄）</td><td>需求會議討論確認後的規格版本</td></tr>
           <tr><td>開發</td><td>開發組長→開發</td><td>起訖時間（開始/預計送測日）、工時拆解、技術方案、程式+單元測試</td><td>送測時的自測結果、已知限制</td></tr>
@@ -540,7 +541,7 @@
         </tbody></table>
 
         <h4>Plane.io 狀態對應（Backlog / Todo / In Progress / In Review / Done）</h4>
-        <table><thead><tr><th>工作項</th><th>Backlog</th><th>Todo</th><th>In Progress</th><th>In Review</th><th>Done</th></tr></thead><tbody>
+        <table><colgroup><col style="width:14%"><col style="width:17%"><col style="width:17%"><col style="width:18%"><col style="width:17%"><col style="width:17%"></colgroup><thead><tr><th>工作項</th><th>Backlog</th><th>Todo</th><th>In Progress</th><th>In Review</th><th>Done</th></tr></thead><tbody>
           <tr><td>需求工作單（父）</td><td>需求剛登記，未確認</td><td>PM已確認，已開子工作項</td><td>任一子工作項執行中</td><td>驗收中</td><td>交付完成</td></tr>
           <tr><td>規格文件</td><td>-</td><td>待企劃撰寫</td><td>企劃撰寫中/PM討論中</td><td>需求會議討論確認中</td><td>規格拍板</td></tr>
           <tr><td>開發</td><td>-</td><td>待開發組長排入（規格拍板後開立）</td><td>開發實作中</td><td>內部自測、準備送測</td><td>已送測</td></tr>
@@ -587,7 +588,7 @@
           <tr><th>相依關係</th><td>blocked by：開發子工作項（送測後才開立）</td></tr>
         </tbody></table></div>
 
-        <div class="example"><strong>子工作項：驗收 / 上線</strong><table><thead><tr><th>欄位</th><th>驗收</th><th>上線</th></tr></thead><tbody>
+        <div class="example"><strong>子工作項：驗收 / 上線</strong><table><colgroup><col style="width:16%"><col style="width:42%"><col style="width:42%"></colgroup><thead><tr><th>欄位</th><th>驗收</th><th>上線</th></tr></thead><tbody>
           <tr><td>標題</td><td>[Feature][會員] 新增手機驗證 - 驗收</td><td>[Feature][會員] 新增手機驗證 - 上線</td></tr>
           <tr><td>Assignee</td><td>PM + 需求方（客服主管）</td><td>開發 + PM</td></tr>
           <tr><td>Status</td><td>Todo</td><td>Todo</td></tr>
@@ -600,11 +601,11 @@
         <p class="lead">示範遊戲類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。遊戲的拓撲是<strong>單一共用專案「遊戲開發商」</strong>，所有老虎機/棋牌/迷你遊戲的開發工作都在同一個專案裡，用<strong>模組＝哪一款遊戲、標籤＝哪個部門</strong>區分，不是各部門各自獨立成專案。</p>
 
         <h4>模組與標籤總覽</h4>
-        <table><thead><tr><th>維度</th><th>用途</th><th>例子</th></tr></thead><tbody>
+        <table><colgroup><col style="width:14%"><col style="width:34%"><col style="width:52%"></colgroup><thead><tr><th>維度</th><th>用途</th><th>例子</th></tr></thead><tbody>
           <tr><td>Module（模組）</td><td>對應單一一款遊戲，從規格到上線都是同一個模組，模組進度％＝這款遊戲的整體完成度</td><td>01.荷魯斯之眼、02.金虎爺、03.巨亨麻將、04.門神、05.釣蝦王...</td></tr>
           <tr><td>Label（標籤）</td><td>對應部門／專業別，同一張工作單同時掛模組（哪一款）與標籤（哪個部門）</td><td>企劃與數值、美術與動效、伺服器/後端、音效與音樂、客戶端/前端、QA測試驗證</td></tr>
         </tbody></table>
-        <table><thead><tr><th>部門（Label）</th><th>每款遊戲的顆粒度</th><th>完成狀態追蹤方式</th></tr></thead><tbody>
+        <table><colgroup><col style="width:16%"><col style="width:42%"><col style="width:42%"></colgroup><thead><tr><th>部門（Label）</th><th>每款遊戲的顆粒度</th><th>完成狀態追蹤方式</th></tr></thead><tbody>
           <tr><td>企劃與數值</td><td>通常 1-2 項（規格書、機率外包交付），不逐項拆</td><td>單一完成狀態</td></tr>
           <tr><td>美術與動效（原畫部分）</td><td>逐項素材工作事項（如百餘項/款）</td><td>單一完成勾選，前端自行從整批原畫抓進度，不逐項對應驗收</td></tr>
           <tr><td>美術與動效（動效部分）</td><td>逐項動效工作事項</td><td>雙重驗收：動效組完成 + 前端套用完成，兩者各自開一張工作事項，用 Plane 關聯（relation）連結</td></tr>
@@ -617,7 +618,7 @@
 
         <h4>Cycle（週期）排法範例</h4>
         <p>週期對應各部門固定的作業階段，不對應「一整款遊戲」；一次只建立「目前＋下一個」週期，比照「Plane 開立規則」的 Cycle 使用原則。以美術與動效（原畫）為例：</p>
-        <table><thead><tr><th>週期</th><th>時長</th><th>內容</th></tr></thead><tbody>
+        <table><colgroup><col style="width:20%"><col style="width:12%"><col style="width:68%"></colgroup><thead><tr><th>週期</th><th>時長</th><th>內容</th></tr></thead><tbody>
           <tr><td>原畫_收集方向</td><td>2 週</td><td>蒐集參考、確定美術方向與風格</td></tr>
           <tr><td>原畫_實作出圖</td><td>4 週</td><td>正式繪製與出圖，完成後接續下一款遊戲的「收集方向」週期</td></tr>
         </tbody></table>
@@ -688,7 +689,7 @@
         <p>音效清單全數完成後，整批交付前端套用，<strong>不會</strong>逐項開對應的前端工作事項。</p></div>
 
         <h4>範例4：企劃與數值、伺服器/後端、QA測試驗證（較粗顆粒度）</h4>
-        <table><thead><tr><th>Module</th><th>Label</th><th>標題範例</th><th>Assignee</th><th>Status</th></tr></thead><tbody>
+        <table><colgroup><col style="width:13%"><col style="width:16%"><col style="width:42%"><col style="width:17%"><col style="width:12%"></colgroup><thead><tr><th>Module</th><th>Label</th><th>標題範例</th><th>Assignee</th><th>Status</th></tr></thead><tbody>
           <tr><td>荷魯斯之眼</td><td>企劃與數值</td><td>[規格][荷魯斯之眼] 遊戲規格書</td><td>PM+企劃</td><td>Done</td></tr>
           <tr><td>荷魯斯之眼</td><td>企劃與數值</td><td>[機率][荷魯斯之眼] RTP/賠付邏輯交付</td><td>PM+企劃（代機率外包更新）</td><td>Done</td></tr>
           <tr><td>荷魯斯之眼</td><td>伺服器/後端</td><td>[後端][荷魯斯之眼] 遊戲邏輯/API 實作</td><td>後端</td><td>In Review</td></tr>
@@ -1346,7 +1347,7 @@
       <section id="s1" class="doc">
         <h3>5. 適用範圍</h3>
         <p>本文件涵蓋所有專案類型共用的部分：需求分流、流程階段與關卡、角色分工、Plane 欄位與卡片規則、規格書規範、QA 與客服表單規則。</p>
-        <table><thead><tr><th>文件</th><th>負責範圍</th></tr></thead><tbody>
+        <table><colgroup><col style="width:22%"><col style="width:78%"></colgroup><thead><tr><th>文件</th><th>負責範圍</th></tr></thead><tbody>
           <tr><td>docs/core/SOP.md（本文件）</td><td>所有專案類型共用的流程、角色原則、Plane欄位規則、規格書規範、QA/客服規則</td></tr>
           <tr><td>docs/platform/examples/</td><td>平台功能類專案的差異範例：Plane結構與填寫範例、規格書範例</td></tr>
           <tr><td>docs/game/examples/</td><td>遊戲類專案的差異範例：Plane結構與填寫範例、規格書與素材清單範例</td></tr>
