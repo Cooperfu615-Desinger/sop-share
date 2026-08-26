@@ -129,8 +129,8 @@
           <button type="button" class="menu-link sub" data-doc="rule-plane">↳ Plane 開立規則</button>
           <button type="button" class="menu-link sub" data-doc="rule-figma">↳ Figma 狀態標記</button>
           <button type="button" class="menu-link sub" data-doc="ex-qa">↳ QA 工作單範例</button>
-          <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 工作單範例</button>
-          <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 工作單範例</button>
+          <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 Plane 使用範例</button>
+          <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 Plane 使用範例</button>
           <span class="menu-link sub pending">↳ 平台規格書範例（待補）</span>
           <button type="button" class="menu-link sub" data-doc="ex-game-spec">↳ 遊戲規格書範例</button>
         </div>
@@ -260,7 +260,7 @@
           <tr><td>Priority（優先度）</td><td>處理先後順序</td><td>P0～P3</td></tr>
           <tr><td>Module（模組）</td><td>一個短期開發目標／可交付單位，不是部門分類</td><td>平台：功能版塊（會員管理、金流、客服與風控...）；遊戲：單一款遊戲（荷魯斯之眼、金虎爺...）</td></tr>
         </tbody></table>
-        <p>平台、遊戲的實際 Plane 結構與填寫範例，見 <a href="#" onclick="showDoc('ex-platform-plane');return false;">平台 工作單範例</a>、<a href="#" onclick="showDoc('ex-game-plane');return false;">遊戲 工作單範例</a>。</p>
+        <p>平台、遊戲的實際 Plane 結構與填寫範例，見 <a href="#" onclick="showDoc('ex-platform-plane');return false;">平台 Plane 使用範例</a>、<a href="#" onclick="showDoc('ex-game-plane');return false;">遊戲 Plane 使用範例</a>。</p>
 
         <div class="callout"><strong>Module（模組）的使用原則：</strong>模組代表一個短期開發目標／可交付單位，不是部門分類——平台以功能版塊為單位（如會員管理、金流、客服與風控），遊戲以單一款遊戲為單位（如荷魯斯之眼、金虎爺）；部門／專業別改用 Label 標示（企劃、美術、前端、後端...），同一張工作單可以同時掛模組（做什麼／哪一款）與標籤（哪個部門）。所有對應的工作單都要掛上模組，模組進度％才能反映實際整體完成度。</div>
 
@@ -433,8 +433,8 @@
         <h4>範例</h4>
         <div class="grid">
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-qa')">QA 工作單範例</button></h4><p>測試案例、BUG卡、發布判定、Bug/Hotfix分級的實際填寫範例（通用，不分平台/遊戲）</p></div>
-          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-plane')">平台 工作單範例</button></h4><p>單一工作單+子工作項結構、狀態對應表、實際工作單填寫範例</p></div>
-          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-plane')">遊戲 工作單範例</button></h4><p>七個固定跨遊戲專案結構、依賴關係、實際工作單填寫範例（含雙重驗收relation示範）</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-plane')">平台 Plane 使用範例</button></h4><p>單一工作單+子工作項結構、模組/史詩用法、狀態對應表、實際工作單填寫範例</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-plane')">遊戲 Plane 使用範例</button></h4><p>單一共用專案、模組=遊戲/標籤=部門、週期分階段排法、實際工作單填寫範例（含雙重驗收relation示範）</p></div>
           <div class="card"><h4>平台規格書範例</h4><p style="color:var(--muted)">待補——docs/platform/examples/spec-example.md</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-spec')">遊戲規格書範例</button></h4><p>真實遊戲規格書完整範例（宙斯與黑帝斯 250），含符號賠付表、核心邏輯、QA測試清單等13個章節；素材清單（xlsx）範例待補</p></div>
         </div>
@@ -442,7 +442,7 @@
 
       <section id="ex-qa" class="doc">
         <h3>QA 工作單範例<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範「QA 測試規範」的實際填寫方式。QA 規則不分平台/遊戲，通用適用；遊戲類專案額外的機率/RTP模擬驗證要求，見「遊戲 工作單範例」。範例情境延續平台的「新增手機驗證功能」需求。</p>
+        <p class="lead">示範「QA 測試規範」的實際填寫方式。QA 規則不分平台/遊戲，通用適用；遊戲類專案額外的機率/RTP模擬驗證要求，見「遊戲 Plane 使用範例」。範例情境延續平台的「新增手機驗證功能」需求。</p>
 
         <h4>測試案例範例</h4>
         <table><thead><tr><th>Case ID</th><th>追溯關係</th><th>情境</th><th>執行內容</th><th>結果</th></tr></thead><tbody>
@@ -504,7 +504,7 @@
 
       <section id="ex-platform-plane" class="doc">
         <h3>平台 Plane 使用範例<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範平台功能類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。平台的拓撲是單一需求工作單（父工作項）+ 5個子工作項，跟遊戲的七個固定跨遊戲專案不同。</p>
+        <p class="lead">示範平台功能類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。平台的拓撲是單一需求工作單（父工作項）+ 5個子工作項，跟遊戲共用單一專案、用模組區分遊戲的做法不同。</p>
 
         <h4>結構</h4>
         <pre>需求工作單（父工作項，PM 開立）
@@ -514,6 +514,20 @@
  ├─ 子工作項：驗收          （PM + 需求方）
  └─ 子工作項：上線          （開發 + PM）</pre>
         <p>流程順序：PM 收到需求並確認 → 開立需求工作單 + 規格文件子工作項 → PM 與企劃討論確定規格 → 需求會議（PM/企劃/開發組長）→ 開發組長回報起訖時間、開立開發子工作項 → 開發實作 → 送測，開立測試子工作項，測試組長接手 → 測試 → 驗收子工作項 → 上線子工作項。</p>
+
+        <h4>模組與史詩用法</h4>
+        <p>模組對應功能版塊（長期存在），史詩對應版塊裡一個有始有終的具體功能，比照「Plane 開立規則」的 Module／Epic 使用原則。以下用內部功能規劃表的實際分類示範：</p>
+        <table><thead><tr><th>層級</th><th>用途</th><th>例子</th></tr></thead><tbody>
+          <tr><td>Module（模組）</td><td>功能版塊，長期存在、不會結束</td><td>權限與管理員、會員管理、金流、首頁與總覽...</td></tr>
+          <tr><td>Epic（史詩）</td><td>版塊裡一個有始有終的具體功能，對應內部功能規劃表的「功能群」欄位</td><td>登入與帳號安全、管理員與群組、會員列表、會員詳情...</td></tr>
+          <tr><td>需求工作單（父工作項）</td><td>史詩底下的具體功能項目，對應規劃表的「功能名稱」欄位</td><td>後台登入、管理員列表、管理員群組與權限...</td></tr>
+        </tbody></table>
+        <div class="example"><strong>範例：權限與管理員模組下的「管理員與群組」史詩</strong><table><tbody>
+          <tr><th>Module</th><td>權限與管理員</td></tr>
+          <tr><th>Epic</th><td>管理員與群組</td></tr>
+          <tr><th>底下工作單</th><td>[Feature][權限] 管理員列表（OPE-V1-AUTH-002）、[Feature][權限] 管理員群組與權限（OPE-V1-AUTH-003）</td></tr>
+        </tbody></table>
+        <p>兩張工作單都用 Parent 掛在「管理員與群組」史詩底下，史詩本身也掛上「權限與管理員」模組；子工作單是否需要各自重複掛模組，待實際測試確認。</p></div>
 
         <h4>各子工作項對應負責人與產出</h4>
         <table><thead><tr><th>子工作項</th><th>負責人</th><th>產出物</th><th>交給下一階段的內容</th></tr></thead><tbody>
@@ -583,19 +597,31 @@
 
       <section id="ex-game-plane" class="doc">
         <h3>遊戲 Plane 使用範例<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">示範遊戲類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。遊戲的拓撲是七個固定跨遊戲 Plane 專案，不是單一父工作單+子工作項——同一專案裡混著不同遊戲的項目，用標籤/週期區分屬於哪一款遊戲。</p>
+        <p class="lead">示範遊戲類專案的 Plane.io 結構與實際填寫方式，對應「Plane 開立規則」的通用欄位/卡片規則。遊戲的拓撲是<strong>單一共用專案「遊戲開發商」</strong>，所有老虎機/棋牌/迷你遊戲的開發工作都在同一個專案裡，用<strong>模組＝哪一款遊戲、標籤＝哪個部門</strong>區分，不是各部門各自獨立成專案。</p>
 
-        <h4>七個固定專案總覽</h4>
-        <table><thead><tr><th>Plane 專案</th><th>每款遊戲的顆粒度</th><th>完成狀態追蹤方式</th></tr></thead><tbody>
-          <tr><td>企劃+機率</td><td>通常 1-2 項（規格書、機率外包交付），不逐項拆</td><td>單一完成狀態</td></tr>
-          <tr><td>原畫</td><td>逐項素材工作事項（如百餘項/款）</td><td>單一完成勾選，前端自行從整批原畫抓進度，不逐項對應驗收</td></tr>
-          <tr><td>動效</td><td>逐項動效工作事項</td><td>雙重驗收：動效組完成 + 前端套用完成，兩者各自開一張工作事項，用 Plane 關聯（relation）連結</td></tr>
-          <tr><td>音樂音效</td><td>逐項音效工作事項</td><td>單一完成狀態，完成後整批交付前端套用，不逐項對應驗收</td></tr>
-          <tr><td>後端</td><td>依規格拆分的工作事項，依賴機率外包交付</td><td>單一完成狀態</td></tr>
-          <tr><td>前端</td><td>對應動效逐項開「前端套用」工作事項（relation 連回動效）；原畫/音效/後端則是較粗顆粒度的整合工作事項</td><td>依項目類型而定</td></tr>
-          <tr><td>QA</td><td>測試驗證工作事項，含機率/RTP模擬驗證</td><td>單一完成狀態</td></tr>
+        <h4>模組與標籤總覽</h4>
+        <table><thead><tr><th>維度</th><th>用途</th><th>例子</th></tr></thead><tbody>
+          <tr><td>Module（模組）</td><td>對應單一一款遊戲，從規格到上線都是同一個模組，模組進度％＝這款遊戲的整體完成度</td><td>01.荷魯斯之眼、02.金虎爺、03.巨亨麻將、04.門神、05.釣蝦王...</td></tr>
+          <tr><td>Label（標籤）</td><td>對應部門／專業別，同一張工作單同時掛模組（哪一款）與標籤（哪個部門）</td><td>企劃與數值、美術與動效、伺服器/後端、音效與音樂、客戶端/前端、QA測試驗證</td></tr>
         </tbody></table>
-        <p>「上線」歸在企劃+機率專案的最後一項，不獨立成專案。</p>
+        <table><thead><tr><th>部門（Label）</th><th>每款遊戲的顆粒度</th><th>完成狀態追蹤方式</th></tr></thead><tbody>
+          <tr><td>企劃與數值</td><td>通常 1-2 項（規格書、機率外包交付），不逐項拆</td><td>單一完成狀態</td></tr>
+          <tr><td>美術與動效（原畫部分）</td><td>逐項素材工作事項（如百餘項/款）</td><td>單一完成勾選，前端自行從整批原畫抓進度，不逐項對應驗收</td></tr>
+          <tr><td>美術與動效（動效部分）</td><td>逐項動效工作事項</td><td>雙重驗收：動效組完成 + 前端套用完成，兩者各自開一張工作事項，用 Plane 關聯（relation）連結</td></tr>
+          <tr><td>音效與音樂</td><td>逐項音效工作事項</td><td>單一完成狀態，完成後整批交付前端套用，不逐項對應驗收</td></tr>
+          <tr><td>伺服器/後端</td><td>依規格拆分的工作事項，依賴機率外包交付</td><td>單一完成狀態</td></tr>
+          <tr><td>客戶端/前端</td><td>對應動效逐項開「前端套用」工作事項（relation 連回動效）；原畫/音效/後端則是較粗顆粒度的整合工作事項</td><td>依項目類型而定</td></tr>
+          <tr><td>QA測試驗證</td><td>測試驗證工作事項，含機率/RTP模擬驗證</td><td>單一完成狀態</td></tr>
+        </tbody></table>
+        <p>「上線」歸在企劃與數值部門的最後一項，不獨立成部門。</p>
+
+        <h4>Cycle（週期）排法範例</h4>
+        <p>週期對應各部門固定的作業階段，不對應「一整款遊戲」；一次只建立「目前＋下一個」週期，比照「Plane 開立規則」的 Cycle 使用原則。以美術與動效（原畫）為例：</p>
+        <table><thead><tr><th>週期</th><th>時長</th><th>內容</th></tr></thead><tbody>
+          <tr><td>原畫_收集方向</td><td>2 週</td><td>蒐集參考、確定美術方向與風格</td></tr>
+          <tr><td>原畫_實作出圖</td><td>4 週</td><td>正式繪製與出圖，完成後接續下一款遊戲的「收集方向」週期</td></tr>
+        </tbody></table>
+        <p>動效、客戶端/前端、伺服器/後端等部門比照同樣概念（收集／規劃階段＋實作階段兩段式週期），實際時長依部門與工作量調整，非固定 2+4 週。</p>
 
         <h4>依賴關係</h4>
         <pre>PM+企劃 年度規劃 → 與需求方確認 → 年度計畫拍板
@@ -622,7 +648,8 @@
 
         <div class="example"><strong>範例1：原畫（單一驗收，無 relation）</strong><table><tbody>
           <tr><th>標題</th><td>[原畫][巨亨麻將] logo_game 遊戲LOGO</td></tr>
-          <tr><th>Label</th><td>巨亨麻將</td></tr>
+          <tr><th>Module</th><td>巨亨麻將</td></tr>
+          <tr><th>Label</th><td>美術與動效</td></tr>
           <tr><th>Assignee</th><td>原畫 王美術</td></tr>
           <tr><th>Reviewer</th><td>原畫組長</td></tr>
           <tr><th>Status</th><td>Done</td></tr>
@@ -632,7 +659,8 @@
 
         <div class="example"><strong>範例2：動效 + 前端套用（雙重驗收，relation）——動效卡</strong><table><tbody>
           <tr><th>標題</th><td>[動效][荷魯斯之眼] clip_1 MG背景動畫</td></tr>
-          <tr><th>Label</th><td>荷魯斯之眼</td></tr>
+          <tr><th>Module</th><td>荷魯斯之眼</td></tr>
+          <tr><th>Label</th><td>美術與動效</td></tr>
           <tr><th>Assignee</th><td>動效 張動效</td></tr>
           <tr><th>Reviewer</th><td>動效組長</td></tr>
           <tr><th>Status</th><td>Done</td></tr>
@@ -641,7 +669,8 @@
         </tbody></table></div>
         <div class="example"><strong>範例2：動效 + 前端套用——前端套用卡（與動效卡用 relation 連結）</strong><table><tbody>
           <tr><th>標題</th><td>[前端][荷魯斯之眼] 套用 MG背景動畫（clip_1）</td></tr>
-          <tr><th>Label</th><td>荷魯斯之眼</td></tr>
+          <tr><th>Module</th><td>荷魯斯之眼</td></tr>
+          <tr><th>Label</th><td>客戶端/前端</td></tr>
           <tr><th>Assignee</th><td>前端 陳前端</td></tr>
           <tr><th>Status</th><td>In Progress</td></tr>
           <tr><th>相依關係</th><td>blocked by → 上方動效卡</td></tr>
@@ -650,19 +679,20 @@
 
         <div class="example"><strong>範例3：音樂音效（整批交付，無 relation）</strong><table><tbody>
           <tr><th>標題</th><td>[音效][荷魯斯之眼] basiscgame 主遊戲背景音樂（MG-BGM）</td></tr>
-          <tr><th>Label</th><td>荷魯斯之眼</td></tr>
+          <tr><th>Module</th><td>荷魯斯之眼</td></tr>
+          <tr><th>Label</th><td>音效與音樂</td></tr>
           <tr><th>Assignee</th><td>音樂音效 林音效</td></tr>
           <tr><th>Status</th><td>Done</td></tr>
           <tr><th>內容</th><td>播放時機：進入主遊戲場景後立即播放，循環；Loop：是</td></tr>
         </tbody></table>
         <p>音效清單全數完成後，整批交付前端套用，<strong>不會</strong>逐項開對應的前端工作事項。</p></div>
 
-        <h4>範例4：企劃+機率、後端、QA（較粗顆粒度）</h4>
-        <table><thead><tr><th>專案</th><th>標題範例</th><th>Assignee</th><th>Status</th></tr></thead><tbody>
-          <tr><td>企劃+機率</td><td>[規格][荷魯斯之眼] 遊戲規格書</td><td>PM+企劃</td><td>Done</td></tr>
-          <tr><td>企劃+機率</td><td>[機率][荷魯斯之眼] RTP/賠付邏輯交付</td><td>PM+企劃（代機率外包更新）</td><td>Done</td></tr>
-          <tr><td>後端</td><td>[後端][荷魯斯之眼] 遊戲邏輯/API 實作</td><td>後端</td><td>In Review</td></tr>
-          <tr><td>QA</td><td>[QA][荷魯斯之眼] 完整測試驗證（含RTP模擬）</td><td>QA</td><td>Todo</td></tr>
+        <h4>範例4：企劃與數值、伺服器/後端、QA測試驗證（較粗顆粒度）</h4>
+        <table><thead><tr><th>Module</th><th>Label</th><th>標題範例</th><th>Assignee</th><th>Status</th></tr></thead><tbody>
+          <tr><td>荷魯斯之眼</td><td>企劃與數值</td><td>[規格][荷魯斯之眼] 遊戲規格書</td><td>PM+企劃</td><td>Done</td></tr>
+          <tr><td>荷魯斯之眼</td><td>企劃與數值</td><td>[機率][荷魯斯之眼] RTP/賠付邏輯交付</td><td>PM+企劃（代機率外包更新）</td><td>Done</td></tr>
+          <tr><td>荷魯斯之眼</td><td>伺服器/後端</td><td>[後端][荷魯斯之眼] 遊戲邏輯/API 實作</td><td>後端</td><td>In Review</td></tr>
+          <tr><td>荷魯斯之眼</td><td>QA測試驗證</td><td>[QA][荷魯斯之眼] 完整測試驗證（含RTP模擬）</td><td>QA</td><td>Todo</td></tr>
         </tbody></table>
       </section>
 
