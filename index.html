@@ -278,31 +278,6 @@
           <li>Feature/Improvement 有驗收條件；Bug 有重現步驟與修復驗證條件</li>
         </ul>
         <div class="callout"><strong>組長的 Plane 流程：</strong>待開始 → 進行中 → 審查中（In Review）→ 完成。若審核不通過，組長應退回「進行中」並留下具體修改原因，不可用聊天訊息取代審核紀錄。</div>
-
-        <h4>Priority 定義</h4>
-        <table><colgroup><col style="width:16%"><col style="width:38%"><col style="width:46%"></colgroup><thead><tr><th>等級</th><th>定義</th><th>處理原則</th></tr></thead><tbody>
-          <tr><td><span class="badge p0">P0 Blocker</span></td><td>服務中斷、資安、資料遺失、金流異常</td><td>立即處理、事後根因分析</td></tr>
-          <tr><td><span class="badge p1">P1 Critical</span></td><td>核心流程無法完成</td><td>優先排入當前週期</td></tr>
-          <tr><td><span class="badge p2">P2 Major</span></td><td>一般功能、重要優化、有替代方案的BUG</td><td>依規劃排程</td></tr>
-          <tr><td><span class="badge p3">P3 Minor</span></td><td>低影響改善、文案/視覺調整</td><td>放入待辦清單定期整理</td></tr>
-        </tbody></table>
-
-        <h4>Plane 導入時還要設定的項目（open，待公司定案）</h4>
-        <ul>
-          <li>權限：誰能改優先級、關閉任務、改截止日、建立/刪除標籤與調整工作流程</li>
-          <li>工作量限制：每人同時「開發中」的任務上限；超過上限需先協調，不可持續插單</li>
-          <li>逾期處理：截止日前多久提醒、逾期後由誰更新原因與新日期</li>
-          <li>封存規則：已結案任務何時封存、取消任務需保留什麼原因、重複需求如何合併</li>
-          <li>儀表板：至少追蹤週期完成率、逾期任務、阻塞任務、缺陷趨勢與發布清單</li>
-        </ul>
-
-        <div class="example"><strong>管理規則（建議版，細節待各組長與 Workspace 管理者定案）</strong>
-        <ul>
-          <li><strong>父子同步：</strong>任何子任務未完成或被阻塞時，父任務不可標示「已結案」</li>
-          <li><strong>逾期更新：</strong>主要負責人在預期延遲時更新原因、新日期與影響；技術組長確認後通知 PM</li>
-          <li><strong>插單：</strong>P0/P1 以外的需求不可直接插入當前週期；PM 與組長需明確記錄被延後的任務</li>
-          <li><strong>取消/合併：</strong>取消卡保留原因；重複需求使用關聯或合併方式連到主卡，不刪除歷史</li>
-        </ul></div>
       </section>
 
       <section id="rule-qa" class="doc">
