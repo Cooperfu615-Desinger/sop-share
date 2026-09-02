@@ -132,7 +132,7 @@
           <button type="button" class="menu-link sub" data-doc="ex-qa">↳ QA 工作單範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 Plane 使用範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 Plane 使用範例</button>
-          <span class="menu-link sub pending">↳ 平台規格書範例（待補）</span>
+          <button type="button" class="menu-link sub" data-doc="ex-platform-spec">↳ 平台規格書範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-game-spec">↳ 遊戲規格書範例</button>
         </div>
         <button type="button" class="menu-link" data-doc="s1">5. 適用範圍</button>
@@ -410,7 +410,7 @@
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-qa')">QA 工作單範例</button></h4><p>測試案例、BUG卡、發布判定、Bug/Hotfix分級的實際填寫範例（通用，不分平台/遊戲）</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-plane')">平台 Plane 使用範例</button></h4><p>單一工作單+子工作項結構、模組/史詩用法、狀態對應表、實際工作單填寫範例</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-plane')">遊戲 Plane 使用範例</button></h4><p>單一共用專案、模組=遊戲/標籤=部門、週期分階段排法、實際工作單填寫範例（含雙重驗收relation示範）</p></div>
-          <div class="card"><h4>平台規格書範例</h4><p style="color:var(--muted)">待補——docs/platform/examples/spec-example.md</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-spec')">平台規格書範例</button></h4><p>真實平台前台規格書完整範例（會員前台‧Lobby 個人資訊），17章固定結構，含欄位/狀態/查詢規則、三方User Story、驗收標準、資料需求與交付檢查表</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-spec')">遊戲規格書範例</button></h4><p>真實遊戲規格書完整範例（宙斯與黑帝斯 250），含符號賠付表、核心邏輯、QA測試清單等13個章節；素材清單（xlsx）範例待補</p></div>
         </div>
       </section>
@@ -1318,6 +1318,503 @@
         </ul>
       </section>
 
+      <section id="ex-platform-spec" class="doc">
+        <h3>平台規格書範例：會員前台 Lobby 個人資訊<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
+        <p class="lead">取材自真實平台前台規格書「會員前台‧PRODUCT REQUIREMENTS DOCUMENT｜巨亨ONLINE｜Lobby 個人資訊」（版本 v1.1，2026-09-01 更新）。以下完整保留原文件的 17 章固定結構與內容，供平台規格書撰寫格式參考。</p>
+
+        <table><colgroup><col style="width:20%"><col style="width:80%"></colgroup><thead><tr><th>文件項目</th><th>內容</th></tr></thead><tbody>
+        <tr><td>文件性質</td><td>前台功能規格書。供產品、UIUX 前端、後端與 QA 對齊個人資訊功能。</td></tr>
+        <tr><td>與現有文件關係</td><td>本文件是依據《VIP 機制規格書 V3｜完整 PRD》的內容為主針對玩家前台所做的規格描述。</td></tr>
+        <tr><td>本版目的</td><td>依 APP 與 WEB 原型現況整理入口、欄位、互動、狀態、Mock 邊界與 VIP0～VIP15 顯示規則。</td></tr>
+        <tr><td>適用範圍</td><td>「個人資訊」彈窗、基本資料、帳號綁定、VIP 等級、遊戲紀錄、頭像選擇與 VIP 等級總覽。</td></tr>
+        <tr><td>不在本版範圍</td><td>營運後台、真實簡訊與 Google OAuth、真實 VIP 排程、獎勵帳本、API schema、enum、錯誤碼、資料庫設計、後端持久化與視覺樣式數值。</td></tr>
+        <tr><td>上游依據</td><td>《VIP 機制規格書 V3｜完整 PRD》（Plane Pages 內部文件，公開分享版不附連結，需要請洽 PM）</td></tr>
+        </tbody></table>
+
+        <h4>1. 這頁是什麼</h4>
+        <p>「個人資訊」是登入會員在 Lobby 查看身份、帳號安全、VIP 與遊戲紀錄的入口。</p>
+        <p>使用者在這裡做六件事：</p>
+        <ol>
+        <li>查看頭像、暱稱、VIP、帳號、ID 與三種幣別餘額。</li>
+        <li>查看與修改基本資料。</li>
+        <li>綁定手機號碼或 Google。</li>
+        <li>查看目前 VIP、等級權益、升級條件與保級狀態。</li>
+        <li>查看 VIP0～VIP15 的等級總覽。</li>
+        <li>查詢最近 30 天內的 Mock 遊戲紀錄。</li>
+        </ol>
+        <p>這個功能同時包含唯讀與可操作內容。基本資料、帳號綁定與頭像可以操作。VIP 與遊戲紀錄只提供查看與查詢。</p>
+
+        <h4>2. 這頁不做什麼</h4>
+        <table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr><th>不做的事</th><th>由誰負責</th></tr></thead><tbody>
+        <tr><td>修改帳號或會員 ID</td><td>帳號管理與客服流程</td></tr>
+        <tr><td>修改金幣、銀幣、銅幣餘額</td><td>銀行、儲值、獎勵與金融模組</td></tr>
+        <tr><td>解除手機或 Google 綁定</td><td>後續帳號安全規格</td></tr>
+        <tr><td>綁定 Facebook、LINE 或 Apple</td><td>本版不提供</td></tr>
+        <tr><td>更正已鎖定的生日或電子郵件</td><td>正式產品客服流程</td></tr>
+        <tr><td>手動升級、保級、降級或調整 VIP</td><td>VIP 排程與營運後台</td></tr>
+        <tr><td>顯示返水或連續降級資訊</td><td>本版 VIP 前台不提供</td></tr>
+        <tr><td>發送真實簡訊或連線 Google OAuth</td><td>外部驗證服務</td></tr>
+        <tr><td>解鎖或設定頭像框</td><td>後續個人化功能</td></tr>
+        <tr><td>定義 API schema、enum、錯誤碼與資料庫</td><td>後端技術規格</td></tr>
+        </tbody></table>
+
+        <h4>3. 名詞說明</h4>
+        <table><colgroup><col style="width:18%"><col style="width:82%"></colgroup><thead><tr><th>名詞</th><th>說明</th></tr></thead><tbody>
+        <tr><td>個人資訊</td><td>Lobby 中的會員資料主彈窗。包含四個頁籤與共用玩家摘要。</td></tr>
+        <tr><td>基本資料</td><td>第一個頁籤。包含帳號、暱稱、ID、生日、電子郵件、手機號碼與個人簡介。</td></tr>
+        <tr><td>共用玩家摘要</td><td>四個頁籤左側持續顯示的身份與錢包資訊。</td></tr>
+        <tr><td>一次性資料</td><td>生日與電子郵件。第一次保存非空值後鎖定。</td></tr>
+        <tr><td>帳號綁定</td><td>手機號碼或 Google 與目前巨亨ONLINE帳號建立關聯的狀態。</td></tr>
+        <tr><td>Email 已綁定</td><td>基本資料中的電子郵件已第一次保存並鎖定。Google 已綁定不等於 Email 已綁定。</td></tr>
+        <tr><td>目前 VIP</td><td>會員當下生效的 VIP 等級。範圍為 VIP0～VIP15。</td></tr>
+        <tr><td>歷史最高 VIP</td><td>會員曾達成的最高 VIP。只供顯示，不參與升級、保級、降級或獎勵判定。</td></tr>
+        <tr><td>升級條件</td><td>進入下一等級前必須同時達成的條件。所有已設定條件採 AND。</td></tr>
+        <tr><td>保級條件</td><td>月度結算時維持目前等級的條件。保級開啟時，所有已啟用條件採 AND。</td></tr>
+        <tr><td>本月升級保護</td><td>待結算月份曾完成升級時，該月不因保級不足而降級。</td></tr>
+        <tr><td>條件待設定</td><td>VIP2 的升級儲值與投注尚未設定。畫面停止計算下一級進度。</td></tr>
+        <tr><td>遊戲紀錄</td><td>由本機產生的 100 筆 Mock 資料。可依最近 30 天日期區間查詢。</td></tr>
+        </tbody></table>
+        <div class="warning"><strong>「目前 VIP」與「歷史最高 VIP」不可互相替代。</strong></div>
+        <p>例：會員目前為 VIP6、歷史最高為 VIP8。畫面必須以 VIP6 顯示目前權益、升級與保級條件。VIP8只顯示於歷史最高欄位。</p>
+
+        <h4>4. 畫面內容</h4>
+        <p>個人資訊由五個區塊組成。</p>
+        <table><colgroup><col style="width:20%"><col style="width:80%"></colgroup><thead><tr><th>區塊</th><th>內容</th></tr></thead><tbody>
+        <tr><td>1. 主彈窗標頭</td><td>英文眉標 <code>PLAYER PROFILE</code>、中文標題「個人資訊」、關閉按鈕。</td></tr>
+        <tr><td>2. 共用玩家摘要</td><td>頭像、暱稱、目前 VIP、帳號、ID、金幣、銀幣、銅幣。</td></tr>
+        <tr><td>3. 頁籤導覽</td><td>依序為「基本資料」「帳號綁定」「VIP 等級」「遊戲紀錄」。頁籤只顯示文字。</td></tr>
+        <tr><td>4. 頁籤內容</td><td>依目前頁籤顯示表單、狀態、VIP 資訊或遊戲紀錄。</td></tr>
+        <tr><td>5. 巢狀彈窗</td><td>頭像選擇、一次性資料確認、VIP 等級總覽。</td></tr>
+        </tbody></table>
+        <p style="color:var(--muted)">*以上內容可以根據設計做調整，非必須</p>
+
+        <p><strong>4.1 入口與關閉</strong></p>
+        <ul>
+        <li>會員登入 Lobby 後，點擊 Header 的玩家頭像、暱稱或 VIP 資訊區，開啟個人資訊。</li>
+        <li>開啟時固定顯示「基本資料」。</li>
+        <li>關閉後再次開啟，仍固定回到「基本資料」。</li>
+        <li>主彈窗與巢狀彈窗都使用右上角關閉按鈕。</li>
+        <li>點擊背景遮罩不會關閉彈窗。</li>
+        <li>關閉巢狀彈窗只關閉該層，不關閉個人資訊主彈窗。</li>
+        </ul>
+
+        <p><strong>4.2 共用玩家摘要</strong></p>
+        <p>共用玩家摘要在四個頁籤中持續顯示。更換頭像或修改暱稱後，摘要會同步更新。</p>
+
+        <p><strong>4.3 基本資料</strong></p>
+        <p>由七個欄位與一個儲存操作組成。生日或電子郵件首次保存非空值時，會先開啟一次性資料確認。</p>
+
+        <p><strong>4.4 帳號綁定</strong></p>
+        <p>帳號綁定包含 <strong>手機號碼</strong> 與 <strong>Google</strong> 兩張功能卡。每張卡分別顯示未綁定、處理中或已綁定狀態。</p>
+
+        <p><strong>4.5 VIP 等級</strong></p>
+        <p>VIP 等級包含四個主要資訊區塊。</p>
+        <table><colgroup><col style="width:18%"><col style="width:82%"></colgroup><thead><tr><th>區塊</th><th>內容</th></tr></thead><tbody>
+        <tr><td>目前等級</td><td>目前 VIP、名稱、歷史最高、排程提示、歷史儲值、歷史投注、本月活躍天數與等級總覽入口。</td></tr>
+        <tr><td>等級權益</td><td>P2P 贈禮手續費、本級升級獎勵與獎勵狀態。</td></tr>
+        <tr><td>升級條件</td><td>下一級、歷史儲值進度、本月有效投注進度、資料要求與剩餘差額。</td></tr>
+        <tr><td>保級狀態</td><td>本月儲值、本月投注、活躍天數、達標狀態與本月升級保護。</td></tr>
+        </tbody></table>
+        <p>VIP 等級總覽顯示 VIP0～VIP15。欄位依序為 <strong>等級</strong>、<strong>升級條件</strong>、<strong>保級條件</strong>、<strong>升級獎勵</strong> 與 <strong>贈禮手續費</strong>。</p>
+
+        <p><strong>4.6 遊戲紀錄</strong></p>
+        <p>遊戲紀錄包含日期查詢、查詢前提示、查無資料提示、結果表格與分頁控制。</p>
+
+        <h4>5. 欄位說明</h4>
+        <p><strong>5.1 共用玩家摘要</strong></p>
+        <table><colgroup><col style="width:5%"><col style="width:13%"><col style="width:50%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>頭像</td><td>會員目前的頭像。可開啟頭像選擇。</td><td>使用預設頭像 ID 1。</td></tr>
+        <tr><td>2</td><td>暱稱</td><td>會員顯示名稱。過長時截斷。</td><td>必有值。</td></tr>
+        <tr><td>3</td><td>目前 VIP</td><td>顯示 VIP0～VIP15。</td><td>以 VIP0 顯示。</td></tr>
+        <tr><td>4</td><td>帳號</td><td>登入帳號。</td><td>必有值。</td></tr>
+        <tr><td>5</td><td>ID</td><td>會員識別碼。</td><td>必有值。</td></tr>
+        <tr><td>6</td><td>金幣</td><td>錢包金幣餘額。</td><td>顯示 0。</td></tr>
+        <tr><td>7</td><td>銀幣</td><td>錢包銀幣餘額。</td><td>顯示 0。</td></tr>
+        <tr><td>8</td><td>銅幣</td><td>錢包銅幣餘額。</td><td>顯示 0。</td></tr>
+        </tbody></table>
+        <p>新建 Mock 使用者的金幣、銀幣與銅幣預設皆為 10,000,000。</p>
+
+        <p><strong>5.2 基本資料</strong></p>
+        <table><colgroup><col style="width:5%"><col style="width:11%"><col style="width:52%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>帳號</td><td>登入帳號。唯讀。</td><td>必有值。</td></tr>
+        <tr><td>2</td><td>暱稱</td><td>必填。trim 後不可空白。最多 20 字元。可持續修改。</td><td>顯示驗證錯誤「請輸入暱稱」。</td></tr>
+        <tr><td>3</td><td>ID</td><td>會員識別碼。唯讀。</td><td>必有值。</td></tr>
+        <tr><td>4</td><td>生日</td><td>選填。有效範圍為 1900-01-01 至今日往前 18 年。第一次保存非空值後鎖定。</td><td>留空並顯示「僅能設定一次，玩家須年滿 18 歲」。</td></tr>
+        <tr><td>5</td><td>電子郵件</td><td>選填。非空時必須符合電子郵件格式。第一次保存非空值後鎖定。</td><td>留空並顯示 <code>name@example.com</code>。</td></tr>
+        <tr><td>6</td><td>手機號碼</td><td>唯讀。由帳號綁定頁籤更新。</td><td>顯示「尚未綁定」。</td></tr>
+        <tr><td>7</td><td>個人簡介</td><td>選填。最多 120 字元。顯示即時計數。可持續修改。</td><td>留空並顯示「介紹一下自己吧」。</td></tr>
+        </tbody></table>
+        <p>規則：</p>
+        <ul>
+        <li>暱稱與個人簡介保存時會 trim。</li>
+        <li>生日或電子郵件首次保存非空值前，必須顯示待鎖定內容。</li>
+        <li>玩家選擇「返回修改」或關閉確認層時，不會寫入資料。</li>
+        <li>已鎖定的生日與電子郵件不可在原型再次修改。</li>
+        </ul>
+
+        <p><strong>5.3 帳號綁定</strong></p>
+        <p>5.3.1 手機號碼</p>
+        <table><colgroup><col style="width:5%"><col style="width:13%"><col style="width:50%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>綁定狀態</td><td>未綁定或已綁定。</td><td>顯示「未綁定」。</td></tr>
+        <tr><td>2</td><td>手機號碼</td><td>只接受數字。限制 10 碼。格式為 09 開頭的台灣手機號碼。</td><td>留空並顯示 <code>0912345678</code>。</td></tr>
+        <tr><td>3</td><td>OTP</td><td>只接受數字。最多 6 碼。Mock 固定為 123456。</td><td>留空並顯示「請輸入 123456」。</td></tr>
+        <tr><td>4</td><td>重發倒數</td><td>發送後由 60 秒倒數至 0。</td><td>尚未發送時不顯示倒數。</td></tr>
+        </tbody></table>
+        <p>5.3.2 Google</p>
+        <table><colgroup><col style="width:5%"><col style="width:15%"><col style="width:48%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>綁定狀態</td><td>未綁定、連線中或已綁定。</td><td>顯示「未綁定」。</td></tr>
+        <tr><td>2</td><td>Google 帳號</td><td>原型只保存是否已綁定，不保存帳號名稱。</td><td>已綁定時顯示「Google 帳號已連結」。</td></tr>
+        </tbody></table>
+        <p>Google 已綁定不列入 VIP 升級門檻，也不可替代 Email 已綁定。</p>
+
+        <p><strong>5.4 VIP 等級</strong></p>
+        <p>5.4.1 會員 VIP 欄位</p>
+        <table><colgroup><col style="width:5%"><col style="width:13%"><col style="width:50%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>目前等級</td><td>會員目前生效的 VIP 與等級名稱。</td><td>顯示 VIP0。</td></tr>
+        <tr><td>2</td><td>歷史最高</td><td>會員曾達成的最高 VIP。</td><td>使用目前等級。</td></tr>
+        <tr><td>3</td><td>歷史累積儲值</td><td>升級進度使用的歷史儲值。</td><td>顯示 0。</td></tr>
+        <tr><td>4</td><td>歷史累積投注</td><td>會員歷史投注摘要。</td><td>顯示 0。</td></tr>
+        <tr><td>5</td><td>本月活躍天數</td><td>本月有有效行為的天數。</td><td>顯示 0 天。</td></tr>
+        <tr><td>6</td><td>P2P 贈禮手續費</td><td>目前等級的現行費率。</td><td>顯示 5%。</td></tr>
+        <tr><td>7</td><td>本級升級獎勵</td><td>目前等級對應的幣別與數量。</td><td>顯示「無」。</td></tr>
+        <tr><td>8</td><td>獎勵狀態</td><td>VIP0 顯示不適用。VIP1+ 的 Mock 顯示已發放。</td><td>顯示「不適用」。</td></tr>
+        <tr><td>9</td><td>下一級</td><td>大於目前等級的第一個等級。</td><td>VIP15 顯示「最高等級」。</td></tr>
+        <tr><td>10</td><td>升級儲值進度</td><td>歷史累積儲值與下一級目標。</td><td>目標未設定時顯示「條件待設定」。</td></tr>
+        <tr><td>11</td><td>升級投注進度</td><td>本月有效投注與下一級目標。</td><td>目標未設定時顯示「條件待設定」。</td></tr>
+        <tr><td>12</td><td>資料要求</td><td>下一級需要的資料條件。</td><td>顯示「無額外要求」。</td></tr>
+        <tr><td>13</td><td>本月儲值</td><td>目前等級保級進度。</td><td>顯示 0。</td></tr>
+        <tr><td>14</td><td>本月投注</td><td>目前等級保級進度。</td><td>顯示 0。</td></tr>
+        <tr><td>15</td><td>保級活躍天數</td><td>目前等級保級進度。</td><td>顯示 0 天。</td></tr>
+        <tr><td>16</td><td>保級狀態</td><td>本月升級保護、目前已達標、尚未達標或無條件保級。</td><td>無保級條件時顯示「無條件保級」。</td></tr>
+        </tbody></table>
+        <p>5.4.2 VIP0～VIP15 數值</p>
+        <p>以《VIP 機制規格書 V3｜完整 PRD》內容為主。</p>
+        <p>5.4.3 VIP 判定規則</p>
+        <p>以《VIP 機制規格書 V3｜完整 PRD》內容為主。</p>
+
+        <p><strong>5.5 遊戲紀錄</strong></p>
+        <table><colgroup><col style="width:5%"><col style="width:13%"><col style="width:50%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>開始日期</td><td>查詢起日。限制今天往前 30 天至今天。</td><td>預設今天往前 30 天。</td></tr>
+        <tr><td>2</td><td>結束日期</td><td>查詢迄日。限制今天往前 30 天至今天。</td><td>預設今天。</td></tr>
+        <tr><td>3</td><td>編號</td><td>目前查詢結果中的連續序號。</td><td>不顯示結果列。</td></tr>
+        <tr><td>4</td><td>遊戲名稱</td><td>Mock 遊戲名稱。</td><td>顯示「未命名遊戲」。</td></tr>
+        <tr><td>5</td><td>投注額</td><td>該筆投注。</td><td>顯示 0。</td></tr>
+        <tr><td>6</td><td>贏分</td><td>該筆輸贏。正數加 <code>+</code>。</td><td>顯示 0。</td></tr>
+        <tr><td>7</td><td>錢包餘額</td><td>該筆紀錄後的 Mock 餘額。</td><td>顯示 0。</td></tr>
+        </tbody></table>
+        <p>時間用於篩選，但目前結果表格不顯示時間欄位。</p>
+
+        <p><strong>5.6 頭像選擇</strong></p>
+        <table><colgroup><col style="width:5%"><col style="width:15%"><col style="width:48%"><col style="width:32%"></colgroup><thead><tr><th>#</th><th>欄位</th><th>內容</th><th>無資料時顯示</th></tr></thead><tbody>
+        <tr><td>1</td><td>頭像頁籤</td><td>顯示 20 個頭像。ID 1～10 可選。ID 11～20 鎖定。</td><td>必有資料。</td></tr>
+        <tr><td>2</td><td>頭像框頁籤</td><td>顯示「即將開放」。</td><td>不提供頭像框資料。</td></tr>
+        <tr><td>3</td><td>鎖定提示</td><td>ID 11 顯示 VIP 5+。ID 12～15 顯示 VIP 10+。ID 16～20 顯示活動獎勵。</td><td>顯示 <code>???</code>。</td></tr>
+        </tbody></table>
+
+        <h4>6. 狀態說明</h4>
+        <p><strong>6.1 個人資訊頁籤狀態</strong></p>
+        <table><colgroup><col style="width:16%"><col style="width:18%"><col style="width:66%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>profile</code></td><td>基本資料</td><td>預設頁籤。</td></tr>
+        <tr><td><code>bindings</code></td><td>帳號綁定</td><td>顯示手機與 Google。</td></tr>
+        <tr><td><code>vip</code></td><td>VIP 等級</td><td>顯示 VIP 資訊與等級總覽入口。</td></tr>
+        <tr><td><code>history</code></td><td>遊戲紀錄</td><td>顯示日期查詢與紀錄結果。</td></tr>
+        </tbody></table>
+        <p>頁籤狀態不保存。關閉後再次開啟固定回到 <code>profile</code>。</p>
+
+        <p><strong>6.2 基本資料狀態</strong></p>
+        <table><colgroup><col style="width:16%"><col style="width:20%"><col style="width:64%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>editable</code></td><td>可輸入</td><td>暱稱與個人簡介可持續修改。未設定的生日與電子郵件可輸入。</td></tr>
+        <tr><td><code>locked</code></td><td>已設定並鎖定</td><td>生日或電子郵件已有非空值。</td></tr>
+        <tr><td><code>confirming</code></td><td>確認一次性資料</td><td>本次首次設定生日或電子郵件。尚未寫入。</td></tr>
+        <tr><td><code>saving</code></td><td>儲存中…</td><td>Mock 保存延遲 500ms。按鈕停用。</td></tr>
+        <tr><td><code>saved</code></td><td>基本資料已更新</td><td>保存完成並顯示成功 Toast。</td></tr>
+        <tr><td><code>invalid</code></td><td>欄位錯誤文字</td><td>任一欄位未通過驗證。資料不會保存。</td></tr>
+        </tbody></table>
+
+        <p><strong>6.3 手機綁定狀態</strong></p>
+        <table><colgroup><col style="width:20%"><col style="width:26%"><col style="width:54%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>phone</code></td><td>輸入手機號碼</td><td>尚未發送 OTP。</td></tr>
+        <tr><td><code>otp</code></td><td>輸入驗證碼</td><td>格式正確後進入 OTP，並啟動 60 秒倒數。</td></tr>
+        <tr><td><code>verifying</code></td><td>驗證中…</td><td>OTP 為 123456。Mock 驗證延遲 650ms。</td></tr>
+        <tr><td><code>bound</code></td><td>已綁定</td><td>手機號碼與綁定狀態已保存。</td></tr>
+        <tr><td><code>invalid_phone</code></td><td>請輸入 09 開頭的 10 碼手機號碼</td><td>手機格式錯誤。</td></tr>
+        <tr><td><code>invalid_otp</code></td><td>驗證碼錯誤，請輸入 123456</td><td>OTP 不符合 Mock 值。</td></tr>
+        </tbody></table>
+        <p>倒數歸零前不可重發。重發會清空 OTP 與錯誤。</p>
+
+        <p><strong>6.4 Google 綁定狀態</strong></p>
+        <table><colgroup><col style="width:16%"><col style="width:22%"><col style="width:62%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>unbound</code></td><td>未綁定／開始綁定</td><td>尚未連結。</td></tr>
+        <tr><td><code>connecting</code></td><td>連線中…</td><td>Mock 連線延遲 850ms。按鈕停用。</td></tr>
+        <tr><td><code>bound</code></td><td>Google 帳號已連結</td><td>Google 綁定狀態已保存。</td></tr>
+        </tbody></table>
+
+        <p><strong>6.5 VIP 狀態</strong></p>
+        <p>6.5.1 升級狀態</p>
+        <table><colgroup><col style="width:20%"><col style="width:24%"><col style="width:56%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>in_progress</code></td><td>目前值／目標值、尚差數值</td><td>下一級條件已設定，至少一項尚未達成。</td></tr>
+        <tr><td><code>completed</code></td><td>已達成</td><td>該項條件已達成。所有條件仍需一起判斷。</td></tr>
+        <tr><td><code>pending_config</code></td><td>條件待設定</td><td>VIP2 門檻未設定。停止計算進度。</td></tr>
+        <tr><td><code>max_level</code></td><td>已達目前最高等級</td><td>目前為 VIP15。沒有下一級。</td></tr>
+        </tbody></table>
+        <p>6.5.2 保級狀態</p>
+        <table><colgroup><col style="width:22%"><col style="width:20%"><col style="width:58%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>unconditional</code></td><td>無條件保級</td><td>目前等級未啟用保級門檻。</td></tr>
+        <tr><td><code>passed</code></td><td>目前已達標</td><td>所有已啟用條件都已達成。</td></tr>
+        <tr><td><code>not_passed</code></td><td>尚未達標</td><td>至少一項已啟用條件尚未達成。</td></tr>
+        <tr><td><code>upgrade_protected</code></td><td>本月升級保護中</td><td>本月曾完成升級。下次月度結算不降級。</td></tr>
+        </tbody></table>
+        <p>6.5.3 獎勵狀態</p>
+        <table><colgroup><col style="width:18%"><col style="width:16%"><col style="width:66%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>not_applicable</code></td><td>不適用</td><td>VIP0 沒有升級獎勵。</td></tr>
+        <tr><td><code>issued</code></td><td>已發放</td><td>VIP1+ 的目前 Mock 顯示。未串接真實帳本。</td></tr>
+        </tbody></table>
+
+        <p><strong>6.6 頭像狀態</strong></p>
+        <table><colgroup><col style="width:16%"><col style="width:22%"><col style="width:62%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>available</code></td><td>頭像名稱</td><td>ID 1～10 可選。</td></tr>
+        <tr><td><code>selected</code></td><td>選取標記</td><td>本次暫存選擇。</td></tr>
+        <tr><td><code>locked</code></td><td>鎖定與解鎖提示</td><td>ID 11～20 不可選。</td></tr>
+        <tr><td><code>unchanged</code></td><td>儲存按鈕停用</td><td>暫存頭像與目前頭像相同。</td></tr>
+        <tr><td><code>saved</code></td><td>頭像已更新</td><td>更新會員頭像並關閉選擇層。</td></tr>
+        <tr><td><code>coming_soon</code></td><td>即將開放</td><td>頭像框頁籤。儲存按鈕停用。</td></tr>
+        </tbody></table>
+
+        <p><strong>6.7 遊戲紀錄狀態</strong></p>
+        <table><colgroup><col style="width:18%"><col style="width:24%"><col style="width:58%"></colgroup><thead><tr><th>值</th><th>顯示</th><th>意思</th></tr></thead><tbody>
+        <tr><td><code>idle</code></td><td>請選擇日期區間後查詢</td><td>尚未按查詢。</td></tr>
+        <tr><td><code>invalid_range</code></td><td>開始日期不可晚於結束日期</td><td>日期區間無效。查詢按鈕停用。</td></tr>
+        <tr><td><code>empty</code></td><td>查無紀錄</td><td>查詢成功但沒有命中資料。</td></tr>
+        <tr><td><code>results</code></td><td>結果表格</td><td>查詢成功且有資料。</td></tr>
+        </tbody></table>
+
+        <h4>7. 查詢、排序與分頁</h4>
+        <p>本章只適用於「遊戲紀錄」。其他頁籤沒有查詢、排序或分頁。</p>
+        <p><strong>7.1 查詢條件</strong></p>
+        <table><colgroup><col style="width:14%"><col style="width:10%"><col style="width:76%"></colgroup><thead><tr><th>欄位</th><th>型態</th><th>說明</th></tr></thead><tbody>
+        <tr><td>開始日期</td><td>日期</td><td>最早為今天往前 30 天。最晚為今天。</td></tr>
+        <tr><td>結束日期</td><td>日期</td><td>最早為今天往前 30 天。最晚為今天。</td></tr>
+        </tbody></table>
+        <p>規則：</p>
+        <ul>
+        <li>日期區間包含開始日與結束日。</li>
+        <li>開始日期不可晚於結束日期。</li>
+        <li>修改日期不會立即查詢。使用者必須按「查詢」。</li>
+        <li>每次查詢完成後回到第 1 頁。</li>
+        <li>本版沒有重置按鈕。</li>
+        </ul>
+        <p><strong>7.2 排序</strong></p>
+        <ul>
+        <li>本版沒有可操作的排序欄位。</li>
+        <li>Mock 紀錄建立後依時間由新到舊排列。</li>
+        <li>時間只用於篩選。結果表格不顯示時間。</li>
+        </ul>
+        <p><strong>7.3 分頁</strong></p>
+        <ul>
+        <li>每頁 10 筆。</li>
+        <li>顯示上一頁、目前頁／總頁數與下一頁。</li>
+        <li>第 1 頁停用上一頁。</li>
+        <li>最後一頁停用下一頁。</li>
+        </ul>
+
+        <h4>8. 操作與跳轉</h4>
+        <table><colgroup><col style="width:20%"><col style="width:26%"><col style="width:54%"></colgroup><thead><tr><th>點擊位置</th><th>前往</th><th>帶入參數</th></tr></thead><tbody>
+        <tr><td>Header 玩家資訊區</td><td>開啟個人資訊</td><td>目前登入會員。</td></tr>
+        <tr><td>基本資料頁籤</td><td>切換主彈窗內容</td><td><code>profile</code>。</td></tr>
+        <tr><td>帳號綁定頁籤</td><td>切換主彈窗內容</td><td><code>bindings</code>。</td></tr>
+        <tr><td>VIP 等級頁籤</td><td>切換主彈窗內容</td><td><code>vip</code>。</td></tr>
+        <tr><td>遊戲紀錄頁籤</td><td>切換主彈窗內容</td><td><code>history</code>。</td></tr>
+        <tr><td>更換頭像</td><td>開啟頭像選擇</td><td>目前 <code>avatarId</code>。</td></tr>
+        <tr><td>儲存資料</td><td>驗證並保存基本資料</td><td>暱稱、生日、電子郵件、個人簡介。</td></tr>
+        <tr><td>確認並儲存</td><td>保存一次性資料</td><td>本次首次設定的生日與電子郵件。</td></tr>
+        <tr><td>發送驗證碼</td><td>進入 OTP 步驟</td><td>手機號碼。</td></tr>
+        <tr><td>確認綁定</td><td>完成手機 Mock 綁定</td><td>手機號碼、OTP。</td></tr>
+        <tr><td>開始綁定</td><td>完成 Google Mock 綁定</td><td>目前登入會員。</td></tr>
+        <tr><td>查看全部等級</td><td>開啟 VIP 等級總覽</td><td>目前 VIP。</td></tr>
+        <tr><td>查詢</td><td>更新遊戲紀錄結果</td><td>開始日期、結束日期。</td></tr>
+        <tr><td>上一頁／下一頁</td><td>切換遊戲紀錄頁碼</td><td>目標頁碼。</td></tr>
+        <tr><td>任一彈窗右上角關閉</td><td>關閉目前層級</td><td>無。未確認的暫存資料不寫入。</td></tr>
+        </tbody></table>
+        <p>所有操作都留在 Lobby。沒有跨頁路由跳轉。</p>
+
+        <h4>9. 頁面狀態</h4>
+        <table><colgroup><col style="width:14%"><col style="width:86%"></colgroup><thead><tr><th>狀態</th><th>顯示方式</th></tr></thead><tbody>
+        <tr><td>載入中</td><td>主彈窗使用本機身份資料，沒有整頁載入狀態。基本資料、手機與 Google 的處理中狀態各自顯示於按鈕。</td></tr>
+        <tr><td>查無資料</td><td>遊戲紀錄查詢成功但沒有結果時顯示「查無紀錄」。未設定的個人欄位依第 5 章顯示。</td></tr>
+        <tr><td>載入失敗</td><td>本版原型不連線遠端資料，因此沒有載入失敗狀態。WEB 接後端前必須另行補充。</td></tr>
+        <tr><td>局部失敗</td><td>本版原型沒有多資料來源，因此沒有局部失敗狀態。WEB 接後端前必須另行補充。</td></tr>
+        <tr><td>無權限</td><td>未登入時不渲染個人資訊，使用者停留於登入流程。登入後沒有獨立的檢視權限。</td></tr>
+        </tbody></table>
+        <div class="warning"><strong>「查無資料」不可顯示為「載入失敗」。</strong></div>
+
+        <h4>10. User Story — 使用者</h4>
+        <table><colgroup><col style="width:9%"><col style="width:23%"><col style="width:22%"><col style="width:21%"><col style="width:25%"></colgroup><thead><tr><th>ID</th><th>身為／我要</th><th>GIVEN</th><th>WHEN</th><th>THEN</th></tr></thead><tbody>
+        <tr><td>US-U01</td><td>身為已登入會員，我要從 Lobby 查看自己的身份與會員資訊。</td><td>我已登入並位於 Lobby。</td><td>點擊 Header 玩家資訊區。</td><td>開啟標題為「個人資訊」的彈窗，預設顯示「基本資料」。</td></tr>
+        <tr><td>US-U02</td><td>身為會員，我要在同一個彈窗查看四類資訊。</td><td>個人資訊已開啟。</td><td>依序點擊基本資料、帳號綁定、VIP 等級與遊戲紀錄。</td><td>內容依頁籤切換，共用玩家摘要持續顯示。</td></tr>
+        <tr><td>US-U03</td><td>身為會員，我要更新暱稱與個人簡介。</td><td>暱稱為 1～20 字元，簡介不超過 120 字元。</td><td>修改欄位並按「儲存資料」。</td><td>顯示「儲存中…」，完成後顯示「基本資料已更新」，左側暱稱同步更新。</td></tr>
+        <tr><td>US-U04</td><td>身為會員，我要在鎖定前確認一次性資料。</td><td>生日與電子郵件尚未設定。</td><td>輸入至少一項並按「儲存資料」。</td><td>顯示「確認一次性資料」，列出本次會鎖定的內容。</td></tr>
+        <tr><td>US-U05</td><td>身為會員，我要以台灣手機號碼完成 Mock 綁定。</td><td>手機尚未綁定，輸入 09 開頭的 10 碼手機號碼。</td><td>發送驗證碼並輸入 123456。</td><td>顯示手機綁定成功，基本資料中的手機號碼同步更新。</td></tr>
+        <tr><td>US-U06</td><td>身為會員，我要連結 Google 作為登入方式。</td><td>Google 尚未綁定。</td><td>點擊「開始綁定」。</td><td>按鈕顯示「連線中…」，完成後顯示「Google 帳號已連結」。</td></tr>
+        <tr><td>US-U07</td><td>身為會員，我要從可用頭像中選擇新的頭像。</td><td>頭像選擇顯示 ID 1～10 可用。</td><td>選擇不同頭像並按「儲存」。</td><td>共用玩家摘要與 Header 使用新頭像，並顯示成功 Toast。</td></tr>
+        <tr><td>US-U08</td><td>身為會員，我要知道目前等級、權益、升級與保級進度。</td><td>一般會員 Mock 為 VIP6。</td><td>開啟 VIP 等級頁籤。</td><td>顯示 VIP6、歷史最高 VIP6、等級權益、VIP7 升級條件與 VIP6 保級狀態。</td></tr>
+        <tr><td>US-U09</td><td>身為會員，我要比較 VIP0～VIP15 的條件與獎勵。</td><td>目前等級為 VIP6。</td><td>點擊「查看全部等級」。</td><td>顯示 16 個等級並定位到 VIP6，VIP6 標示為目前等級。</td></tr>
+        <tr><td>US-U10</td><td>身為會員，我要依日期查看最近 30 天的遊戲紀錄。</td><td>開始日期不晚於結束日期，且兩者都在允許範圍內。</td><td>點擊「查詢」。</td><td>顯示查無紀錄或每頁最多 10 筆的結果，並回到第 1 頁。</td></tr>
+        </tbody></table>
+
+        <h4>11. User Story — 開發人員</h4>
+        <table><colgroup><col style="width:9%"><col style="width:23%"><col style="width:22%"><col style="width:21%"><col style="width:25%"></colgroup><thead><tr><th>ID</th><th>身為／我要</th><th>GIVEN</th><th>WHEN</th><th>THEN</th></tr></thead><tbody>
+        <tr><td>US-D01</td><td>身為開發人員，我要讓四個頁籤共用同一份會員摘要。</td><td>個人資訊已開啟。</td><td>在四個頁籤間切換。</td><td>頭像、暱稱、VIP、帳號、ID 與三幣餘額不重新建立或消失。</td></tr>
+        <tr><td>US-D02</td><td>身為開發人員，我要依資料類型套用不同保存邊界。</td><td>會員修改暱稱並完成一筆金融 Mock 操作。</td><td>重新整理頁面。</td><td>暱稱保留，金融資料回到種子值，三幣餘額各為 10,000,000。</td></tr>
+        <tr><td>US-D03</td><td>身為開發人員，我要避免生日或電子郵件被第二次修改。</td><td>會員已保存非空生日或電子郵件。</td><td>重新整理後再次開啟基本資料。</td><td>已設定欄位顯示原值與「已設定並鎖定」，輸入控制停用。</td></tr>
+        <tr><td>US-D04</td><td>身為開發人員，我要讓手機輸入、OTP、倒數與驗證結果互相一致。</td><td>手機格式有效並已發送 OTP。</td><td>60 秒內查看重發操作。</td><td>顯示剩餘秒數且不可重發，OTP 最多接受 6 碼數字。</td></tr>
+        <tr><td>US-D05</td><td>身為開發人員，我要避免將 Google 綁定誤判為 Email 已綁定。</td><td>會員只完成 Google 綁定，基本資料中的電子郵件仍為空。</td><td>計算資料條件。</td><td>Google 顯示已綁定，Email 仍視為未綁定。</td></tr>
+        <tr><td>US-D06</td><td>身為開發人員，我要以單一順序解讀升級與保級。</td><td>每日或月度判定開始。</td><td>檢查目前會員。</td><td>先判斷升級；本次未升級時才判斷保級；未保級時下降 1 級。</td></tr>
+        <tr><td>US-D07</td><td>身為開發人員，我要避免以 0 代替未設定或最高級條件。</td><td>下一級為 VIP2 或目前等級為 VIP15。</td><td>渲染升級條件。</td><td>VIP2 顯示「條件待設定」；VIP15 顯示「已達目前最高等級」。</td></tr>
+        <tr><td>US-D08</td><td>身為開發人員，我要讓等級總覽定位到登入會員的目前等級。</td><td>目前等級為 VIP6。</td><td>開啟 VIP 等級總覽。</td><td>自動捲動到 VIP6，並只在 VIP6 顯示「目前等級」。</td></tr>
+        <tr><td>US-D09</td><td>身為開發人員，我要讓查詢條件與已套用結果分開。</td><td>使用者已在第 3 頁並修改日期。</td><td>按下「查詢」。</td><td>依新日期篩選資料，並將目前頁重設為第 1 頁。</td></tr>
+        <tr><td>US-D10</td><td>身為開發人員，我要讓巢狀彈窗只影響自己的層級。</td><td>個人資訊與頭像選擇同時開啟。</td><td>關閉頭像選擇。</td><td>頭像選擇關閉，個人資訊仍保持開啟。</td></tr>
+        </tbody></table>
+
+        <h4>12. User Story — QA 驗證者</h4>
+        <table><colgroup><col style="width:9%"><col style="width:23%"><col style="width:22%"><col style="width:21%"><col style="width:25%"></colgroup><thead><tr><th>ID</th><th>身為／我要</th><th>GIVEN</th><th>WHEN</th><th>THEN</th></tr></thead><tbody>
+        <tr><td>US-Q01</td><td>身為 QA，我要確認最新命名已套用。</td><td>已登入 Lobby。</td><td>點擊 Header 玩家資訊區。</td><td>彈窗標題為「個人資訊」，第一個頁籤為「基本資料」，且該頁籤預設選中。</td></tr>
+        <tr><td>US-Q02</td><td>身為 QA，我要確認無效基本資料不能保存。</td><td>暱稱為空白或超過 20 字元，或個人簡介超過 120 字元。</td><td>點擊「儲存資料」。</td><td>對應欄位顯示錯誤，資料不更新。</td></tr>
+        <tr><td>US-Q03</td><td>身為 QA，我要確認一次性欄位保存後不可再次編輯。</td><td>生日與電子郵件尚未設定。</td><td>輸入有效值、確認保存並重新整理。</td><td>兩欄保留原值、顯示鎖定，且不可輸入。</td></tr>
+        <tr><td>US-Q04</td><td>身為 QA，我要確認只有有效手機與指定 OTP 能完成綁定。</td><td>手機尚未綁定。</td><td>依序測試非 09 開頭手機、錯誤 OTP 與 OTP 123456。</td><td>前兩者顯示對應錯誤，123456 完成綁定。</td></tr>
+        <tr><td>US-Q05</td><td>身為 QA，我要確認帳號綁定只保留兩種方式。</td><td>開啟帳號綁定。</td><td>查看全部綁定卡。</td><td>只顯示手機號碼與 Google，不顯示 Facebook、LINE 或 Apple。</td></tr>
+        <tr><td>US-Q06</td><td>身為 QA，我要確認鎖定頭像不可保存。</td><td>開啟頭像選擇。</td><td>測試 ID 1、ID 11 與頭像框頁籤。</td><td>ID 1 可選；ID 11 不可選；頭像框顯示「即將開放」且儲存停用。</td></tr>
+        <tr><td>US-Q07</td><td>身為 QA，我要確認登入類型使用正確的 VIP Mock。</td><td>分別以一般會員與訪客登入。</td><td>開啟 VIP 等級。</td><td>一般會員顯示 VIP6 與既定指標；訪客顯示 VIP0 與 0 指標。</td></tr>
+        <tr><td>US-Q08</td><td>身為 QA，我要確認 VIP 前台只顯示定案內容。</td><td>開啟 VIP 等級與等級總覽。</td><td>檢查 VIP0～VIP15。</td><td>條件、獎勵與 P2P 符合第 5.4 節，且不顯示返水、連續降級、手機或 Email 綁定狀態。</td></tr>
+        <tr><td>US-Q09</td><td>身為 QA，我要確認日期錯誤與查詢結果分開處理。</td><td>開始日期晚於結束日期。</td><td>查看查詢區後改成有效日期並查詢。</td><td>無效時查詢停用並顯示錯誤；有效時顯示查無紀錄或每頁最多 10 筆。</td></tr>
+        <tr><td>US-Q10</td><td>身為 QA，我要確認重新整理與主動登出使用不同的清除規則。</td><td>已修改暱稱、頭像與綁定狀態。</td><td>先重新整理，再主動登出。</td><td>重新整理後資料保留；主動登出後該 Mock 身份資料清除。</td></tr>
+        </tbody></table>
+
+        <h4>13. 驗收標準</h4>
+        <table><colgroup><col style="width:8%"><col style="width:14%"><col style="width:78%"></colgroup><thead><tr><th>ID</th><th>主題</th><th>驗收敘述</th></tr></thead><tbody>
+        <tr><td>AC-01</td><td>入口與命名</td><td>Given 已登入 Lobby；When 點擊 Header 玩家資訊區；Then 開啟「個人資訊」，預設顯示「基本資料」。</td></tr>
+        <tr><td>AC-02</td><td>頁籤</td><td>Given 個人資訊已開啟；When 查看導覽；Then 依序顯示基本資料、帳號綁定、VIP 等級、遊戲紀錄，且不顯示頁籤圖示。</td></tr>
+        <tr><td>AC-03</td><td>共用摘要</td><td>Given 切換任一頁籤；When 查看左側；Then 頭像、暱稱、VIP、帳號、ID 與三幣餘額持續顯示。</td></tr>
+        <tr><td>AC-04</td><td>暱稱與簡介</td><td>Given 暱稱空白或超過 20 字元，或簡介超過 120 字元；When 保存；Then 顯示欄位錯誤且資料不更新。</td></tr>
+        <tr><td>AC-05</td><td>生日限制</td><td>Given 生日早於 1900-01-01 或會員未滿 18 歲；When 保存；Then 顯示生日錯誤且資料不更新。</td></tr>
+        <tr><td>AC-06</td><td>電子郵件格式</td><td>Given 電子郵件非空且格式無效；When 保存；Then 顯示 Email 錯誤且資料不更新。</td></tr>
+        <tr><td>AC-07</td><td>一次性確認</td><td>Given 生日或電子郵件第一次設定非空值；When 保存；Then 顯示一次性資料確認，未確認前不寫入。</td></tr>
+        <tr><td>AC-08</td><td>一次性鎖定</td><td>Given 已確認並保存生日或電子郵件；When 重新整理後開啟基本資料；Then 原值保留且欄位停用。</td></tr>
+        <tr><td>AC-09</td><td>手機格式</td><td>Given 手機尚未綁定；When 輸入非 09 開頭的 10 碼格式並發送；Then 顯示格式錯誤且不進入 OTP。</td></tr>
+        <tr><td>AC-10</td><td>手機 OTP</td><td>Given 已進入 OTP；When 輸入 123456；Then 完成綁定並同步更新基本資料手機欄。</td></tr>
+        <tr><td>AC-11</td><td>OTP 倒數</td><td>Given 已發送 OTP；When 60 秒尚未歸零；Then 顯示剩餘秒數且重發停用。</td></tr>
+        <tr><td>AC-12</td><td>Google 綁定</td><td>Given Google 尚未綁定；When 點擊開始綁定；Then 顯示連線中，完成後顯示已綁定。</td></tr>
+        <tr><td>AC-13</td><td>綁定方式</td><td>Given 開啟帳號綁定；When 查看內容；Then 只顯示手機與 Google。</td></tr>
+        <tr><td>AC-14</td><td>頭像</td><td>Given 開啟頭像選擇；When 選擇 ID 1～10 中不同頭像並保存；Then 更新頭像並關閉選擇層。</td></tr>
+        <tr><td>AC-15</td><td>鎖定頭像</td><td>Given 開啟頭像選擇；When 查看 ID 11～20 與頭像框；Then 鎖定頭像不可選，頭像框顯示即將開放。</td></tr>
+        <tr><td>AC-16</td><td>VIP Mock</td><td>Given 以一般會員與訪客登入；When 開啟 VIP 等級；Then 分別顯示 VIP6 既定指標與 VIP0 的 0 指標。</td></tr>
+        <tr><td>AC-17</td><td>VIP 特殊狀態</td><td>Given 下一級為 VIP2 或目前為 VIP15；When 查看升級條件；Then 分別顯示條件待設定或已達目前最高等級。</td></tr>
+        <tr><td>AC-18</td><td>VIP 總覽</td><td>Given 目前為 VIP6；When 開啟等級總覽；Then 顯示 VIP0～VIP15，定位並標示 VIP6。</td></tr>
+        <tr><td>AC-19</td><td>VIP 排除內容</td><td>Given 開啟 VIP 等級；When 查看全部內容；Then 不顯示返水、連續降級、手機或 Email 綁定狀態、Google 門檻或手動升級。</td></tr>
+        <tr><td>AC-20</td><td>遊戲紀錄</td><td>Given 日期在最近 30 天且開始不晚於結束；When 查詢；Then 顯示查無紀錄或每頁最多 10 筆，且目前頁為第 1 頁。</td></tr>
+        <tr><td>AC-21</td><td>保存邊界</td><td>Given 已修改身份資料並完成金融 Mock；When 重新整理；Then 身份資料保留，錢包與金融資料回到種子值。</td></tr>
+        <tr><td>AC-22</td><td>登出清除</td><td>Given 身份資料已保存；When 主動登出；Then 該 Mock 登入身份與個人資料清除。</td></tr>
+        <tr><td>AC-23</td><td>彈窗範圍</td><td>Given APP 原型為 1280×720；When 開啟主彈窗與任一巢狀彈窗；Then 關閉、頁籤、保存、綁定、查詢與分頁操作都可到達。</td></tr>
+        </tbody></table>
+
+        <h4>14. 這頁需要的資料</h4>
+        <p>正式資料名稱與格式由後端規格定義。本章只描述功能需要的能力。</p>
+        <p><strong>14.1 會員身份摘要</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>目前登入會員。</td></tr>
+        <tr><td>輸出</td><td>暱稱、帳號、會員 ID、頭像、目前 VIP、金幣、銀幣、銅幣。</td></tr>
+        <tr><td>規則</td><td>三幣餘額彼此獨立。沒有值時不可互相代替。</td></tr>
+        </tbody></table>
+        <p><strong>14.2 基本資料</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>暱稱、生日、電子郵件、個人簡介。</td></tr>
+        <tr><td>輸出</td><td>保存後的會員基本資料與生日、電子郵件鎖定狀態。</td></tr>
+        <tr><td>規則</td><td>暱稱必填。生日與電子郵件第一次保存非空值後不可再次修改。個人簡介可重複修改。</td></tr>
+        </tbody></table>
+        <p><strong>14.3 手機綁定</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>手機號碼、OTP。</td></tr>
+        <tr><td>輸出</td><td>發送結果、倒數狀態、驗證結果、已綁定手機號碼。</td></tr>
+        <tr><td>規則</td><td>原型 OTP 固定 123456。正式環境的發送、有效期與錯誤處理由外部服務規格提供。</td></tr>
+        </tbody></table>
+        <p><strong>14.4 Google 綁定</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>目前登入會員與 Google 授權結果。</td></tr>
+        <tr><td>輸出</td><td>未綁定、連線中、已綁定。</td></tr>
+        <tr><td>規則</td><td>Google 不等於 Email。Google 不列入 VIP 資料條件。</td></tr>
+        </tbody></table>
+        <p><strong>14.5 VIP 顯示</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>目前登入會員。</td></tr>
+        <tr><td>輸出</td><td>目前等級、歷史最高、歷史儲值、歷史投注、本月儲值、本月投注、本月活躍天數、本月升級保護、等級規則、獎勵狀態。</td></tr>
+        <tr><td>規則</td><td>等級範圍為 VIP0～VIP15。升級與保級採第 5.4.3 節。歷史最高只供顯示。</td></tr>
+        </tbody></table>
+        <p><strong>14.6 遊戲紀錄查詢</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>開始日期、結束日期、頁碼、每頁筆數。</td></tr>
+        <tr><td>輸出</td><td>符合日期的紀錄、總筆數、總頁數。每筆包含遊戲名稱、投注額、贏分、紀錄後餘額與排序用時間。</td></tr>
+        <tr><td>規則</td><td>日期限制最近 30 天。預設依時間由新到舊。每頁 10 筆。</td></tr>
+        </tbody></table>
+        <p><strong>14.7 頭像</strong></p>
+        <table><colgroup><col style="width:10%"><col style="width:90%"></colgroup><thead><tr><th>需求</th><th>內容</th></tr></thead><tbody>
+        <tr><td>輸入</td><td>目前頭像、暫存選擇。</td></tr>
+        <tr><td>輸出</td><td>頭像清單、可用狀態、鎖定提示與保存後頭像。</td></tr>
+        <tr><td>規則</td><td>原型只允許 ID 1～10。ID 11～20 固定鎖定。</td></tr>
+        </tbody></table>
+        <p><strong>14.8 保存邊界</strong></p>
+        <ul>
+        <li>暱稱、帳號、登入方式、頭像、ID、生日、電子郵件、手機、簡介與手機／Google 綁定隨登入身份保存。</li>
+        <li>重新整理會保留登入身份與上述個人資料。</li>
+        <li>主動登出會清除該 Mock 登入身份。</li>
+        <li>錢包、金融紀錄、VIP 指標與遊戲紀錄不寫入身份保存資料。</li>
+        <li>一般會員 Mock 使用 VIP6。訪客 Mock 使用 VIP0。</li>
+        <li>一般會員 Mock 的 VIP 指標為歷史儲值 48,600、歷史投注 8,920,000、本月儲值 21,500、本月投注 428,000、活躍 18 天，並啟用本月升級保護。</li>
+        <li>訪客的上述 VIP 指標皆為 0，且不啟用本月升級保護。</li>
+        </ul>
+
+        <h4>15. 待確認事項</h4>
+        <p><strong>15.1 待產品決策</strong></p>
+        <table><colgroup><col style="width:8%"><col style="width:62%"><col style="width:30%"></colgroup><thead><tr><th>#</th><th>問題</th><th>影響</th></tr></thead><tbody>
+        <tr><td>Q-01</td><td>VIP2 的歷史儲值與本月投注正式門檻為何</td><td>升級進度、等級總覽、驗收</td></tr>
+        <tr><td>Q-02</td><td>VIP0～VIP15 的 P2P 贈禮手續費是否維持全等級 5%，或改為逐級費率</td><td>等級權益、等級總覽、資料需求</td></tr>
+        <tr><td>Q-03</td><td>VIP1+ 的升級獎勵狀態是否由會員帳本決定，以及可否出現待領取或發放失敗</td><td>等級權益、頁面狀態、驗收</td></tr>
+        <tr><td>Q-04</td><td>頭像 ID 11～20 的 VIP 與活動提示何時改為動態解鎖</td><td>頭像選擇、VIP 關聯、驗收</td></tr>
+        </tbody></table>
+        <p><strong>15.2 待外部輸入</strong></p>
+        <table><colgroup><col style="width:8%"><col style="width:62%"><col style="width:30%"></colgroup><thead><tr><th>#</th><th>問題</th><th>等待對象</th></tr></thead><tbody>
+        <tr><td>Q-05</td><td>VIP 每日升級與月度保級／降級引擎的正式輸出與執行結果</td><td>VIP 後台與後端</td></tr>
+        <tr><td>Q-06</td><td>簡訊發送、OTP 有效期、錯誤分類與頻率限制</td><td>簡訊服務與後端</td></tr>
+        <tr><td>Q-07</td><td>Google OAuth 的正式授權、失敗、取消與解除綁定流程</td><td>身份服務與後端</td></tr>
+        <tr><td>Q-08</td><td>遊戲紀錄正式來源、時間欄位、載入失敗、局部失敗與分頁格式</td><td>遊戲紀錄後端</td></tr>
+        </tbody></table>
+        <p>未確認項目不填入推測答案。取得決策後更新本章，並記錄於版本沿革。</p>
+
+        <h4>16. 版本沿革</h4>
+        <table><colgroup><col style="width:8%"><col style="width:14%"><col style="width:78%"></colgroup><thead><tr><th>版本</th><th>日期</th><th>內容</th></tr></thead><tbody>
+        <tr><td>v1.0</td><td>2026-08-31</td><td>依 APP 原型建立個人資訊與 VIP 前台同步規格。</td></tr>
+        <tr><td>v1.1</td><td>2026-09-01</td><td>依平台規格書標準格式重整為固定 17 章。同步名稱為「個人資訊／基本資料」。補齊無資料顯示、狀態代碼、三方 User Story、資料需求、待確認事項與交付檢查表。</td></tr>
+        </tbody></table>
+        <p>後續變更以最新版為基準建立 v1.x。所有沿革保留，不覆蓋舊紀錄。</p>
+
+        <h4>17. 交付檢查表</h4>
+        <table><colgroup><col style="width:14%"><col style="width:72%"><col style="width:14%"></colgroup><thead><tr><th>檢查面</th><th>完成條件</th><th>確認</th></tr></thead><tbody>
+        <tr><td>文件控制</td><td>六個文件控制欄位皆有內容，且不在本版範圍已明列</td><td></td></tr>
+        <tr><td>章節結構</td><td>1～17 章依固定編號完整保留</td><td></td></tr>
+        <tr><td>命名</td><td>主彈窗使用「個人資訊」，第一頁籤使用「基本資料」</td><td></td></tr>
+        <tr><td>功能邊界</td><td>不做的事與負責來源已列出</td><td></td></tr>
+        <tr><td>欄位</td><td>所有顯示與輸入欄位均列出內容、規則與無資料顯示</td><td></td></tr>
+        <tr><td>狀態</td><td>頁籤、保存、綁定、VIP、頭像與遊戲紀錄狀態分開定義</td><td></td></tr>
+        <tr><td>查詢</td><td>日期限制、觸發時機、排序與每頁 10 筆已定義</td><td></td></tr>
+        <tr><td>操作</td><td>所有入口、頁籤、巢狀彈窗、保存、綁定與查詢均列出參數</td><td></td></tr>
+        <tr><td>頁面狀態</td><td>載入中、查無資料、載入失敗、局部失敗與無權限均有處理說明</td><td></td></tr>
+        <tr><td>User Story</td><td>使用者、開發人員與 QA 各 10 則，且 GIVEN／WHEN／THEN 可觀察</td><td></td></tr>
+        <tr><td>驗收</td><td>23 條驗收皆可實際執行</td><td></td></tr>
+        <tr><td>資料需求</td><td>只描述輸入、輸出與規則，未鎖定 API schema 或路徑</td><td></td></tr>
+        <tr><td>待確認</td><td>待產品決策與待外部輸入分開，未填推測答案</td><td></td></tr>
+        <tr><td>版本</td><td>v1.0 與 v1.1 沿革均保留</td><td></td></tr>
+        <tr><td>實作來源</td><td>APP 原型與《VIP 機制規格書 V3｜完整 PRD》已列為上游依據</td><td></td></tr>
+        </tbody></table>
+      </section>
+
       <section id="s1" class="doc">
         <h3>5. 適用範圍</h3>
         <p>本文件涵蓋所有專案類型共用的部分：需求分流、流程階段與關卡、角色分工、Plane 欄位與卡片規則、規格書規範、QA 與客服表單規則。</p>
@@ -1336,7 +1833,7 @@
   <script>
     var submenuParentOf = {
       'rule-qa': 's15', 'rule-cs': 's15', 'rule-plane': 's15', 'rule-figma': 's15',
-      'ex-qa': 's15', 'ex-platform-plane': 's15', 'ex-game-plane': 's15', 'ex-game-spec': 's15'
+      'ex-qa': 's15', 'ex-platform-plane': 's15', 'ex-game-plane': 's15', 'ex-game-spec': 's15', 'ex-platform-spec': 's15'
     };
     function showDoc(id) {
       document.querySelectorAll('nav button[data-doc]').forEach(b => b.classList.toggle('active', b.dataset.doc === id));
