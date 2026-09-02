@@ -133,7 +133,7 @@
           <button type="button" class="menu-link sub" data-doc="ex-platform-plane">↳ 平台 Plane 使用範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-game-plane">↳ 遊戲 Plane 使用範例</button>
           <button type="button" class="menu-link sub" data-doc="ex-platform-spec">↳ 平台規格書撰寫規範</button>
-          <button type="button" class="menu-link sub" data-doc="ex-game-spec">↳ 遊戲規格書範例</button>
+          <button type="button" class="menu-link sub" data-doc="ex-game-spec">↳ 遊戲規格書撰寫規範</button>
         </div>
         <button type="button" class="menu-link" data-doc="s1">5. 適用範圍</button>
       </nav>
@@ -411,7 +411,7 @@
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-plane')">平台 Plane 使用範例</button></h4><p>單一工作單+子工作項結構、模組/史詩用法、狀態對應表、實際工作單填寫範例</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-plane')">遊戲 Plane 使用範例</button></h4><p>單一共用專案、模組=遊戲/標籤=部門、週期分階段排法、實際工作單填寫範例（含雙重驗收relation示範）</p></div>
           <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-platform-spec')">平台規格書撰寫規範</button></h4><p>後台功能頁/報表頁規格書的章節結構標準：17章固定結構、三方讀者對照、User Story撰寫規則、編號規則、寫作規則、空白骨架，供撰寫平台規格書時比照套用</p></div>
-          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-spec')">遊戲規格書範例</button></h4><p>真實遊戲規格書完整範例（宙斯與黑帝斯 250），含符號賠付表、核心邏輯、QA測試清單等13個章節；素材清單（xlsx）範例待補</p></div>
+          <div class="card"><h4><button type="button" class="linklike" onclick="showDoc('ex-game-spec')">遊戲規格書撰寫規範</button></h4><p>人類撰寫版遊戲規格書模板：15章固定結構（版本歷史～交付與同步備註），含符號賠付表、核心邏輯、美術清單、QA測試清單等每章填寫規則，供撰寫遊戲規格書時比照套用</p></div>
         </div>
       </section>
 
@@ -672,649 +672,251 @@
       </section>
 
       <section id="ex-game-spec" class="doc">
-        <h3>遊戲規格書範例：宙斯與黑帝斯 250<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
-        <p class="lead">取材自真實遊戲規格書「[GOW_ZEUS_HADES_250] 遊戲規格書：宙斯與黑帝斯 250（Zeus vs Hades - Gods of War 250）」（版本 2.3.0，SlotForge，2026-08-11 更新）。以下完整保留原文件的章節結構與數值內容，供規格書撰寫格式參考。</p>
+        <h3>遊戲規格書撰寫規範<span class="eyebrow" style="display:inline-block;margin-left:8px;">擴充文件</span></h3>
+        <p class="lead">人類撰寫版遊戲規格書模板：定義章節結構、每章該寫什麼，供企劃、PM、Math、前端、後端、美術與 QA 共同撰寫。標題格式為 <code>[PROJECT_CODE] 遊戲規格書：&lt;遊戲名稱&gt;</code>。</p>
 
-        <div class="callout">
-          <strong>撰寫規範說明：</strong>
-          <ol>
-            <li>本文件為開發之「單一真相來源（Single Source of Truth）」，所有玩法、數值、UI、美術需求變更請優先更新本文件並留版本歷史。</li>
-            <li>採用標準 Markdown，確保跨部門（企劃 / 前端 / 後端 / 美術 / QA）易讀與 SlotForge Game Spec Reader 解析。</li>
-            <li>內容以 Pragmatic Play Web Demo 版遊戲內規則（<code>docs/PP_Zeus.vs.Hades/</code> 截圖）為主，並以公開 review 補充；本文件為「複刻 / 對齊參考」，實際上線數學與權重以自家數學設定為準。SF-CONTRACT / SF-MATH 由後端團隊自行處理。</li>
-          </ol>
-        </div>
+        <table><colgroup><col style="width:18%"><col style="width:82%"></colgroup><thead><tr><th>屬性</th><th>內容</th></tr></thead><tbody>
+        <tr><td>id</td><td><code>SF-GAME-000</code></td></tr>
+        <tr><td>title</td><td>人類撰寫版遊戲規格書模板</td></tr>
+        <tr><td>type</td><td><code>game-spec</code></td></tr>
+        <tr><td>reader</td><td><code>game-spec</code></td></tr>
+        <tr><td>lifecycle</td><td><code>cross-functional-spec</code></td></tr>
+        <tr><td>audience</td><td>Product、Frontend、Backend、Art、QA</td></tr>
+        <tr><td>status / version / owner / updated</td><td>每次改版更新這四欄，狀態值：draft／...；owner 填實際維護者，updated 填實際日期</td></tr>
+        </tbody></table>
+
+        <div class="callout"><strong>文件定位：</strong>這是給企劃、PM、Math、前端、後端、美術與 QA 閱讀和共同填寫的版本。它與 <code>GAME_SPEC_TEMPLATE.md</code> 使用相同章節與欄位，但將填寫規則直接顯示出來。</div>
+        <div class="warning"><strong>交付前請注意：</strong>完成規格書後，請刪除所有「填寫說明」區塊、placeholder 與未完成範例，再交給 Specs Library 或外部協作者。固定的 §1、§2、§3、§4、§9 標題，以及 §2 的粗體數值 labels 不要改名。</div>
+        <div class="callout"><strong>真相來源：</strong>玩法敘事和設計理由寫在本文件；會被 SlotForge 套用的 shared fields 必須與 <code>exports/slotforge_&lt;project_code&gt;.profile.yaml</code> 同步。詳細權重與 RTP 拆解應放在 SF-MATH，不要在這裡猜測。</div>
 
         <h4>0. 版本歷史 (Changelog)</h4>
-        <table>
-        <thead>
-        <tr>
-        <th>版本</th>
-        <th>日期</th>
-        <th>作者</th>
-        <th>主要變更</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>2.3</td>
-        <td>2026-08-11</td>
-        <td>SlotForge</td>
-        <td>依機率團隊最終定案，將 Super Spin 2 RTP 由 96.60% 調整為 96%；Olympus／Hades、Buy Feature 與所有 Special Bets 的 RTP 統一為 96%，並移除其他營運可調 RTP 版本敘述</td>
-        </tr>
-        <tr>
-        <td>2.2</td>
-        <td>2026-08-11</td>
-        <td>SlotForge</td>
-        <td>依與機率團隊討論後的定案，將 Olympus／Hades、Buy Feature 與 Super Spin 1 的目標 RTP 由 96.56% 調整為 96%；Super Spin 2 維持 96.60%</td>
-        </tr>
-        <tr>
-        <td>2.1</td>
-        <td>2026-08-06</td>
-        <td>SlotForge</td>
-        <td>依機率外包提問回覆並核對官方 Game Rules 截圖：修正 H3 賠率（10/5/2 → 20/10/2）、H4 賠率（5/2.5/1 → 10/5/1）、H2/H3 的 Hades 符號名稱（公牛→三頭犬、梟→火鳳凰）；明確化 WILD 為最高階賠付符號；改寫 Special Bets 說明——保證的是「Wild 落盤」而非「中獎」，並加註不得實作保底中獎</td>
-        </tr>
-        <tr>
-        <td>2.0</td>
-        <td>2026-06-30</td>
-        <td>SlotForge</td>
-        <td>依官方 Web Demo（250 版）重新分析校正：補上 Zeus/Hades 頂級符號、paytable 改為 coins + ×bet、RTP 兩模式皆 96.56%、Buy Feature 與 Special Bets 階層校正、Max Bet $72,000；改編排為統一格式（house style）</td>
-        </tr>
-        <tr>
-        <td>1.0</td>
-        <td>2026-03-24</td>
-        <td>CTO</td>
-        <td>建立旗艦版規格，定義 25,000x 上限與雙波動模式 (Olympus/Hades) 架構</td>
-        </tr>
-        </tbody>
-        </table>
-        <h5>0.1 重要假設與定案</h5>
+        <div class="callout">記錄本版本改了什麼、修改原因、重要假設與定案。每個影響玩法、數值、資料同步或交付範圍的變更，請附 Source ID 或 Decision ID。</div>
+        <table><colgroup><col style="width:10%"><col style="width:16%"><col style="width:16%"><col style="width:58%"></colgroup><thead><tr><th>版本</th><th>日期</th><th>作者</th><th>主要變更</th></tr></thead><tbody>
+        <tr><td>0.1</td><td>YYYY-MM-DD</td><td><code>&lt;姓名&gt;</code></td><td>建立初版</td></tr>
+        </tbody></table>
+
+        <p><strong>0.1 重要假設與定案</strong></p>
+        <div class="callout">只放會影響實作或交付的假設。請標示「暫定／已確認／待確認／不適用」，並能回查 <code>docs/SOURCE_REGISTER.md</code> 或 <code>docs/DECISION_LOG.md</code>。</div>
         <ul>
-        <li><strong>版本基準</strong>：以官方 <strong>Web Demo（Gods of War 250 版）</strong> 為準。</li>
-        <li><strong>盤面 / 線</strong>：5×5、15 條固定 payline。</li>
-        <li><strong>RTP</strong>：Olympus、Hades、Buy Feature 與所有 Special Bets <strong>皆為 96%</strong>。</li>
-        <li><strong>Max Win</strong>：x25,000（base 與 free spins 皆受此上限）。</li>
-        <li><strong>Paytable</strong>：同時提供 coins（截圖 BET 2.00 參考）與 ×total bet（÷2）兩種表示。</li>
-        <li><strong>Paytable 已核對官方</strong>：全表以官方 Game Rules Page 1/8 截圖核對完成（v2.1 修正 H3 數值、H4 數值、H2／H3 的 Hades 符號名稱）。賠率僅 4 個階級，且第 2 階（飛馬／鷹）、第 3 階（頭盔／聖杯）、Low（A~10）各組內數值完全相同。</li>
-        <li><strong>Special Bets 不保證中獎</strong>：官方保證的是「每轉一定有 1 個 Wild 落盤」，擴展仍以「擴展後會產生中獎組合」為條件，<strong>不得實作保底中獎</strong>（見 §4.4）。</li>
-        <li><strong>Project Code / Game ID</strong>：沿用既有 GOW_ZEUS_HADES_250 / 10017（暫定，待正式確認）。</li>
+        <li><strong>版本基準</strong>：</li>
+        <li><strong>盤面</strong>：</li>
+        <li><strong>付費方式</strong>：</li>
+        <li><strong>RTP / Max Win / 波動</strong>：暫定／已確認；來源：<code>SRC-###</code>／<code>DEC-###</code>。</li>
+        <li><strong>持久化</strong>：若有累積 meter，說明是否採座位制；無則註明不需要。</li>
+        <li><strong>Project Code / Game ID</strong>：暫定／已確認。</li>
         </ul>
+
         <h4>1. 遊戲基礎定義 (Identity)</h4>
-        <table>
-        <thead>
-        <tr>
-        <th>屬性</th>
-        <th>規格內容</th>
-        <th>備註</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td><strong>遊戲名稱</strong></td>
-        <td>宙斯與黑帝斯 250 (Zeus vs Hades - Gods of War 250)</td>
-        <td>希臘神話，天界與冥界對決</td>
-        </tr>
-        <tr>
-        <td><strong>遊戲特色</strong></td>
-        <td>5×5、15 Lines。主遊戲可選奧林匹斯或黑帝斯模式，前者比較容易進入免費遊戲，後者較難進入但波動更高。盤面中的倍數 Wild 會整軸展開；進入免費遊戲後，展開過的 Wild 會黏在該軸，倍數也會保留到特色遊戲結束。購買特色遊戲：兩種模式皆可購買標準、Super 1 或 Super 2；越高級的選項會在第一轉保證出現指定倍數的展開 Wild。</td>
-        <td>營運／行銷快速摘要</td>
-        </tr>
-        <tr>
-        <td><strong>原廠</strong></td>
-        <td>Pragmatic Play</td>
-        <td>複刻參考來源（2026/02 推出之 250 supercharged 版）</td>
-        </tr>
-        <tr>
-        <td><strong>Project Code</strong></td>
-        <td>GOW_ZEUS_HADES_250</td>
-        <td>內部識別碼（暫定）</td>
-        </tr>
-        <tr>
-        <td><strong>Game ID</strong></td>
-        <td>10017</td>
-        <td>對應系統 game_type 欄位（暫定）</td>
-        </tr>
-        <tr>
-        <td><strong>輪帶規格</strong></td>
-        <td>5 Reels x 5 Rows</td>
-        <td>5x5 矩陣</td>
-        </tr>
-        <tr>
-        <td><strong>連線機制</strong></td>
-        <td>15 Lines（15 條固定賠付線）</td>
-        <td>左 → 右、自最左輪起算</td>
-        </tr>
-        </tbody>
-        </table>
+        <div class="callout"><strong>本章目的：</strong>建立所有團隊共同使用的遊戲身份與盤面基線。<strong>應填內容：</strong>遊戲名稱、Project Code、Game ID、原廠／參考遊戲、主題、盤面規格、連線或付費機制。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>參考遊戲只寫實際參考的玩法、節奏、UI 或題材；不要把原作未驗證的數值直接當成本款遊戲設定。Project Code 和 Game ID 確認後，要同步 frontmatter、profile.project 與輸出檔名。</div>
+        <table><colgroup><col style="width:16%"><col style="width:44%"><col style="width:40%"></colgroup><thead><tr><th>屬性</th><th>規格內容</th><th>備註</th></tr></thead><tbody>
+        <tr><td><strong>遊戲名稱</strong></td><td></td><td></td></tr>
+        <tr><td><strong>原廠／參考遊戲</strong></td><td></td><td>只寫實際參考範圍</td></tr>
+        <tr><td><strong>Project Code</strong></td><td></td><td>內部識別碼</td></tr>
+        <tr><td><strong>Game ID</strong></td><td></td><td>對應系統 game_type；未知時寫 TBD</td></tr>
+        <tr><td><strong>主題</strong></td><td></td><td></td></tr>
+        <tr><td><strong>輪帶規格</strong></td><td></td><td>例：5 Reels x 4 Rows</td></tr>
+        <tr><td><strong>連線機制</strong></td><td></td><td>例：Lines / Ways / Scatter Pays / Cluster</td></tr>
+        </tbody></table>
+
         <h4>2. 數值模型畫像 (Math Profile)</h4>
+        <div class="callout"><strong>本章目的：</strong>提供跨部門使用的數值摘要，不取代 SF-MATH 詳細模型。</div>
         <ul>
-        <li><strong>目標 RTP（Return to Player）</strong>：96%（Olympus、Hades、Buy Feature 與所有 Special Bets 皆同）</li>
-        <li><strong>波動率（Volatility）</strong>：High（Olympus）/ Very High（Hades）</li>
-        <li><strong>最大贏分（Max Exposure）</strong>：x25,000（base 與 free spins 皆受此上限；FG 達 25,000x 立即結束並沒收剩餘局數）</li>
-        <li><strong>命中率（Hit Rate）</strong>：動態（Olympus 進免遊機率較高、平均免遊贏分較低；Hades 相反）</li>
-        <li><strong>Bet 範圍</strong>：$0.10 – $72,000.00</li>
-        <li><strong>Default Bet</strong>：暫定</li>
+        <li><strong>RTP：</strong>填寫理論／目標值；若 Base、Free Game、Buy Feature、Ante Bet 不同，分別列出並註明計算基準。</li>
+        <li><strong>Volatility：</strong>填寫 Low／Medium／High 等分類，並說明來源或判定方式。</li>
+        <li><strong>Max Exposure：</strong>區分理論 Max Win、硬性 cap 與模擬觀察最高值，不要混成一個數字。</li>
+        <li><strong>Hit Rate：</strong>先定義「命中」口徑（例如任一贏分或特定 Feature 觸發），再填數值、樣本或分析來源。</li>
+        <li><strong>投注欄位：</strong>標示幣別、coin／total bet 基準、bet 範圍與適用模式。</li>
+        <li><strong>狀態與同步：</strong>每個數值標示暫定／已確認；未經 Math sign-off 不得寫成正式結果。Machine Profile v1 對應 <code>math.rtp</code>、<code>math.volatility</code>、<code>math.max_win</code>、<code>math.hit_rate</code>、<code>math.win_tiers</code>。詳細權重、Feature trigger 分布、RTP 拆解和模擬條件放 SF-MATH。</li>
         </ul>
+        <ul>
+        <li><strong>目標 RTP (Return to Player)：</strong><code>暫定／已確認</code></li>
+        <li><strong>波動率 (Volatility)：</strong><code>暫定／已確認</code></li>
+        <li><strong>最大贏分 (Max Exposure)：</strong><code>暫定／已確認</code></li>
+        <li><strong>命中率 (Hit Rate)：</strong><code>暫定／已確認</code></li>
+        <li><strong>Bet 範圍 / 每轉 coin 數：</strong></li>
+        <li><strong>Default Bet：</strong></li>
+        <li><strong>來源與 sign-off：</strong>見 <code>docs/SOURCE_REGISTER.md</code>、<code>docs/DECISION_LOG.md</code>。</li>
+        </ul>
+
         <h4>3. 符號與賠付表 (Symbols &amp; Paytable)</h4>
-        <h5>3.1 特殊符號 (Special Symbols)</h5>
-        <table>
-        <thead>
-        <tr>
-        <th>ID</th>
-        <th>名稱</th>
-        <th>出現範圍</th>
-        <th>功能</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td><strong>SCATTER</strong></td>
-        <td>神殿（Olympus 神殿 / Hades 神殿）</td>
-        <td>僅 reels 1, 3, 5；base game only</td>
-        <td>3 顆觸發 10 次 Free Spins（免遊期間不出現、不可再觸發）</td>
-        </tr>
-        <tr>
-        <td><strong>WILD</strong></td>
-        <td>標準百搭（W）</td>
-        <td>所有輪</td>
-        <td>替代除 SCATTER 外所有符號；無擴展、無倍數</td>
-        </tr>
-        <tr>
-        <td><strong>SP1</strong></td>
-        <td>擴展百搭（Expanding Wild，宙斯 / 黑帝斯金幣）</td>
-        <td>所有輪</td>
-        <td>命中且擴展後能形成連線時，垂直擴展滿軸並帶隨機倍數；倍數套用到其參與的所有中獎組合；同組合多個 → 倍數相加</td>
-        </tr>
-        </tbody>
-        </table>
-        <div class="callout">擴展倍數集合：<strong>2x / 3x / 4x / 5x / 6x / 7x / 8x / 9x / 10x / 20x / 25x / 50x / 100x / 250x</strong>。</div>
-        <h5>3.2 一般符號 (Regular Symbols)</h5>
-        <p>雙模式（Olympus / Hades）符號外觀不同、賠率一致。賠率提供兩種表示：<strong>Coins</strong> 為官方 paytable 顯示值（截圖 BET 2.00 參考）；<strong>×total bet</strong> 為 ÷2 換算。</p>
-        <div class="table-scroll"><table>
-        <thead>
-        <tr>
-        <th>符號</th>
-        <th>等級</th>
-        <th>Olympus / Hades 外觀</th>
-        <th>ID</th>
-        <th style="text-align:right;">5連(coins)</th>
-        <th style="text-align:right;">4連</th>
-        <th style="text-align:right;">3連</th>
-        <th style="text-align:right;">5連(×bet)</th>
-        <th style="text-align:right;">4連</th>
-        <th style="text-align:right;">3連</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>宙斯 / 黑帝斯</td>
-        <td>第 1 階</td>
-        <td>天神 / 冥王</td>
-        <td>H1</td>
-        <td style="text-align:right;">40</td>
-        <td style="text-align:right;">20</td>
-        <td style="text-align:right;">4</td>
-        <td style="text-align:right;">20</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">2</td>
-        </tr>
-        <tr>
-        <td>飛馬 / 三頭犬</td>
-        <td>第 2 階</td>
-        <td>Pegasus / Cerberus</td>
-        <td>H2</td>
-        <td style="text-align:right;">20</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">5</td>
-        <td style="text-align:right;">1</td>
-        </tr>
-        <tr>
-        <td>鷹 / 火鳳凰</td>
-        <td>第 2 階</td>
-        <td>Eagle / Phoenix</td>
-        <td>H3</td>
-        <td style="text-align:right;">20</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">5</td>
-        <td style="text-align:right;">1</td>
-        </tr>
-        <tr>
-        <td>頭盔</td>
-        <td>第 3 階</td>
-        <td>戰盔 / 烈焰盔</td>
-        <td>H4</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">5</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">5</td>
-        <td style="text-align:right;">2.5</td>
-        <td style="text-align:right;">0.5</td>
-        </tr>
-        <tr>
-        <td>聖杯</td>
-        <td>第 3 階</td>
-        <td>聖杯 / 烈焰杯</td>
-        <td>H5</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">5</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">5</td>
-        <td style="text-align:right;">2.5</td>
-        <td style="text-align:right;">0.5</td>
-        </tr>
-        <tr>
-        <td>A</td>
-        <td>Low</td>
-        <td>字母 A</td>
-        <td>L1</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.20</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.5</td>
-        <td style="text-align:right;">0.10</td>
-        </tr>
-        <tr>
-        <td>K</td>
-        <td>Low</td>
-        <td>字母 K</td>
-        <td>L2</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.20</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.5</td>
-        <td style="text-align:right;">0.10</td>
-        </tr>
-        <tr>
-        <td>Q</td>
-        <td>Low</td>
-        <td>字母 Q</td>
-        <td>L3</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.20</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.5</td>
-        <td style="text-align:right;">0.10</td>
-        </tr>
-        <tr>
-        <td>J</td>
-        <td>Low</td>
-        <td>字母 J</td>
-        <td>L4</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.20</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.5</td>
-        <td style="text-align:right;">0.10</td>
-        </tr>
-        <tr>
-        <td>10</td>
-        <td>Low</td>
-        <td>數字 10</td>
-        <td>L5</td>
-        <td style="text-align:right;">2</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.20</td>
-        <td style="text-align:right;">1</td>
-        <td style="text-align:right;">0.5</td>
-        <td style="text-align:right;">0.10</td>
-        </tr>
-        <tr>
-        <td><strong>WILD / 擴展百搭</strong></td>
-        <td>—</td>
-        <td>百搭</td>
-        <td>W / SP1</td>
-        <td style="text-align:right;">40</td>
-        <td style="text-align:right;">20</td>
-        <td style="text-align:right;">4</td>
-        <td style="text-align:right;">20</td>
-        <td style="text-align:right;">10</td>
-        <td style="text-align:right;">2</td>
-        </tr>
-        </tbody>
-        </table></div>
-        <div class="example">
-        <p><strong>✅ 已核對官方 paytable</strong>（<code>docs/PP_Zeus.vs.Hades/</code> Game Rules Page 1/8、Page 2/8，Demo BET $2.00）。coins 欄為官方顯示的現金值，×bet 欄為 ÷2 換算（官方 Page 6/8 明示「BET 顯示 current <strong>total bet</strong>」，故此換算成立）。</p>
-        <p><strong>賠率只有 4 個階級，不是 10 個</strong>：</p>
+        <div class="callout"><strong>本章目的：</strong>讓企劃、Math、前端、後端、美術與 QA 使用同一組 symbol ID、名稱、功能和 paytable。<strong>應填內容：</strong>特殊符號、一般符號、角色、賠付線／Ways／Scatter 判定、Jackpot（若有），以及賠率的明確基準。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>每個 symbol 使用穩定 ID；SlotForge ID 要與 profile 的 flat <code>slotforge.symbols</code> 一致。未確認的 paytable 數字保留狀態和來源，不要以相似遊戲補值。</div>
+
+        <p><strong>3.1 特殊符號 (Special Symbols)</strong></p>
+        <table><colgroup><col style="width:14%"><col style="width:20%"><col style="width:33%"><col style="width:33%"></colgroup><thead><tr><th>ID</th><th>名稱</th><th>出現範圍</th><th>功能</th></tr></thead><tbody>
+        <tr><td>WILD</td><td></td><td></td><td></td></tr>
+        <tr><td>SCATTER</td><td></td><td></td><td></td></tr>
+        <tr><td>SP1</td><td></td><td></td><td></td></tr>
+        </tbody></table>
+
+        <p><strong>3.2 一般符號 (Regular Symbols)</strong></p>
+        <div class="callout">在表格前說明賠率是以 total bet、coin 或其他單位計算；若不同模式有不同 paytable，分開標示。</div>
+        <table><colgroup><col style="width:14%"><col style="width:14%"><col style="width:24%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup><thead><tr><th>符號</th><th>階</th><th>SlotForge ID</th><th>5連</th><th>4連</th><th>3連</th></tr></thead><tbody>
+        <tr><td>H1</td><td>High</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>L1</td><td>Low</td><td></td><td></td><td></td><td></td></tr>
+        </tbody></table>
+
+        <p><strong>3.3 角色 (Character)</strong></p>
+        <div class="callout">只描述角色定位、互動與出現時機；若涉及正式 Spine binding，另依 Animation V1 流程處理。</div>
         <ul>
-        <li>第 1 階 40/20/4：宙斯 / 黑帝斯</li>
-        <li>第 2 階 20/10/2：飛馬（三頭犬）<strong>與</strong> 鷹（火鳳凰）——<strong>兩者數值完全相同</strong></li>
-        <li>第 3 階 10/5/1：頭盔 <strong>與</strong> 聖杯——<strong>兩者數值完全相同，沒有高低之分</strong></li>
-        <li>Low 2/1/0.20：A / K / Q / J / 10 <strong>五個全部相同</strong></li>
+        <li><strong>主視覺角色：</strong></li>
+        <li><strong>角色定位與互動：</strong></li>
         </ul>
-        <p><strong>WILD 本身是會賠付的符號</strong>，賠率與 H1 同階（40/20/4 coins = 20/10/2 ×bet），為全場最高階；標準 WILD 與擴展百搭（SP1）共用這組賠率。</p>
-        </div>
-        <h5>3.3 角色 (Character)</h5>
+
+        <p><strong>3.4 賠付線 (Pay Line)</strong></p>
+        <div class="callout">說明連線／Ways／Scatter Pays／Cluster 的判定方向、起賠條件、同局多組得獎處理與賠率基準。</div>
         <ul>
-        <li><strong>主視覺角色</strong>：天神宙斯 (Zeus) vs 冥王黑帝斯 (Hades)。</li>
-        <li><strong>角色定位與互動</strong>：依選擇的模式，宙斯（藍白閃電）或黑帝斯（紅黑烈焰）立於盤面側邊。
-        <ul>
-        <li><strong>待機</strong>：宙斯手持閃電漂浮；黑帝斯手持雙叉戟燃燒。</li>
-        <li><strong>模式切換</strong>：畫面左側 <code>CHOOSE VOLATILITY</code>（High = Olympus / Very High = Hades）；切換時以閃電 / 火牆全螢幕轉場。</li>
+        <li><strong>連線機制：</strong></li>
+        <li><strong>判定規則：</strong></li>
         </ul>
-        </li>
-        </ul>
-        <h5>3.4 賠付線 (Pay Line)</h5>
-        <ul>
-        <li><strong>連線機制</strong>：15 Lines（15 條固定賠付線）。</li>
-        <li><strong>判定規則</strong>：由最左至右、相鄰輪；每線取最高，不同線相加；線獎依 bet per line。</li>
-        </ul>
+
+        <p><strong>3.5 Jackpot 階梯（若無可刪除）</strong></p>
+        <table><colgroup><col style="width:50%"><col style="width:50%"></colgroup><thead><tr><th>Jackpot</th><th>值（× bet）</th></tr></thead><tbody>
+        <tr><td></td><td></td></tr>
+        </tbody></table>
+
         <h4>4. 遊戲核心邏輯 (Core Mechanics)</h4>
-        <h5>4.1 主遊戲 (Base Game)</h5>
+        <div class="callout"><strong>本章目的：</strong>把玩法寫成前端、後端、Math 和 QA 可以共同驗證的規則。<strong>每個玩法都要寫：</strong>觸發條件、進入流程、盤面／狀態變化、結算、限制、再觸發、退出條件與邊界案例。<strong>分開描述：</strong>Base Game、特殊 Feature、Free Game／Bonus、Buy Feature、Ante Bet，避免把不同模式的權重、成本或結算基準混在一起。</div>
+        <div class="warning"><strong>不要寫成什麼：</strong>本章不是新的 API contract、RNG 實作、完整遊戲 runtime、Animation scenario／sequence 或音效 cue 規格。正式 payload／reconnect／lock 移到 SF-CONTRACT；詳細權重與分布移到 SF-MATH。</div>
+
+        <p><strong>4.1 主遊戲 (Base Game)</strong></p>
         <ul>
-        <li>5×5、15 條固定 payline，左 → 右、自最左輪起算；每線取最高、多線相加。</li>
-        <li>玩家可選擇 <strong>Olympus（High）</strong> 或 <strong>Hades（Very High）</strong> 模式；兩模式 RTP 皆 96%，差異在進免遊機率與免遊平均贏分（Olympus 較易進、爆發較低；Hades 較難進、爆發較高）。</li>
-        <li>結算流程：停輪 → 判定 Expanding Wild 是否能形成連線 → 若能則擴展滿軸並決定倍數 → 計算最終贏分。</li>
+        <li><strong>盤面 / 線數 / 連線判定：</strong></li>
+        <li><strong>特殊符號與倍率：</strong></li>
+        <li><strong>一局生命週期：</strong></li>
         </ul>
-        <h5>4.2 擴展倍數百搭 (Expanding Wild Multipliers)</h5>
+
+        <p><strong>4.2 特殊玩法 / Feature</strong></p>
         <ul>
-        <li>當 Expanding Wild（宙斯 / 黑帝斯金幣，SP1）命中且擴展後能形成連線時，垂直擴展填滿該軸 5 格。</li>
-        <li>擴展後隨機賦予倍數：2x / 3x / 4x / 5x / 6x / 7x / 8x / 9x / 10x / 20x / 25x / 50x / 100x / 250x。</li>
-        <li>倍數套用到該 Expanding Wild 參與的所有中獎組合。</li>
-        <li><strong>倍數相加 (Addition)</strong>：同一中獎組合含多個 Expanding Wild → 倍數先相加再乘上贏分（例：x100 與 x250 → x350）。</li>
+        <li><strong>觸發條件：</strong></li>
+        <li><strong>流程：</strong></li>
+        <li><strong>結算：</strong></li>
+        <li><strong>邊界案例：</strong></li>
         </ul>
-        <h5>4.3 免費遊戲 (Free Spins)</h5>
+
+        <p><strong>4.3 免費遊戲 / Bonus（若無可刪除）</strong></p>
         <ul>
-        <li><strong>觸發</strong>：盤面 reels 1, 3, 5 出現 3 顆 SCATTER。</li>
-        <li><strong>初始次數</strong>：10 次 Free Spins。</li>
-        <li><strong>黏性擴展百搭 (Sticky Expanding Wilds)</strong>：免遊期間任何擴展並帶倍數的 Expanding Wild 會<strong>鎖定 (Sticky)</strong> 在該軸，保留到本輪免遊結束。</li>
-        <li><strong>再觸發</strong>：無（免遊期間不出現 SCATTER）。</li>
-        <li>免遊使用特殊輪帶；達 25,000x 上限時立即結束並沒收剩餘局數。</li>
+        <li><strong>進場條件：</strong></li>
+        <li><strong>局數與再觸發：</strong></li>
+        <li><strong>離場與結算：</strong></li>
         </ul>
-        <h5>4.4 商業化機制 (Commercial Features)</h5>
-        <p><strong>Buy Feature（直接購買免遊；成本以 × total bet 計）</strong>：</p>
+
+        <p><strong>4.4 商業化機制 / Buy Feature（若無可刪除）</strong></p>
         <ul>
-        <li><strong>Olympus</strong>：Buy Free Spins <strong>75x</strong>（標準免遊）；Super Free Spins 1 <strong>300x</strong>（第 1 轉保證 1 個 Expanding Wild 帶隨機倍數、隨機位置）；Super Free Spins 2 <strong>1750x</strong>（第 1 轉保證 1 個 Expanding Wild 帶 100x 倍數）。</li>
-        <li><strong>Hades</strong>：Buy Free Spins <strong>150x</strong>；Super Free Spins 1 <strong>300x</strong>；Super Free Spins 2 <strong>3500x</strong>（第 1 轉保證 1 個 Expanding Wild 帶 250x 倍數）。</li>
-        <li>上述各 Buy 選項 RTP 皆 96%。</li>
+        <li><strong>可用狀態：</strong></li>
+        <li><strong>費用與 bet 基準：</strong></li>
+        <li><strong>選項與結果：</strong></li>
+        <li><strong>拒絕／失效條件：</strong></li>
         </ul>
-        <p><strong>Special Bets（持續性下注模式，非一次性購買）</strong>：</p>
-        <p>玩家在 Olympus / Hades 兩模式下皆可切換 bet multiplier，遊戲行為隨之改變。可選值：<strong>10x（一般玩法）/ 100x（Super Spin 1）/ 3000x（Super Spin 2）</strong>。</p>
-        <ul>
-        <li><strong>Super Spin 1</strong>：bet multiplier 100x（一般 10x 的 10 倍）；每轉<strong>保證 1 個 Wild 帶隨機倍數落在盤面隨機位置</strong>，該 Wild <strong>在「擴展後會產生至少 1 個中獎組合」時才擴展</strong>。RTP 96%（Olympus / Hades 同）。</li>
-        <li><strong>Super Spin 2</strong>：bet multiplier 3000x；每轉<strong>保證 1 個 Wild 帶固定 250x 倍數落在盤面隨機位置</strong>，擴展條件同上。RTP 96%（Olympus / Hades 同）。</li>
-        </ul>
-        <div class="warning">
-        <strong>⚠️ Special Bets 不保證中獎</strong>
-        <p>官方原文（Game Rules Page 3/8）：<em>"on every spin 1 WILD symbol with random multiplier is guaranteed to hit in a random position on the screen <strong>and expands if there will be at least a winning combination</strong>."</em></p>
-        <p><strong>保證的只有「Wild 一定會落在盤面上」</strong>，中獎與否不在保證範圍內。<code>if</code> 子句限定的是<strong>擴展行為</strong>，不是承諾必定形成中獎組合：</p>
-        <ul>
-        <li>Wild 落點若擴展後<strong>無法</strong>構成任何中獎組合 → <strong>不擴展</strong>，該轉可能完全無贏分。</li>
-        <li>這與 base game 的擴展規則一致（Page 2/8：<em>"if there would be any win after expansion, it expands the whole reel"</em>）——Special Bets 只是把「Wild 出現」變成必然事件，擴展與中獎的判定邏輯完全沒有放寬。</li>
-        <li>後端實作注意：<strong>不可</strong>加入「保底中獎」邏輯，否則會使 RTP 高於規格目標的 96%。</li>
-        </ul>
-        <p>同樣的邏輯也適用於 Buy Feature 的 Super Free Spins 1 / 2：官方僅保證第 1 轉「一個擴展 Wild 帶指定倍數命中」，擴展仍受同一條件約束。</p>
-        </div>
-        <h5>4.5 雙模式權重 (Dual Math)</h5>
-        <ul>
-        <li>模式切換不需額外付費，但會改變 Base / Free Game 的底層機率權重（兩模式 RTP 同為 96%，差異在波動與免遊命中 / 爆發）。</li>
-        </ul>
+
         <h4>5. 演出流程說明 (Performance Flow)</h4>
+        <div class="callout"><strong>本章目的：</strong>描述玩家看得到的演出先後、狀態承接與共用規範沿用關係。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>清楚指出 Spin、Stop、Feature 進場、Win presentation、Free Game 進出場的先後；不要在這裡創造新的動畫資料模型、時間 cue 或多 Spine 複合規則。</div>
         <ul>
-        <li><strong>Spin / Stop</strong>：沿用 SF-SYS-001 SPIN 狀態機與 Turbo；收到結果前不顯示 STOP。</li>
-        <li><strong>大獎演出 (Mega Win)</strong>：Olympus 天界開啟、藍白閃電伴金幣噴發；Hades 地獄之門開啟、岩漿與血紅火焰噴發。</li>
-        <li><strong>擴展百搭戰鬥 (Expanding Wild Battle)</strong>：Expanding Wild 觸發時對應神明於該軸展開戰鬥動畫（宙斯擲雷 / 黑帝斯揮冥火），擊中後數字滾動定格於最終倍數（如 x250）。</li>
-        <li><strong>過場 (Transition)</strong>：模式切換時以全螢幕「閃電刷過」或「火牆刷過」無縫轉場。</li>
-        <li><strong>倍數展示</strong>：Expanding Wild 擴展後，倍數標籤需巨大清晰懸浮於該軸上方；同線多倍數時呈現相加結果。</li>
-        <li><strong>Win 分級</strong>：沿用 SF-SYS-001 win presentation 節奏。</li>
+        <li><strong>Spin / Stop：</strong>沿用現行共用 SPIN 狀態機；本款差異：</li>
+        <li><strong>特殊符號 / Feature 演出：</strong></li>
+        <li><strong>Bonus / Free Game 進場：</strong></li>
+        <li><strong>大獎 / Max Win：</strong></li>
+        <li><strong>Win 分級：</strong>沿用共用 win presentation；本款差異：</li>
         </ul>
+
         <h4>6. 介面佈局與 UI (Layout &amp; UI)</h4>
+        <div class="callout"><strong>本章目的：</strong>說明沿用的共用 UI，以及本遊戲需要啟用、隱藏或覆寫的部分。<strong>應填內容：</strong>共用介面、enabled／disabled 元素、位置與尺寸覆寫、popup、遊戲專屬元件、素材來源與狀態。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>只有已確認的 SlotForge canonical slot key 才能放入 hidden／enabled 清單；不要把交易、錢包、平台大廳或尚未核准的 runtime 流程寫成本款 UI contract。</div>
         <ul>
-        <li><strong>共用介面</strong>：底部操作列、漢堡選單、Speed（含 Turbo）、Auto Spin、SPIN、共用 Popup 沿用 <code>SF-SYS-001</code>；本文件僅描述差異與覆寫。</li>
-        <li><strong>差異 / 本遊戲特有</strong>：
-        <ul>
-        <li>左側 <code>CHOOSE VOLATILITY</code> 模式切換（Olympus 藍 / Hades 紅）。</li>
-        <li><code>BUY FEATURE</code>（3 選項）與 <code>SPECIAL BETS</code>（2 選項）面板。</li>
-        <li>SPIN 按鈕依模式改變顏色 / 材質（神聖大理石 vs 熔岩黑曜石）。</li>
-        <li>Expanding Wild 倍數標籤巨大懸浮。</li>
+        <li><strong>共用介面：</strong>底部操作列、漢堡選單、Speed、Auto Spin、SPIN、共用 Popup 沿用 SlotForge 共用規範；本文件只描述差異與覆寫。</li>
+        <li><strong>需要啟用的元素：</strong></li>
+        <li><strong>需要隱藏的元素：</strong></li>
+        <li><strong>差異／覆寫：</strong></li>
+        <li><strong>本遊戲特有 UI：</strong></li>
         </ul>
-        </li>
-        </ul>
+
         <h4>7. 美術清單 (Art Checklist)</h4>
-        <table>
-        <thead>
-        <tr>
-        <th>類別</th>
-        <th>Slot Key</th>
-        <th>用途</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>背景</td>
-        <td>background_main / background_free</td>
-        <td>Olympus 雲海神殿 / Hades 岩漿深淵（兩套）</td>
-        </tr>
-        <tr>
-        <td>符號 High</td>
-        <td>symbol_h1 ~ symbol_h5</td>
-        <td>宙斯·黑帝斯 / 飛馬·三頭犬 / 鷹·火鳳凰 / 頭盔 / 聖杯（各兩套外觀）</td>
-        </tr>
-        <tr>
-        <td>符號 Low</td>
-        <td>symbol_l1 ~ symbol_l5</td>
-        <td>A / K / Q / J / 10（兩套外觀）</td>
-        </tr>
-        <tr>
-        <td>符號特殊</td>
-        <td>symbol_wild</td>
-        <td>標準 Wild（W）</td>
-        </tr>
-        <tr>
-        <td>符號特殊</td>
-        <td>symbol_sp1</td>
-        <td>Expanding Wild（宙斯 / 黑帝斯金幣，含倍數標籤）</td>
-        </tr>
-        <tr>
-        <td>符號特殊</td>
-        <td>symbol_scatter</td>
-        <td>神殿 Scatter（兩套）</td>
-        </tr>
-        <tr>
-        <td>角色</td>
-        <td>character_zeus / character_hades</td>
-        <td>宙斯（藍白）/ 黑帝斯（紅黑），含待機 / 戰鬥 / 勝利</td>
-        </tr>
-        <tr>
-        <td>UI</td>
-        <td>ui_mode_toggle / button_buy_feature / ui_special_bets</td>
-        <td>模式切換、Buy Feature、Special Bets 面板</td>
-        </tr>
-        <tr>
-        <td>特效</td>
-        <td>—</td>
-        <td>藍白閃電 / 紅黑岩漿兩套連線框、過場火牆·雷網、250x 高光</td>
-        </tr>
-        </tbody>
-        </table>
-        <h5>7.1 Gameinfo HTML 需呈現內容（依 SF-CONTENT-001）</h5>
-        <p>依序：Header → Paytable（§3，coins 與 ×bet、15 線）→ Main Game（§4.1 / 4.2，擴展百搭與雙模式）→ Free Spins（§4.3，sticky 擴展百搭）→ Buy Feature / Special Bets（§4.4）→ Special Features（Wild / Expanding Wild / 倍數 2x~250x）→ Rules &amp; Compliance（RTP 96% / 波動 / Max Win 25,000x / 斷線重連）→ Controls（沿用共用介面、含 Turbo / Autoplay）。</p>
+        <div class="callout"><strong>本章目的：</strong>提供美術交付與 SlotForge asset mapping 的可回查摘要。<strong>每列應填：</strong>Slot Key、用途、規格尺寸、Applicability（required／optional／not_applicable／needs_decision）、canonical filename 與 Source ID。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>正式母檔與大型資產不要放進這個文件型專案；Standard 110 只是版本化 catalog，不代表模板列出的每個 slot 都是 required。</div>
+        <table><colgroup><col style="width:12%"><col style="width:18%"><col style="width:18%"><col style="width:12%"><col style="width:20%"><col style="width:20%"></colgroup><thead><tr><th>類別</th><th>Slot Key</th><th>用途</th><th>尺寸</th><th>Applicability</th><th>檔名／來源</th></tr></thead><tbody>
+        <tr><td>背景</td><td><code>background_main</code></td><td></td><td></td><td>required / optional</td><td></td></tr>
+        <tr><td>符號 High</td><td><code>symbol_h1 ~</code></td><td></td><td></td><td>required / optional</td><td></td></tr>
+        <tr><td>符號 Low</td><td><code>symbol_l1 ~</code></td><td></td><td></td><td>required / optional</td><td></td></tr>
+        <tr><td>符號特殊</td><td><code>symbol_wild / symbol_scatter / symbol_sp*</code></td><td></td><td></td><td>required / optional</td><td></td></tr>
+        <tr><td>UI</td><td></td><td></td><td></td><td>required / optional</td><td></td></tr>
+        </tbody></table>
+
+        <p><strong>7.1 Gameinfo HTML 需呈現內容</strong></p>
+        <div class="callout">依序整理 Header → Paytable → Main Game → Free Game / Bonus → Special Features → Jackpot（若有）→ Rules &amp; Compliance（RTP / 波動 / Max Win / 斷線重連）→ Controls。若內容尚未確認，標示來源和待確認事項。</div>
+
         <h4>8. 前後端資料需求 (Technical &amp; Dev Notes)</h4>
-        <table>
-        <thead>
-        <tr>
-        <th>資料</th>
-        <th>說明</th>
-        <th>來源</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>Spin Result</td>
-        <td>5×5 盤面、各中獎線、Expanding Wild 位置與擴展倍數</td>
-        <td>Backend</td>
-        </tr>
-        <tr>
-        <td>Win Breakdown</td>
-        <td>線獎、倍數相加套用結果、單局總贏分</td>
-        <td>Backend</td>
-        </tr>
-        <tr>
-        <td>Mode</td>
-        <td>目前模式（Olympus / Hades）；<code>/bet</code> 需帶 <code>mode</code> 決定走哪套權重</td>
-        <td>Frontend → Backend</td>
-        </tr>
-        <tr>
-        <td>Feature State</td>
-        <td>是否免遊中、剩餘免費局數、<code>sticky_wilds_array</code>（鎖定軸與倍數）</td>
-        <td>Backend</td>
-        </tr>
-        <tr>
-        <td>Buy / Special Bet</td>
-        <td>Buy Feature 選項 / Super Spin 模式與保底旗標</td>
-        <td>Backend</td>
-        </tr>
-        <tr>
-        <td>Award Cap</td>
-        <td>是否達 25,000x、截斷狀態</td>
-        <td>Backend</td>
-        </tr>
-        <tr>
-        <td>Balance</td>
-        <td>回合後餘額</td>
-        <td>Backend</td>
-        </tr>
-        <tr>
-        <td>Reconnect Snapshot</td>
-        <td>還原模式、免遊剩餘局數、sticky 擴展百搭與倍數</td>
-        <td>Backend</td>
-        </tr>
-        </tbody>
-        </table>
-        <div class="callout">SF-CONTRACT / SF-MATH 由後端 / 外包處理：雙套 RTP 權重、Super Buy 保底權重、sticky state schema、reconnect、idempotency。</div>
+        <div class="callout"><strong>本章目的：</strong>提供實作團隊的需求摘要，不取代正式 API／event contract。<strong>每列應填：</strong>資料名稱、用途、權威來源、生命週期與狀態。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>前端猜測的 payload 或不存在的 API 不得寫成已確認資料；正式 request／response、error、reconnect、idempotency 和 round lock 另建 SF-CONTRACT。</div>
+        <table><colgroup><col style="width:20%"><col style="width:38%"><col style="width:20%"><col style="width:22%"></colgroup><thead><tr><th>資料</th><th>說明</th><th>權威來源</th><th>狀態</th></tr></thead><tbody>
+        <tr><td>Spin Result</td><td></td><td>Backend</td><td>待確認</td></tr>
+        <tr><td>Win Breakdown</td><td></td><td>Backend</td><td>待確認</td></tr>
+        <tr><td>Feature State</td><td></td><td>Backend</td><td>待確認</td></tr>
+        <tr><td>Balance</td><td></td><td>Backend</td><td>待確認</td></tr>
+        <tr><td>Reconnect Snapshot</td><td></td><td>Backend</td><td>待確認</td></tr>
+        </tbody></table>
+
         <h4>9. QA 測試清單 (QA Checklist)</h4>
-        <ul>
-        <li>☐ 盤面 5×5 與 15 條固定 payline、左起連線判定正確。</li>
-        <li>☐ Paytable 與 §3 一致（coins 與 ×bet 兩欄一致）；H1 為宙斯 / 黑帝斯頂級符號；WILD 與 Expanding Wild 同 H1 賠率。</li>
-        <li>☐ SCATTER 僅出現於 reels 1/3/5、base only；3 顆觸發 10 次免遊；免遊不出 SCATTER、不可再觸發。</li>
-        <li>☐ Expanding Wild：能形成連線才擴展滿軸；倍數集合 2x~250x；同組合多個倍數相加。</li>
-        <li>☐ 免遊 sticky：擴展並帶倍數的 Expanding Wild 鎖定到本輪結束。</li>
-        <li>☐ 雙模式：Olympus / Hades RTP 皆 96%；切換正確帶 <code>mode</code> 參數、避免 Spin 瞬間切換送錯參數。</li>
-        <li>☐ Buy Feature：Olympus 75x / Super1 300x / Super2 1750x；Hades 150x / Super1 300x / Super2 3500x；保底第 1 轉表現正確。</li>
-        <li>☐ Special Bets：Super Spin 1（100x、保證 1 Wild 落盤帶隨機倍數）/ Super Spin 2（3000x、保證 1 Wild 落盤帶 250x），兩者 RTP 皆為 96%。</li>
-        <li>☐ <strong>Special Bets 反向驗證</strong>：Wild 落點若擴展後無法構成中獎組合，必須「不擴展且該轉無贏分」——需實跑或模擬確認存在無贏分的轉，證明沒有被誤實作成保底中獎。</li>
-        <li>☐ 倍數相加：同線 x250 + x250 應為 x500（加法非乘法）。</li>
-        <li>☐ Max Win 25,000x 截斷：突破時即時終止剩餘局數並派彩。</li>
-        <li>☐ 斷線重連：還原模式、免遊剩餘局數、sticky 擴展百搭與倍數。</li>
-        <li>☐ Gameinfo HTML 內容與本文件一致，paytable 數字可校對。</li>
+        <div class="callout"><strong>本章目的：</strong>把規格轉成可執行的驗收案例。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>每項要能回答「在什麼條件下，預期看到什麼結果，以及要和哪個來源／profile 欄位比對」；不要只寫「功能正常」。</div>
+        <ul class="check">
+        <li>盤面尺寸與付費方式正確。</li>
+        <li>所有符號、SlotForge ID 與 paytable 一致。</li>
+        <li>主遊戲特殊機制正確，無贏分與有特殊符號的邊界案例已定義。</li>
+        <li>Free Game / Bonus / Buy Feature 觸發、局數、成本與結算正確。</li>
+        <li>最大贏分、RTP、波動與 Hit Rate 的狀態與標示正確。</li>
+        <li>UI enabled／disabled、hidden slots 與特有元件和 profile 一致。</li>
+        <li>素材清單命名符合已核准的 canonical naming；缺漏有來源和狀態。</li>
+        <li>Google Sheet 連結、gid、CSV export 與摘要可回查。</li>
+        <li>Machine Profile 通過 v1 validator，YAML／JSON round-trip 不遺失有效資料。</li>
+        <li>GDD 與 profile 的 shared fields 沒有差異。</li>
         </ul>
-        <h4>10. 其他題材發想 (Other Themes)</h4>
-        <p><em>(雙模式切換的架構極具擴展性，非常適合「對立陣營」的主題包裝)</em></p>
-        <table>
-        <thead>
-        <tr>
-        <th>符號</th>
-        <th>題材 A：天使與惡魔 (Angels vs Demons)</th>
-        <th>題材 B：賽博警匪 (Cops vs Robbers)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td><strong>模式切換</strong></td>
-        <td>光明模式 (High) / 深淵模式 (Very High)</td>
-        <td>執法模式 (High) / 犯罪模式 (Very High)</td>
-        </tr>
-        <tr>
-        <td><strong>SCATTER</strong></td>
-        <td>聖光之門 / 惡魔祭壇</td>
-        <td>警局金庫 / 隱密駭客基地</td>
-        </tr>
-        <tr>
-        <td><strong>WILD</strong></td>
-        <td>祈福金幣 / 詛咒血幣</td>
-        <td>警用徽章 / 骷髏噴漆</td>
-        </tr>
-        <tr>
-        <td><strong>SP1（Expanding Wild）</strong></td>
-        <td>大天使長 (劍) / 惡魔領主 (鐮刀)</td>
-        <td>重裝特警 (防爆盾) / 賽博駭客 (雷射槍)</td>
-        </tr>
-        <tr>
-        <td><strong>H1~H5</strong></td>
-        <td>大天使·獅鷲·聖鴿·聖盔·聖杯 / 惡魔領主·地獄犬·蝙蝠·血盔·血骨杯</td>
-        <td>警長·裝甲車·警犬·對講機·手銬 / 駭客·逃亡跑車·遙控炸彈·竊聽器·萬能鎖</td>
-        </tr>
-        <tr>
-        <td><strong>L1~L5</strong></td>
-        <td>帶光環的字母 / 帶荊棘的字母</td>
-        <td>霓虹藍字母 / 霓虹紅字母</td>
-        </tr>
-        <tr>
-        <td><strong>視覺風格</strong></td>
-        <td>天使揮劍斬擊 vs 惡魔鐮刀收割</td>
-        <td>特警舉盾推進 vs 駭客射擊雷射</td>
-        </tr>
-        </tbody>
-        </table>
+
+        <h4>10. 其他題材發想（可選）</h4>
+        <div class="callout">本章是未來換皮或備選方向，只保留設計想法，不代表已核准需求，也不會自動進入 Machine Profile。</div>
+        <table><colgroup><col style="width:20%"><col style="width:40%"><col style="width:40%"></colgroup><thead><tr><th>符號</th><th>題材 A</th><th>題材 B</th></tr></thead><tbody>
+        <tr><td>WILD</td><td></td><td></td></tr>
+        <tr><td>SCATTER / SP*</td><td></td><td></td></tr>
+        <tr><td>H1~</td><td></td><td></td></tr>
+        <tr><td>L1~</td><td></td><td></td></tr>
+        <tr><td>視覺風格</td><td></td><td></td></tr>
+        </tbody></table>
+
         <h4>11. 待確認問題 (Open Questions)</h4>
-        <table>
-        <thead>
-        <tr>
-        <th>#</th>
-        <th>問題</th>
-        <th>影響範圍</th>
-        <th>優先度</th>
-        <th>狀態</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>1</td>
-        <td><del>H3–H5 數值與 Helmet / Cup 高低順序核對</del> → <strong>已核對官方 Page 1/8</strong>：H3 為 20/10/2（原誤植 10/5/2）、H4 為 10/5/1（原誤植 5/2.5/1）；<strong>頭盔與聖杯數值完全相同，無高低之分</strong></td>
-        <td>Math / QA</td>
-        <td>—</td>
-        <td><strong>Closed (v2.1)</strong></td>
-        </tr>
-        <tr>
-        <td>2</td>
-        <td>Project Code / Game ID 正式確認</td>
-        <td>Product / Backend</td>
-        <td>Medium</td>
-        <td>Open</td>
-        </tr>
-        <tr>
-        <td>3</td>
-        <td>模式可否「遊戲中即時切換」或僅「開局前選擇」之最終規則</td>
-        <td>Product / Frontend</td>
-        <td>Medium</td>
-        <td>Open</td>
-        </tr>
-        <tr>
-        <td>4</td>
-        <td>Olympus／Hades、Buy Feature 與所有 Special Bets 的 RTP</td>
-        <td>Math / Product</td>
-        <td>—</td>
-        <td><strong>Closed：統一為 96% (v2.3)</strong></td>
-        </tr>
-        <tr>
-        <td>5</td>
-        <td>Default Bet / coin 級距 / 幣別</td>
-        <td>Product / Frontend</td>
-        <td>Low</td>
-        <td>Open</td>
-        </tr>
-        <tr>
-        <td>6</td>
-        <td>多語系 Gameinfo HTML 與素材需求</td>
-        <td>Content / Art</td>
-        <td>Low</td>
-        <td>Open</td>
-        </tr>
-        </tbody>
-        </table>
+        <div class="callout"><strong>本章目的：</strong>集中記錄所有尚未裁決、但會影響 Math、UI、Art、Backend、QA 或 SlotForge 套用的問題。</div>
+        <div class="warning"><strong>撰寫提醒：</strong>每筆使用唯一 Q ID，寫清楚問題、影響範圍、優先度、狀態與對應 Decision ID。尚未裁決的數值或玩法不可只留在聊天紀錄，也不可在 profile 內假裝完成。</div>
+        <table><colgroup><col style="width:8%"><col style="width:28%"><col style="width:20%"><col style="width:14%"><col style="width:12%"><col style="width:18%"></colgroup><thead><tr><th>ID</th><th>問題</th><th>影響範圍</th><th>優先度</th><th>狀態</th><th>對應決策</th></tr></thead><tbody>
+        <tr><td>Q-001</td><td></td><td>Math / UI / Art / Backend / QA</td><td>High / Medium / Low</td><td>Open</td><td><code>DEC-###</code></td></tr>
+        </tbody></table>
+
         <h4>12. 後端可自行補的項目（指引）</h4>
-        <div class="callout">依專案分工，contract 與 math 由後端 / 外包處理；以下僅列出需補範圍。</div>
+        <div class="callout">列出需要後端／外包後續產出的範圍；本章不是已完成的 contract 或 math 結果。</div>
         <ul>
-        <li>技術契約 (SF-CONTRACT)：<code>/bet</code> 帶 <code>mode</code>、雙套權重切換、Super Buy 保底權重、<code>sticky_wilds_array</code>、reconnect 還原、idempotency / round lock。</li>
-        <li>機率 / 數學 (SF-MATH)：Olympus / Hades 兩套權重、擴展百搭倍數分布、各 Buy / Special Bet 觸發與 RTP 拆解、Max Win 25,000x 機率。</li>
-        <li>內容 / 美術：Gameinfo HTML（依 §7.1）與雙套示意圖清單。</li>
-        <li>SlotForge Machine Profile：<code>slotforge_gow_zeus_hades_250.profile.yaml</code>（symbol mapping、ui_profile、模式切換 / Buy / Special Bets 元件、reel_layout）。</li>
+        <li><strong>SF-CONTRACT：</strong>event schema、reconnect 還原、idempotency / round lock。</li>
+        <li><strong>SF-MATH：</strong>符號權重、功能觸發率、RTP 拆解、Max Win 機率與驗證。</li>
+        <li><strong>內容 / 美術：</strong>Gameinfo HTML（依 §7.1）與示意圖清單。</li>
+        <li><strong>SlotForge Machine Profile：</strong><code>exports/slotforge_&lt;project_code&gt;.profile.yaml</code>，只使用現行 v1 contract。</li>
+        </ul>
+
+        <h4>13. 音樂音效清單摘要（可選）</h4>
+        <div class="callout">完整清單以外部 Sheet 或來源檔案為主，本節只保留摘要、用途、觸發情境與來源 ID。目前不會因為此表新增 audio cue contract。</div>
+        <table><colgroup><col style="width:10%"><col style="width:16%"><col style="width:24%"><col style="width:20%"><col style="width:14%"><col style="width:16%"></colgroup><thead><tr><th>類型</th><th>Filename</th><th>用途</th><th>觸發時機</th><th>來源 ID</th><th>狀態</th></tr></thead><tbody>
+        <tr><td>BGM</td><td></td><td>Base Game BGM</td><td>進入主遊戲</td><td><code>SRC-###</code></td><td>待確認</td></tr>
+        <tr><td>BGM</td><td></td><td>Free Game BGM</td><td>進入免費遊戲</td><td><code>SRC-###</code></td><td>待確認</td></tr>
+        <tr><td>SFX</td><td></td><td>Spin / Stop</td><td>點擊或停輪</td><td><code>SRC-###</code></td><td>待確認</td></tr>
+        <tr><td>SFX</td><td></td><td>Win 報獎</td><td>Small / Big / Mega</td><td><code>SRC-###</code></td><td>待確認</td></tr>
+        </tbody></table>
+
+        <h4>14. 交付與同步備註</h4>
+        <div class="callout"><strong>本章目的：</strong>交付前確認 GDD、profile、來源、決策與驗證結果已同步。</div>
+        <div class="warning"><strong>交付前必查：</strong>project、template、symbols、math、mechanics、UI／asset shared fields 一致；review checklist 完成；SlotForge 匯入失敗時能依欄位 path 修正且不覆蓋既有專案。</div>
+        <ul>
+        <li>本文件最後一次與 profile 同步日期：<code>YYYY-MM-DD</code>。</li>
+        <li>對應 profile：<code>exports/slotforge_&lt;project_code&gt;.profile.yaml</code>。</li>
+        <li>最新決策：<code>docs/DECISION_LOG.md</code>。</li>
+        <li>仍未完成的審查項目：</li>
+        <li>SlotForge 實際匯入結果：</li>
         </ul>
       </section>
 
